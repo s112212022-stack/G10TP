@@ -114,6 +114,35 @@
             transform-style: preserve-3d;
             backface-visibility: hidden;
         }
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            min-height: inherit;
+            transform-style: preserve-3d;
+            transform-origin: center center;
+            transition: transform 0.7s ease-in-out;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-face {
+            position: absolute;
+            inset: 0;
+            min-height: inherit;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .flip-card-inner {
+                transition: none;
+            }
+        }
         .page-transition {
             transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
         }
@@ -125,6 +154,332 @@
         }
         .animate-fade-in {
             animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .strategy-analysis {
+            position: relative;
+            --group-a: #8b5cf6;
+            --group-b: #22d3ee;
+            --group-c: #34d399;
+            --group-d: #f59e0b;
+        }
+        .strategy-matrix-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .strategy-matrix-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .strategy-matrix {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1000 / 520;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 78% 18%, rgba(139, 92, 246, 0.2), transparent 30%),
+                radial-gradient(circle at 56% 56%, rgba(34, 211, 238, 0.14), transparent 32%),
+                linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.56));
+            animation: strategyPanelIn 0.55s ease-out both;
+            flex-shrink: 0;
+        }
+        .strategy-y-title {
+            position: absolute;
+            left: -1.15rem;
+            top: 50%;
+            z-index: 10;
+            width: 9.25rem;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: center;
+            pointer-events: none;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .strategy-y-title-main {
+            display: block;
+            color: #e5e7eb;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+        .strategy-y-title-sub {
+            display: block;
+            margin-top: 0.15rem;
+            color: rgba(148, 163, 184, 0.72);
+            font-size: 0.62rem;
+            font-weight: 600;
+        }
+        .strategy-y-label {
+            position: absolute;
+            left: 1.05rem;
+            z-index: 10;
+            width: 7.7rem;
+            padding: 0.42rem 0.52rem;
+            border-radius: 0.55rem;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 28px -20px rgba(139, 92, 246, 0.55);
+            pointer-events: none;
+            line-height: 1.25;
+        }
+        .strategy-y-label-top {
+            top: 6.5%;
+        }
+        .strategy-y-label-bottom {
+            bottom: 24%;
+        }
+        .strategy-y-label-main {
+            display: block;
+            color: #f8fafc;
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+        .strategy-y-label-sub {
+            display: block;
+            margin-top: 0.15rem;
+            color: rgba(148, 163, 184, 0.78);
+            font-size: 0.62rem;
+            font-weight: 600;
+        }
+        .strategy-x-title {
+            position: absolute;
+            left: 50%;
+            bottom: 1.35rem;
+            z-index: 10;
+            width: min(72%, 36rem);
+            transform: translateX(-50%);
+            pointer-events: none;
+            text-align: center;
+            color: #e5e7eb;
+            font-size: 0.82rem;
+            font-weight: 800;
+            line-height: 1.15;
+        }
+        .strategy-x-caption {
+            display: block;
+            margin-top: 0.16rem;
+            color: rgba(148, 163, 184, 0.7);
+            font-size: 0.58rem;
+            font-weight: 600;
+        }
+        .strategy-x-label {
+            position: absolute;
+            bottom: 3.55rem;
+            z-index: 10;
+            padding: 0.26rem 0.46rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            background: rgba(15, 23, 42, 0.68);
+            backdrop-filter: blur(10px);
+            pointer-events: none;
+            color: rgba(226, 232, 240, 0.86);
+            font-size: 0.66rem;
+            font-weight: 800;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .strategy-x-label-left {
+            left: 10.5%;
+        }
+        .strategy-x-label-right {
+            right: 5.2%;
+        }
+        .strategy-axis-layer {
+            opacity: 0;
+            animation: strategyFadeUp 0.5s ease-out 0.1s both;
+        }
+        .strategy-zone {
+            opacity: 0;
+            animation: strategyZoneIn 0.6s ease-out 0.45s both;
+        }
+        .strategy-zone-b { animation-delay: 0.55s; }
+        .strategy-zone-c { animation-delay: 0.65s; }
+        .strategy-zone-d { animation-delay: 0.75s; }
+        .strategy-cluster {
+            position: absolute;
+            z-index: 5;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            width: 12rem;
+            opacity: 0;
+            animation: strategyNodeIn 0.55s ease-out both;
+        }
+        .strategy-cluster-a { top: 15%; left: 70%; animation-delay: 0.9s; }
+        .strategy-cluster-b { top: 52%; left: 53%; animation-delay: 1.05s; }
+        .strategy-cluster-c { top: 70%; left: 13%; animation-delay: 1.2s; }
+        .strategy-cluster-d { top: 28%; left: 43%; animation-delay: 1.35s; }
+        .company-node {
+            position: relative;
+            display: block;
+            width: 5.2rem;
+            min-height: 3.8rem;
+            padding-top: 2.35rem;
+            text-align: center;
+            line-height: 1.05;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+        .company-node::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2.1rem;
+            height: 2.1rem;
+            border-radius: 9999px;
+            transform: translateX(-50%);
+            border: 1px solid color-mix(in srgb, var(--group-color), white 32%);
+            background:
+                radial-gradient(circle at 35% 30%, rgba(255,255,255,0.85), transparent 18%),
+                color-mix(in srgb, var(--group-color), rgba(2, 6, 23, 0.78) 70%);
+            box-shadow: 0 0 20px color-mix(in srgb, var(--group-color), transparent 28%);
+            transition: box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+        .strategy-cluster:hover .company-node,
+        .strategy-cluster:focus-within .company-node,
+        .company-node:hover {
+            transform: scale(1.08);
+        }
+        .strategy-cluster:hover .company-node::before,
+        .strategy-cluster:focus-within .company-node::before,
+        .company-node:hover::before {
+            border-color: color-mix(in srgb, var(--group-color), white 52%);
+            box-shadow: 0 0 30px color-mix(in srgb, var(--group-color), transparent 5%);
+        }
+        .strategy-links {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .strategy-link {
+            fill: none;
+            stroke-width: 2.4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.48;
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+            animation: strategyDraw 1s ease-in-out 1.65s forwards;
+            filter: drop-shadow(0 0 8px currentColor);
+            transition: opacity 0.25s ease, stroke-width 0.25s ease;
+        }
+        .strategy-group-card {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+            animation: strategyCardIn 0.55s ease-out 2.1s forwards;
+        }
+        .strategy-group-card:nth-child(2) { animation-delay: 2.2s; }
+        .strategy-group-card:nth-child(3) { animation-delay: 2.3s; }
+        .strategy-group-card:nth-child(4) { animation-delay: 2.4s; }
+        .strategy-analysis:has([data-strategy-group="a"]:hover) [data-group-line="a"],
+        .strategy-analysis:has([data-strategy-group="a"]:focus-within) [data-group-line="a"],
+        .strategy-analysis:has([data-group-card="a"]:hover) [data-group-line="a"],
+        .strategy-analysis:has([data-strategy-group="b"]:hover) [data-group-line="b"],
+        .strategy-analysis:has([data-strategy-group="b"]:focus-within) [data-group-line="b"],
+        .strategy-analysis:has([data-group-card="b"]:hover) [data-group-line="b"],
+        .strategy-analysis:has([data-strategy-group="c"]:hover) [data-group-line="c"],
+        .strategy-analysis:has([data-strategy-group="c"]:focus-within) [data-group-line="c"],
+        .strategy-analysis:has([data-group-card="c"]:hover) [data-group-line="c"],
+        .strategy-analysis:has([data-strategy-group="d"]:hover) [data-group-line="d"],
+        .strategy-analysis:has([data-strategy-group="d"]:focus-within) [data-group-line="d"],
+        .strategy-analysis:has([data-group-card="d"]:hover) [data-group-line="d"] {
+            opacity: 1;
+            stroke-width: 3.8;
+        }
+        .strategy-analysis:has([data-strategy-group="a"]:hover) [data-group-card="a"],
+        .strategy-analysis:has([data-strategy-group="a"]:focus-within) [data-group-card="a"],
+        .strategy-analysis:has([data-group-card="a"]:hover) [data-group-card="a"],
+        .strategy-analysis:has([data-strategy-group="b"]:hover) [data-group-card="b"],
+        .strategy-analysis:has([data-strategy-group="b"]:focus-within) [data-group-card="b"],
+        .strategy-analysis:has([data-group-card="b"]:hover) [data-group-card="b"],
+        .strategy-analysis:has([data-strategy-group="c"]:hover) [data-group-card="c"],
+        .strategy-analysis:has([data-strategy-group="c"]:focus-within) [data-group-card="c"],
+        .strategy-analysis:has([data-group-card="c"]:hover) [data-group-card="c"],
+        .strategy-analysis:has([data-strategy-group="d"]:hover) [data-group-card="d"],
+        .strategy-analysis:has([data-strategy-group="d"]:focus-within) [data-group-card="d"],
+        .strategy-analysis:has([data-group-card="d"]:hover) [data-group-card="d"] {
+            transform: translateY(-4px);
+            border-color: color-mix(in srgb, var(--group-color), white 30%);
+            box-shadow: 0 18px 40px -28px var(--group-color);
+        }
+        @keyframes strategyPanelIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes strategyFadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes strategyZoneIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 0.72; transform: scale(1); }
+        }
+        @keyframes strategyNodeIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.94); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes strategyDraw {
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes strategyCardIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .strategy-matrix {
+                width: 900px;
+                height: 468px;
+                aspect-ratio: auto;
+            }
+            .strategy-y-title {
+                left: -0.85rem;
+                width: 8.75rem;
+            }
+            .strategy-y-title-main {
+                font-size: 0.72rem;
+            }
+            .strategy-y-title-sub {
+                font-size: 0.56rem;
+            }
+            .strategy-y-label {
+                left: 0.8rem;
+                width: 7.2rem;
+                padding: 0.38rem 0.5rem;
+            }
+            .strategy-y-label-main {
+                font-size: 0.66rem;
+            }
+            .strategy-y-label-sub {
+                font-size: 0.56rem;
+            }
+            .strategy-y-label-top {
+                top: 6%;
+            }
+            .strategy-y-label-bottom {
+                bottom: 24.5%;
+            }
+            .strategy-x-title {
+                bottom: 1.1rem;
+                width: 64%;
+                font-size: 0.72rem;
+            }
+            .strategy-x-caption {
+                font-size: 0.52rem;
+            }
+            .strategy-x-label {
+                bottom: 3.35rem;
+                font-size: 0.58rem;
+            }
+            .strategy-x-label-left {
+                left: 10.2%;
+            }
+            .strategy-x-label-right {
+                right: 4.8%;
+            }
         }
 
         /* 時間軸樣式 */
@@ -1101,10 +1456,114 @@
                         <div id="market-competitor" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-purple-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-purple-500"></div>
                             <h3 class="text-xl font-bold text-white light-mode-card-title mb-4">三、策略群組-競爭者分析</h3>
-                            <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                <p class="text-gray-400 light-mode-desc text-xs leading-relaxed">
-                                    相較於台積電與三星在先進製程上的鉅額資本投入，聯電選擇<strong class="text-purple-400">「避開尖端」</strong>。透過與 Intel 12nm 合作以<strong class="text-white light-mode-bold-highlight">輕資產模式</strong>享有先進產能。同時防禦中國大陸成熟晶圓廠低價競爭，主打 RFSOI、BCD 等高壁壘的<strong class="text-purple-400">特殊製程</strong>。
-                                </p>
+                            <div class="strategy-analysis">
+                                <div class="strategy-matrix-wrapper">
+                                    <div class="strategy-matrix rounded-2xl border border-purple-500/30 light-mode-card-nested shadow-inner p-4 md:p-6">
+                                        <svg class="strategy-axis-layer absolute inset-0 w-full h-full" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+                                            <defs>
+                                                <linearGradient id="axisGlowZh" x1="0" x2="1" y1="0" y2="1">
+                                                    <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.15"></stop>
+                                                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.25"></stop>
+                                                </linearGradient>
+                                            </defs>
+                                            <rect x="88" y="56" width="840" height="392" rx="18" fill="url(#axisGlowZh)" stroke="rgba(168,85,247,0.22)"></rect>
+                                            <g stroke="rgba(148,163,184,0.13)" stroke-width="1">
+                                                <path d="M 256 56 V 448"></path><path d="M 424 56 V 448"></path><path d="M 592 56 V 448"></path><path d="M 760 56 V 448"></path>
+                                                <path d="M 88 134 H 928"></path><path d="M 88 212 H 928"></path><path d="M 88 290 H 928"></path><path d="M 88 368 H 928"></path>
+                                            </g>
+                                            <g stroke="rgba(226,232,240,0.75)" stroke-width="2.5" stroke-linecap="round">
+                                                <path d="M 88 448 H 944"></path>
+                                                <path d="M 88 448 V 42"></path>
+                                                <path d="M 944 448 L 930 440 M 944 448 L 930 456"></path>
+                                                <path d="M 88 42 L 80 56 M 88 42 L 96 56"></path>
+                                            </g>
+                                            <ellipse class="strategy-zone strategy-zone-a" cx="790" cy="132" rx="130" ry="72" fill="rgba(139,92,246,0.18)" stroke="rgba(139,92,246,0.45)"></ellipse>
+                                            <ellipse class="strategy-zone strategy-zone-b" cx="615" cy="328" rx="154" ry="82" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.38)"></ellipse>
+                                            <ellipse class="strategy-zone strategy-zone-c" cx="212" cy="378" rx="125" ry="70" fill="rgba(52,211,153,0.14)" stroke="rgba(52,211,153,0.38)"></ellipse>
+                                            <ellipse class="strategy-zone strategy-zone-d" cx="510" cy="208" rx="130" ry="72" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)"></ellipse>
+                                        </svg>
+
+                                        <!-- Y 軸標題與端點標籤 -->
+                                        <div class="strategy-y-title">
+                                            <span class="strategy-y-title-main">技術領先程度</span>
+                                            <span class="strategy-y-title-sub">Technology Leadership</span>
+                                        </div>
+
+                                        <div class="strategy-y-label strategy-y-label-top">
+                                            <span class="strategy-y-label-main">最尖端製程</span>
+                                            <span class="strategy-y-label-sub">Leading-edge, 3nm/2nm</span>
+                                        </div>
+
+                                        <div class="strategy-y-label strategy-y-label-bottom">
+                                            <span class="strategy-y-label-main">成熟／特殊製程</span>
+                                            <span class="strategy-y-label-sub">Mature / Specialty</span>
+                                        </div>
+
+                                        <div class="strategy-x-label strategy-x-label-left">利基型／單一服務</div>
+                                        <div class="strategy-x-label strategy-x-label-right">全方位／多樣化服務</div>
+
+                                        <div class="strategy-x-title">
+                                            產品與服務廣度（Service/Product Breadth）
+                                            <span class="strategy-x-caption">提供多少種類的特殊製程（如高電壓、嵌入式快閃記憶體、射頻製程等）以及客戶涵蓋範圍</span>
+                                        </div>
+
+                                        <!-- 在象限圖上補充群組 A、B、C、D 標籤 -->
+                                        <div class="absolute left-[70%] top-[7%] z-10 flex flex-col text-violet-400" style="line-height: 1.2;">
+                                            <span class="font-bold text-[10px] md:text-xs">群組D (先進製程領航者)</span>
+                                            <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">(廠商、高的製程節點 (3nm))</span>
+                                        </div>
+                                        <div class="absolute left-[45%] top-[21%] z-10 flex flex-col text-amber-400" style="line-height: 1.2;">
+                                            <span class="font-bold text-[10px] md:text-xs">群組B (IDM 廠)</span>
+                                        </div>
+                                        <div class="absolute left-[64%] top-[82%] z-10 flex flex-col text-cyan-400" style="line-height: 1.2;">
+                                            <span class="font-bold text-[10px] md:text-xs">群組C (成熟製程大型供應商)</span>
+                                        </div>
+                                        <div class="absolute left-[34%] top-[70%] z-10 flex flex-col text-emerald-400" style="line-height: 1.2; width: 180px;">
+                                            <span class="font-bold text-[10px] md:text-xs">群組A (特殊製程利基者)</span>
+                                            <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">(通常 - 有特色技術以下的28nm)</span>
+                                            <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">電源管理 IC 或驅動 IC</span>
+                                        </div>
+
+                                        <!-- 泡泡節點 (中文與英文並列) -->
+                                        <div data-strategy-group="a" class="strategy-cluster strategy-cluster-a" style="--group-color: var(--group-a);" tabindex="0">
+                                            <div class="company-node flex items-center justify-center text-[10px] md:text-[11px] font-bold text-white leading-tight">台積電<br>(TSMC)</div>
+                                            <div class="company-node flex items-center justify-center text-[10px] md:text-[11px] font-bold text-white leading-tight">三星<br>(Samsung)</div>
+                                        </div>
+                                        <div data-strategy-group="b" class="strategy-cluster strategy-cluster-b" style="--group-color: var(--group-b);" tabindex="0">
+                                            <div class="company-node flex items-center justify-center text-[10px] md:text-[11px] font-bold text-white leading-tight">聯電<br>(UMC)</div>
+                                            <div class="company-node flex items-center justify-center text-[9px] md:text-[10px] font-bold text-white leading-tight">格羅方德<br>(GF)</div>
+                                            <div class="company-node flex items-center justify-center text-[10px] md:text-[11px] font-bold text-white leading-tight">中芯國際<br>(SMIC)</div>
+                                        </div>
+                                        <div data-strategy-group="c" class="strategy-cluster strategy-cluster-c" style="--group-color: var(--group-c);" tabindex="0">
+                                            <div class="company-node flex items-center justify-center text-[10px] md:text-[11px] font-bold text-white leading-tight">世界先進<br>(VIS)</div>
+                                            <div class="company-node flex items-center justify-center text-[10px] md:text-[11px] font-bold text-white leading-tight">力積電<br>(PSMC)</div>
+                                        </div>
+                                        <div data-strategy-group="d" class="strategy-cluster strategy-cluster-d" style="--group-color: var(--group-d);" tabindex="0">
+                                            <div class="company-node flex items-center justify-center text-[10px] md:text-[11px] font-bold text-white leading-tight">英特爾<br>(Intel)</div>
+                                            <div class="company-node flex items-center justify-center text-[9px] md:text-[10px] font-bold text-white leading-tight">德州儀器<br>(TI)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+                                    <div data-group-card="c" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-emerald-400/30 shadow-sm" style="--group-color: var(--group-c);">
+                                        <div class="text-emerald-400 font-bold text-sm mb-2">群組A｜特殊製程利基者</div>
+                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">VIS、力積電 PSMC 聚焦特定成熟與特殊應用，透過成本效率、彈性產能與差異化服務切入利基市場。</p>
+                                    </div>
+                                    <div data-group-card="d" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-amber-400/30 shadow-sm" style="--group-color: var(--group-d);">
+                                        <div class="text-amber-400 font-bold text-sm mb-2">群組B｜IDM廠</div>
+                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">Intel 與 Texas Instruments 兼具設計、製造與產品平台優勢，位於技術能力較高但服務廣度介於中段的位置。</p>
+                                    </div>
+                                    <div data-group-card="b" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-cyan-400/30 shadow-sm" style="--group-color: var(--group-b);">
+                                        <div class="text-cyan-400 font-bold text-sm mb-2">群組C｜成熟製程大型供應商</div>
+                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">聯電 UMC、GlobalFoundries、SMIC 位於中右區域。聯電選擇<strong class="text-purple-400">「避開尖端」</strong>，以<strong class="text-white light-mode-bold-highlight">輕資產模式</strong>取得 12nm 合作機會，並以 RFSOI、BCD 等<strong class="text-purple-400">特殊製程</strong>防禦低價競爭。</p>
+                                    </div>
+                                    <div data-group-card="a" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-violet-400/30 shadow-sm" style="--group-color: var(--group-a);">
+                                        <div class="text-violet-400 font-bold text-sm mb-2">群組D｜先進製程領導者</div>
+                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">台積電 TSMC 與 Samsung 位於右上角，投入最尖端製程與完整平台服務，資本支出高、技術門檻也最高。</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -1155,21 +1614,42 @@
                             <div class="flex flex-col lg:grid lg:grid-cols-3 gap-6 items-center relative z-10">
                                 <!-- 左側欄 -->
                                 <div class="flex flex-col gap-6 w-full h-full justify-center">
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">P (Political / 政治)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">中美科技戰風險，半導體受出口管制。聯電藉跨國產能合作打造地緣防禦鏈，並參與相關產業政策發展。</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉政治字卡">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">P (Political / 政治)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">點擊查看重點說明</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">中美科技戰風險，半導體受出口管制。聯電藉跨國產能合作打造地緣防禦鏈，並參與相關產業政策發展。</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">L (Legal / 法律)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">嚴格遵守職安法、勞基法與各國營運規範，因應地緣政治制定出口合規政策，並完善員工福利制度。</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉法律字卡">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">L (Legal / 法律)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">點擊查看重點說明</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">嚴格遵守職安法、勞基法與各國營運規範，因應地緣政治制定出口合規政策，並完善員工福利制度。</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- 中間欄 (含核心中心點) -->
                                 <div class="flex flex-col gap-6 w-full h-full items-center justify-between order-first lg:order-none">
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">E (Economic / 經濟)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">通膨及供應鏈重組。聯電專注成熟製程代工，藉由設備折舊完畢維持高獲利，22/28奈米營收創下新高。</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉經濟字卡">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">E (Economic / 經濟)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">點擊查看重點說明</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">通膨及供應鏈重組。聯電專注成熟製程代工，藉由設備折舊完畢維持高獲利，22/28奈米營收創下新高。</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                     <!-- 中心 PESTEL 樞紐 -->
@@ -1177,21 +1657,42 @@
                                         <span class="text-xl font-black text-white light-mode-title tracking-widest">PESTEL</span>
                                     </div>
 
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">E (Environment / 環境)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">承諾2050年達成淨零碳排(RE100)。推動ISO 14067碳足跡盤查與廢氣處理，溫室氣體減量實績達31%。</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉環境字卡">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">E (Environment / 環境)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">點擊查看重點說明</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">承諾2050年達成淨零碳排(RE100)。推動ISO 14067碳足跡盤查與廢氣處理，溫室氣體減量實績達31%。</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- 右側欄 -->
                                 <div class="flex flex-col gap-6 w-full h-full justify-center">
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">S (Society / 社會)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">萬物聯網與ESG永續課題發酵。人工智慧、電動車及智慧聯網推動了對通訊與周邊晶片的暴增需求。</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉社會字卡">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">S (Society / 社會)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">點擊查看重點說明</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">萬物聯網與ESG永續課題發酵。人工智慧、電動車及智慧聯網推動了對通訊與周邊晶片的暴增需求。</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">T (Technology / 科技)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">與Intel合作開發12nm平台，並投入矽光子(CPO)與W2W 3D IC先進封裝，解決AI算力傳輸瓶頸。</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉科技字卡">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">T (Technology / 科技)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">點擊查看重點說明</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">與Intel合作開發12nm平台，並投入矽光子(CPO)與W2W 3D IC先進封裝，解決AI算力傳輸瓶頸。</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1312,10 +1813,112 @@
                         <div id="market-competitor" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-purple-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-purple-500"></div>
                             <h3 class="text-xl font-bold text-white light-mode-card-title mb-4">3. Strategic Group Analysis</h3>
-                            <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                <p class="text-gray-400 light-mode-desc text-xs leading-relaxed">
-                                    Unlike TSMC and Samsung's massive capital burn on advanced nodes, UMC strategically <strong class="text-purple-400">avoids the cutting-edge</strong>. It utilizes an <strong class="text-white light-mode-bold-highlight">asset-light model</strong> via Intel's 12nm fab in Arizona. Meanwhile, it counters Chinese foundries' price wars by dominating high-barrier <strong class="text-purple-400">specialty nodes</strong> like RFSOI and BCD.
-                                </p>
+                            <div class="strategy-analysis">
+                                <div class="strategy-matrix-wrapper">
+                                    <div class="strategy-matrix rounded-2xl border border-purple-500/30 light-mode-card-nested shadow-inner p-4 md:p-6">
+                                        <svg class="strategy-axis-layer absolute inset-0 w-full h-full" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+                                            <defs>
+                                                <linearGradient id="axisGlowEn" x1="0" x2="1" y1="0" y2="1">
+                                                    <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.15"></stop>
+                                                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.25"></stop>
+                                                </linearGradient>
+                                            </defs>
+                                            <rect x="88" y="56" width="840" height="392" rx="18" fill="url(#axisGlowEn)" stroke="rgba(168,85,247,0.22)"></rect>
+                                            <g stroke="rgba(148,163,184,0.13)" stroke-width="1">
+                                                <path d="M 256 56 V 448"></path><path d="M 424 56 V 448"></path><path d="M 592 56 V 448"></path><path d="M 760 56 V 448"></path>
+                                                <path d="M 88 134 H 928"></path><path d="M 88 212 H 928"></path><path d="M 88 290 H 928"></path><path d="M 88 368 H 928"></path>
+                                            </g>
+                                            <g stroke="rgba(226,232,240,0.75)" stroke-width="2.5" stroke-linecap="round">
+                                                <path d="M 88 448 H 944"></path>
+                                                <path d="M 88 448 V 42"></path>
+                                                <path d="M 944 448 L 930 440 M 944 448 L 930 456"></path>
+                                                <path d="M 88 42 L 80 56 M 88 42 L 96 56"></path>
+                                            </g>
+                                            <ellipse class="strategy-zone strategy-zone-a" cx="790" cy="132" rx="130" ry="72" fill="rgba(139,92,246,0.18)" stroke="rgba(139,92,246,0.45)"></ellipse>
+                                            <ellipse class="strategy-zone strategy-zone-b" cx="615" cy="328" rx="154" ry="82" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.38)"></ellipse>
+                                            <ellipse class="strategy-zone strategy-zone-c" cx="212" cy="378" rx="125" ry="70" fill="rgba(52,211,153,0.14)" stroke="rgba(52,211,153,0.38)"></ellipse>
+                                            <ellipse class="strategy-zone strategy-zone-d" cx="510" cy="208" rx="130" ry="72" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)"></ellipse>
+                                        </svg>
+
+                                        <!-- Y-axis title and endpoint labels -->
+                                        <div class="strategy-y-title">
+                                            <span class="strategy-y-title-main">Technology Leadership</span>
+                                        </div>
+
+                                        <div class="strategy-y-label strategy-y-label-top">
+                                            <span class="strategy-y-label-main">Leading Edge</span>
+                                            <span class="strategy-y-label-sub">3nm/2nm</span>
+                                        </div>
+
+                                        <div class="strategy-y-label strategy-y-label-bottom">
+                                            <span class="strategy-y-label-main">Mature / Specialty</span>
+                                        </div>
+
+                                        <div class="strategy-x-label strategy-x-label-left">Niche</div>
+                                        <div class="strategy-x-label strategy-x-label-right">Full-Spectrum</div>
+
+                                        <div class="strategy-x-title">
+                                            Product & Service Breadth
+                                            <span class="strategy-x-caption">Number of specialty nodes offered and customer coverage</span>
+                                        </div>
+
+                                        <!-- Group Labels directly on the quadrant chart -->
+                                        <div class="absolute left-[70%] top-[7%] z-10 flex flex-col text-violet-400" style="line-height: 1.2;">
+                                            <span class="font-bold text-[10px] md:text-xs">Group D (Advanced-Node Leaders)</span>
+                                            <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">(Suppliers, high process node (3nm))</span>
+                                        </div>
+                                        <div class="absolute left-[45%] top-[21%] z-10 flex flex-col text-amber-400" style="line-height: 1.2;">
+                                            <span class="font-bold text-[10px] md:text-xs">Group B (IDM Manufacturers)</span>
+                                        </div>
+                                        <div class="absolute left-[64%] top-[82%] z-10 flex flex-col text-cyan-400" style="line-height: 1.2;">
+                                            <span class="font-bold text-[10px] md:text-xs">Group C (Mature-Node Scale Suppliers)</span>
+                                        </div>
+                                        <div class="absolute left-[34%] top-[70%] z-10 flex flex-col text-emerald-400" style="line-height: 1.2; width: 180px;">
+                                            <span class="font-bold text-[10px] md:text-xs">Group A (Specialty Niche Players)</span>
+                                            <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">(Usually specialized tech under 28nm)</span>
+                                            <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">PMIC or Display Driver ICs</span>
+                                        </div>
+
+                                        <!-- Company clusters -->
+                                        <div data-strategy-group="a" class="strategy-cluster strategy-cluster-a" style="--group-color: var(--group-a);" tabindex="0">
+                                            <div class="company-node flex items-center justify-center text-[11px] font-bold text-white">TSMC</div>
+                                            <div class="company-node flex items-center justify-center text-[11px] font-bold text-white">Samsung</div>
+                                        </div>
+                                        <div data-strategy-group="b" class="strategy-cluster strategy-cluster-b" style="--group-color: var(--group-b);" tabindex="0">
+                                            <div class="company-node flex items-center justify-center text-[11px] font-bold text-white">UMC</div>
+                                            <div class="company-node flex items-center justify-center text-[10px] font-bold text-white">GlobalFoundries</div>
+                                            <div class="company-node flex items-center justify-center text-[11px] font-bold text-white">SMIC</div>
+                                        </div>
+                                        <div data-strategy-group="c" class="strategy-cluster strategy-cluster-c" style="--group-color: var(--group-c);" tabindex="0">
+                                            <div class="company-node flex items-center justify-center text-[11px] font-bold text-white">VIS</div>
+                                            <div class="company-node flex items-center justify-center text-[11px] font-bold text-white">PSMC</div>
+                                        </div>
+                                        <div data-strategy-group="d" class="strategy-cluster strategy-cluster-d" style="--group-color: var(--group-d);" tabindex="0">
+                                            <div class="company-node flex items-center justify-center text-[11px] font-bold text-white">Intel</div>
+                                            <div class="company-node flex items-center justify-center text-[10px] font-bold text-white">Texas Instruments</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+                                    <div data-group-card="c" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-emerald-400/30 shadow-sm" style="--group-color: var(--group-c);">
+                                        <div class="text-emerald-400 font-bold text-sm mb-2">Group A | Specialty Niche Players</div>
+                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">VIS and PSMC focus on selected mature and specialty applications, winning through cost efficiency, flexible capacity, and differentiated service.</p>
+                                    </div>
+                                    <div data-group-card="d" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-amber-400/30 shadow-sm" style="--group-color: var(--group-d);">
+                                        <div class="text-amber-400 font-bold text-sm mb-2">Group B | IDM Manufacturers</div>
+                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">Intel and Texas Instruments combine design, manufacturing, and product-platform advantages, sitting higher on technology with medium service breadth.</p>
+                                    </div>
+                                    <div data-group-card="b" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-cyan-400/30 shadow-sm" style="--group-color: var(--group-b);">
+                                        <div class="text-cyan-400 font-bold text-sm mb-2">Group C | Mature-Node Scale Suppliers</div>
+                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">UMC, GlobalFoundries, and SMIC occupy the mid-right zone. UMC strategically <strong class="text-purple-400">avoids the cutting-edge</strong>, uses an <strong class="text-white light-mode-bold-highlight">asset-light model</strong> for 12nm collaboration, and defends against price wars through high-barrier <strong class="text-purple-400">specialty nodes</strong>.</p>
+                                    </div>
+                                    <div data-group-card="a" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-violet-400/30 shadow-sm" style="--group-color: var(--group-a);">
+                                        <div class="text-violet-400 font-bold text-sm mb-2">Group D | Advanced-Node Leaders</div>
+                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">TSMC and Samsung sit in the upper-right corner, combining leading-edge process technology with broad platform services and the highest capital intensity.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -1366,21 +1969,42 @@
                             <div class="flex flex-col lg:grid lg:grid-cols-3 gap-6 items-center relative z-10">
                                 <!-- Left Column -->
                                 <div class="flex flex-col gap-6 w-full h-full justify-center">
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">P (Political)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">US-China tech war risks. UMC establishes a geopolitical defense chain through global capacity alliances and policy participations.</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="Flip political flashcard">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">P (Political)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">Tap to view details</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">US-China tech war risks. UMC establishes a geopolitical defense chain through global capacity alliances and policy participations.</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">L (Legal)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">Strict compliance with labor, corporate, and export control laws. Implements robust welfare and global operational regulations.</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="Flip legal flashcard">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">L (Legal)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">Tap to view details</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">Strict compliance with labor, corporate, and export control laws. Implements robust welfare and global operational regulations.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Center Column -->
                                 <div class="flex flex-col gap-6 w-full h-full items-center justify-between order-first lg:order-none">
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">E (Economic)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">Inflation & supply chain restructuring. UMC sustains high profits using depreciated equipment, with 22/28nm revenues hitting new highs.</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="Flip economic flashcard">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">E (Economic)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">Tap to view details</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">Inflation & supply chain restructuring. UMC sustains high profits using depreciated equipment, with 22/28nm revenues hitting new highs.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                     <!-- Center PESTEL Circle -->
@@ -1388,21 +2012,42 @@
                                         <span class="text-xl font-black text-white light-mode-title tracking-widest">PESTEL</span>
                                     </div>
 
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">E (Environment)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">Pledged Net-Zero by 2050 (RE100). Promoting ISO 14067 footprinting and advanced gas treatments, reducing emissions by 31%.</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="Flip environment flashcard">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">E (Environment)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">Tap to view details</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">Pledged Net-Zero by 2050 (RE100). Promoting ISO 14067 footprinting and advanced gas treatments, reducing emissions by 31%.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Right Column -->
                                 <div class="flex flex-col gap-6 w-full h-full justify-center">
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">S (Society)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">IoT and ESG trends accelerate. AI, EVs, and smart connectivity drastically increase demand for comms and peripheral chips.</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="Flip society flashcard">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">S (Society)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">Tap to view details</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">IoT and ESG trends accelerate. AI, EVs, and smart connectivity drastically increase demand for comms and peripheral chips.</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative group hover:border-purple-400 transition-colors">
-                                        <strong class="text-purple-400 block mb-1 text-base">T (Technology)</strong>
-                                        <p class="text-xs text-gray-400 light-mode-desc">Partnered with Intel for 12nm, and investing in Silicon Photonics (CPO) and 3D ICs to solve AI computing bottlenecks.</p>
+                                    <div class="flip-card relative w-full min-h-[128px] cursor-pointer group" tabindex="0" role="button" aria-pressed="false" aria-label="Flip technology flashcard">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-face bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm relative w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
+                                                <strong class="text-purple-400 block mb-2 text-base">T (Technology)</strong>
+                                                <p class="text-xs text-gray-400 light-mode-desc">Tap to view details</p>
+                                            </div>
+                                            <div class="flip-card-face flip-card-back bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-400/60 shadow-sm w-full flex items-center">
+                                                <p class="text-xs text-gray-400 light-mode-desc">Partnered with Intel for 12nm, and investing in Silicon Photonics (CPO) and 3D ICs to solve AI computing bottlenecks.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -2166,6 +2811,28 @@
         });
 
         document.body.addEventListener('click', () => window.focus());
+
+        function toggleFlipCard(card) {
+            card.classList.toggle('flipped');
+            card.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
+        }
+
+        document.addEventListener('click', function(event) {
+            if (!(event.target instanceof Element)) return;
+            const card = event.target.closest('.flip-card');
+            if (!card) return;
+
+            toggleFlipCard(card);
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (!(event.target instanceof Element)) return;
+            const card = event.target.closest('.flip-card');
+            if (!card || (event.key !== 'Enter' && event.key !== ' ')) return;
+
+            event.preventDefault();
+            toggleFlipCard(card);
+        });
 
         function enterCurrentSection() {
             const item = SECTIONS[activeIndex];
