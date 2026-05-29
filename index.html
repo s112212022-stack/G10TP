@@ -138,8 +138,44 @@
         .flip-card-back {
             transform: rotateY(180deg);
         }
+        .six-force-flip-card {
+            perspective: 1000px;
+            cursor: pointer;
+            min-height: 170px;
+        }
+        .six-force-flip-inner {
+            position: relative;
+            width: 100%;
+            min-height: inherit;
+            transform-style: preserve-3d;
+            transform-origin: center center;
+            transition: transform 0.7s ease-in-out;
+        }
+        .six-force-flip-card.flipped .six-force-flip-inner {
+            transform: rotateY(180deg);
+        }
+        .six-force-card-front,
+        .six-force-card-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            overflow: hidden;
+        }
+        .six-force-card-back {
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+        @media (max-width: 768px) {
+            .six-force-flip-card {
+                min-height: 190px;
+            }
+        }
         @media (prefers-reduced-motion: reduce) {
             .flip-card-inner {
+                transition: none;
+            }
+            .six-force-flip-inner {
                 transition: none;
             }
         }
@@ -1702,23 +1738,65 @@
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-purple-500"></div>
                             <h3 class="text-xl font-bold text-white light-mode-card-title mb-6">六、六力分析</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center transition-colors hover:bg-gray-800/50 min-h-[80px]">
-                                    <span class="text-base md:text-lg font-bold text-white light-mode-title">現有競爭者的競爭 <span class="text-red-500">(高)</span></span>
+                                <div class="six-force-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉現有競爭者的競爭卡片">
+                                    <div class="six-force-flip-inner">
+                                        <div class="six-force-card-front bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center text-center transition-colors">
+                                            <span class="text-base md:text-lg font-bold text-white light-mode-title">現有競爭者的競爭 <span class="text-red-500">(高)</span></span>
+                                        </div>
+                                        <div class="six-force-card-back bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-400/60 shadow-sm flex items-center">
+                                            <p class="text-sm text-gray-300 light-mode-desc leading-relaxed">晶圓代工市場競爭激烈，台積電與多家同業皆持續投入先進與成熟製程。成熟製程容易價格競爭，而先進製程則需龐大技術與資本支撐。</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center transition-colors hover:bg-gray-800/50 min-h-[80px]">
-                                    <span class="text-base md:text-lg font-bold text-white light-mode-title">購買者議價能力 <span class="text-red-500">(中至高)</span></span>
+                                <div class="six-force-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉購買者議價能力卡片">
+                                    <div class="six-force-flip-inner">
+                                        <div class="six-force-card-front bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center text-center transition-colors">
+                                            <span class="text-base md:text-lg font-bold text-white light-mode-title">購買者議價能力 <span class="text-red-500">(中至高)</span></span>
+                                        </div>
+                                        <div class="six-force-card-back bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-400/60 shadow-sm flex items-center">
+                                            <p class="text-sm text-gray-300 light-mode-desc leading-relaxed">大型IC設計公司訂單規模大，能對價格與產能提出要求。但在先進製程領域，客戶仍高度依賴台積電等少數廠商。</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center transition-colors hover:bg-gray-800/50 min-h-[80px]">
-                                    <span class="text-base md:text-lg font-bold text-white light-mode-title">潛在進入者的威脅 <span class="text-red-500">(低)</span></span>
+                                <div class="six-force-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉潛在進入者的威脅卡片">
+                                    <div class="six-force-flip-inner">
+                                        <div class="six-force-card-front bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center text-center transition-colors">
+                                            <span class="text-base md:text-lg font-bold text-white light-mode-title">潛在進入者的威脅 <span class="text-red-500">(低)</span></span>
+                                        </div>
+                                        <div class="six-force-card-back bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-400/60 shadow-sm flex items-center">
+                                            <p class="text-sm text-gray-300 light-mode-desc leading-relaxed">半導體代工產業需要大量資金、技術與長期經驗，新進者難以快速進入市場。既有大廠也已建立完整供應鏈與規模優勢。</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center transition-colors hover:bg-gray-800/50 min-h-[80px]">
-                                    <span class="text-base md:text-lg font-bold text-white light-mode-title">替代品威脅 <span class="text-red-500">(低)</span></span>
+                                <div class="six-force-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉替代品威脅卡片">
+                                    <div class="six-force-flip-inner">
+                                        <div class="six-force-card-front bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center text-center transition-colors">
+                                            <span class="text-base md:text-lg font-bold text-white light-mode-title">替代品威脅 <span class="text-red-500">(低)</span></span>
+                                        </div>
+                                        <div class="six-force-card-back bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-400/60 shadow-sm flex items-center">
+                                            <p class="text-sm text-gray-300 light-mode-desc leading-relaxed">晶圓代工服務缺乏直接替代方案，電子產品發展仍需依賴晶片製造。即使IDM廠商存在，也難完全取代專業代工模式。</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center transition-colors hover:bg-gray-800/50 min-h-[80px]">
-                                    <span class="text-base md:text-lg font-bold text-white light-mode-title">供應商議價能力 <span class="text-red-500">(中)</span></span>
+                                <div class="six-force-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉供應商議價能力卡片">
+                                    <div class="six-force-flip-inner">
+                                        <div class="six-force-card-front bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center text-center transition-colors">
+                                            <span class="text-base md:text-lg font-bold text-white light-mode-title">供應商議價能力 <span class="text-red-500">(中)</span></span>
+                                        </div>
+                                        <div class="six-force-card-back bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-400/60 shadow-sm flex items-center">
+                                            <p class="text-sm text-gray-300 light-mode-desc leading-relaxed">高階設備與材料供應商數量有限，因此具一定議價能力。不過大型晶圓代工廠因採購量大，仍保有部分談判優勢。</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center transition-colors hover:bg-gray-800/50 min-h-[80px]">
-                                    <span class="text-base md:text-lg font-bold text-white light-mode-title">互補品的影響力 <span class="text-red-500">(高)</span></span>
+                                <div class="six-force-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉互補品的影響力卡片">
+                                    <div class="six-force-flip-inner">
+                                        <div class="six-force-card-front bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-500/40 shadow-sm flex items-center justify-center text-center transition-colors">
+                                            <span class="text-base md:text-lg font-bold text-white light-mode-title">互補品的影響力 <span class="text-red-500">(高)</span></span>
+                                        </div>
+                                        <div class="six-force-card-back bg-gray-950/40 light-mode-card-nested p-5 rounded-2xl border border-purple-400/60 shadow-sm flex items-center">
+                                            <p class="text-sm text-gray-300 light-mode-desc leading-relaxed">EDA工具、封測廠與終端應用市場都會直接影響晶圓代工產業發展。智慧手機、汽車與AI等需求成長，也持續帶動晶片需求增加。</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2832,6 +2910,28 @@
 
             event.preventDefault();
             toggleFlipCard(card);
+        });
+
+        function toggleSixForceFlipCard(card) {
+            card.classList.toggle('flipped');
+            card.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
+        }
+
+        document.addEventListener('click', function(event) {
+            if (!(event.target instanceof Element)) return;
+            const card = event.target.closest('.six-force-flip-card');
+            if (!card) return;
+
+            toggleSixForceFlipCard(card);
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (!(event.target instanceof Element)) return;
+            const card = event.target.closest('.six-force-flip-card');
+            if (!card || (event.key !== 'Enter' && event.key !== ' ')) return;
+
+            event.preventDefault();
+            toggleSixForceFlipCard(card);
         });
 
         function enterCurrentSection() {
