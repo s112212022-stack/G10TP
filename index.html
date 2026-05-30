@@ -318,6 +318,319 @@
             color: #475569 !important;
         }
 
+        .value-chain-arrow {
+            position: relative;
+            display: grid;
+            grid-template-columns: 3.5rem minmax(0, 1fr) minmax(10.5rem, 13rem);
+            grid-template-rows: minmax(0, 1.08fr) minmax(0, 1fr);
+            gap: 0;
+            border: 1px solid rgba(16, 185, 129, 0.28);
+            border-radius: 1rem;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 12% 8%, rgba(34, 211, 238, 0.12), transparent 32%),
+                linear-gradient(145deg, rgba(2, 6, 23, 0.56), rgba(15, 23, 42, 0.34));
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.025), 0 24px 60px -42px rgba(16, 185, 129, 0.8);
+        }
+        .value-chain-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 0.35rem;
+            border-right: 1px solid rgba(16, 185, 129, 0.22);
+            color: rgba(226, 232, 240, 0.74);
+            background: rgba(6, 78, 59, 0.12);
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-align: center;
+            line-height: 1.35;
+            text-transform: uppercase;
+        }
+        .value-chain-label-support {
+            grid-column: 1;
+            grid-row: 1;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.18);
+        }
+        .value-chain-label-primary {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        .value-chain-body {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 0.85rem;
+            min-width: 0;
+            padding: 1rem;
+            border-right: 1px solid rgba(245, 158, 11, 0.24);
+        }
+        .value-chain-section-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.45rem 0.7rem;
+            border-radius: 0.65rem;
+            border: 1px solid rgba(52, 211, 153, 0.24);
+            background: rgba(6, 78, 59, 0.18);
+            color: #6ee7b7;
+            font-size: 0.68rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .value-chain-support {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .value-chain-primary {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 0;
+            border: 1px solid rgba(59, 130, 246, 0.28);
+            border-radius: 0.85rem;
+            overflow: hidden;
+        }
+        .value-chain-support-card,
+        .value-chain-primary-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.78rem;
+            border: 1px solid rgba(34, 211, 238, 0.22);
+            background: rgba(2, 6, 23, 0.44);
+            box-shadow: 0 18px 42px -34px rgba(52, 211, 153, 0.65);
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+        .value-chain-support-card {
+            padding: 1rem 1.1rem;
+        }
+        .value-chain-primary-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 15rem;
+            padding: 0.95rem;
+            border-width: 0 1px 0 0;
+            border-radius: 0;
+            border-color: rgba(59, 130, 246, 0.28);
+            box-shadow: none;
+        }
+        .value-chain-primary-card:last-child {
+            border-right: 0;
+        }
+        .value-chain-support-card::before,
+        .value-chain-primary-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #34d399, #22d3ee);
+            opacity: 0.85;
+        }
+        .value-chain-primary-card::before {
+            background: linear-gradient(to bottom, #22d3ee, #8b5cf6);
+        }
+        .value-chain-support-card:hover,
+        .value-chain-primary-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(52, 211, 153, 0.52);
+            background: rgba(15, 23, 42, 0.62);
+            box-shadow: 0 22px 52px -32px rgba(34, 211, 238, 0.78);
+        }
+        .value-chain-card-en {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: #22d3ee;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.25;
+        }
+        .value-chain-card-title {
+            color: #f8fafc;
+            font-size: 0.98rem;
+            font-weight: 800;
+            line-height: 1.35;
+        }
+        .value-chain-card-content {
+            margin-top: 0.65rem;
+            color: #d1d5db;
+            font-size: 0.82rem;
+            line-height: 1.65;
+        }
+        .value-chain-card-content ol,
+        .value-chain-card-content ul {
+            margin: 0;
+            padding-left: 1.05rem;
+        }
+        .value-chain-card-content li + li {
+            margin-top: 0.35rem;
+        }
+        .value-chain-primary-card .value-chain-card-content {
+            font-size: 0.78rem;
+        }
+        .value-chain-margin {
+            grid-column: 3;
+            grid-row: 1 / span 2;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            padding: 1.25rem 2.1rem 1.25rem 1.15rem;
+            border: 0;
+            border-left: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 0;
+            background:
+                linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(139, 92, 246, 0.18)),
+                rgba(2, 6, 23, 0.48);
+            box-shadow: 0 22px 56px -34px rgba(245, 158, 11, 0.75);
+            overflow: hidden;
+            clip-path: polygon(0 0, 78% 0, 100% 50%, 78% 100%, 0 100%);
+        }
+        .value-chain-margin-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.85rem;
+            width: 100%;
+        }
+        .value-chain-margin::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 0 42%, rgba(255,255,255,0.08) 42% 48%, transparent 48% 100%);
+            pointer-events: none;
+        }
+        .value-chain-margin-label {
+            color: #fbbf24;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .value-chain-margin-title {
+            color: #f8fafc;
+            font-size: 1.35rem;
+            font-weight: 900;
+            line-height: 1.15;
+        }
+        .value-chain-margin-metric {
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            background: rgba(15, 23, 42, 0.45);
+        }
+        .value-chain-margin-metric span {
+            display: block;
+            color: #cbd5e1;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+        .value-chain-margin-metric strong {
+            display: block;
+            margin-top: 0.15rem;
+            color: #ffffff;
+            font-size: 1.45rem;
+            font-weight: 900;
+        }
+        .value-chain-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+        .value-chain-keyword {
+            padding: 0.35rem 0.55rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(52, 211, 153, 0.32);
+            color: #a7f3d0;
+            background: rgba(6, 78, 59, 0.24);
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+        .light-mode .value-chain-arrow,
+        .light-mode .value-chain-body,
+        .light-mode .value-chain-support-card,
+        .light-mode .value-chain-primary-card,
+        .light-mode .value-chain-margin,
+        .light-mode .value-chain-margin-metric {
+            background-color: rgba(255, 255, 255, 0.68) !important;
+            color: #111827 !important;
+        }
+        .light-mode .value-chain-card-title,
+        .light-mode .value-chain-margin-title,
+        .light-mode .value-chain-margin-metric strong {
+            color: #111827 !important;
+        }
+        .light-mode .value-chain-card-content,
+        .light-mode .value-chain-margin-metric span {
+            color: #374151 !important;
+        }
+        @media (max-width: 1024px) {
+            .value-chain-arrow {
+                grid-template-columns: 3rem minmax(0, 1fr);
+                grid-template-rows: auto auto auto;
+            }
+            .value-chain-primary {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.6rem;
+                border: 0;
+                overflow: visible;
+            }
+            .value-chain-primary-card {
+                min-height: auto;
+                border: 1px solid rgba(59, 130, 246, 0.28);
+                border-radius: 0.78rem;
+            }
+            .value-chain-body {
+                grid-column: 2;
+                grid-row: 1 / span 2;
+                border-right: 0;
+            }
+            .value-chain-margin {
+                grid-column: 1 / -1;
+                grid-row: 3;
+                min-height: auto;
+                clip-path: none;
+                border-top: 1px solid rgba(245, 158, 11, 0.32);
+                border-left: 0;
+                padding: 1rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .value-chain-arrow {
+                display: block;
+                border-radius: 0.9rem;
+            }
+            .value-chain-label {
+                display: none;
+            }
+            .value-chain-body {
+                padding: 0.75rem;
+            }
+            .value-chain-primary {
+                grid-template-columns: 1fr;
+            }
+            .value-chain-support-card,
+            .value-chain-primary-card,
+            .value-chain-margin {
+                padding: 0.95rem;
+            }
+            .value-chain-section-label {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
         .core-capability-diagram {
             position: relative;
             display: grid;
@@ -487,6 +800,107 @@
             }
             .core-connector-layer {
                 display: none;
+            }
+        }
+
+        .dynamic-flip-card {
+            position: relative;
+            perspective: 1200px;
+            cursor: pointer;
+            min-height: 300px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .dynamic-flip-inner {
+            position: relative;
+            width: 100%;
+            min-height: inherit;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            transform-origin: center center;
+            transition: transform 0.7s ease-in-out;
+            will-change: transform;
+        }
+        .dynamic-flip-card.flipped .dynamic-flip-inner {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+        .dynamic-card-face {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            min-height: inherit;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: inherit;
+        }
+        .dynamic-card-front {
+            transform: rotateY(0deg) translateZ(0.1px);
+            -webkit-transform: rotateY(0deg) translateZ(0.1px);
+        }
+        .dynamic-card-back {
+            transform: rotateY(180deg) translateZ(0.1px);
+            -webkit-transform: rotateY(180deg) translateZ(0.1px);
+        }
+        .dynamic-card-shell {
+            height: 100%;
+            border-radius: 1rem;
+            border: 1px solid color-mix(in srgb, var(--dynamic-color), transparent 58%);
+            background:
+                radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--dynamic-color), transparent 78%), transparent 42%),
+                rgba(2, 6, 23, 0.46);
+            box-shadow: 0 24px 56px -38px var(--dynamic-color);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .dynamic-flip-card:hover .dynamic-card-shell {
+            border-color: color-mix(in srgb, var(--dynamic-color), white 26%);
+            box-shadow: 0 28px 64px -36px var(--dynamic-color);
+        }
+        .dynamic-card-number {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid color-mix(in srgb, var(--dynamic-color), white 30%);
+            color: var(--dynamic-color);
+            background: rgba(15, 23, 42, 0.68);
+            font-size: 1.25rem;
+            font-weight: 900;
+            box-shadow: 0 0 24px color-mix(in srgb, var(--dynamic-color), transparent 45%);
+        }
+        .dynamic-card-title {
+            color: #f8fafc;
+            font-size: 1.55rem;
+            font-weight: 900;
+            letter-spacing: 0;
+            line-height: 1.2;
+        }
+        .dynamic-card-subtitle {
+            color: var(--dynamic-color);
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .dynamic-card-back-text {
+            color: #d1d5db;
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+        .light-mode .dynamic-card-shell {
+            background: rgba(255, 255, 255, 0.72) !important;
+        }
+        .light-mode .dynamic-card-title {
+            color: #111827 !important;
+        }
+        .light-mode .dynamic-card-back-text {
+            color: #374151 !important;
+        }
+        @media (min-width: 768px) {
+            .dynamic-flip-card {
+                min-height: 360px;
             }
         }
 
@@ -2590,12 +3004,121 @@
 
                         <div id="res-value-chain" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">二、企業活動價值鏈</h3>
-                            <div class="w-full bg-gray-950/60 light-mode-card-nested rounded-xl border border-gray-800 light-mode-border p-4">
-                                <div class="flex flex-col md:flex-row gap-2 text-center text-xs">
-                                    <div class="flex-1 bg-blue-900/20 border border-blue-900/50 p-3 rounded-lg"><div class="font-bold text-blue-400 mb-1">進貨物流</div><span class="text-gray-400 light-mode-desc">矽晶圓、氣體採購</span></div>
-                                    <div class="flex-1 bg-indigo-900/20 border border-indigo-900/50 p-3 rounded-lg shadow-sm"><div class="font-bold text-indigo-400 mb-1">製造生產 (核心)</div><span class="text-gray-300 light-mode-desc font-semibold">高良率代工、特殊工藝客製</span></div>
-                                    <div class="flex-1 bg-blue-900/20 border border-blue-900/50 p-3 rounded-lg"><div class="font-bold text-blue-400 mb-1">出貨物流</div><span class="text-gray-400 light-mode-desc">全球交貨與封裝</span></div>
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-6 flex items-center">二、企業活動價值鏈</h3>
+                            <div class="value-chain-arrow light-mode-card-nested">
+                                <div class="value-chain-label value-chain-label-support">Support Activities<br>支援活動</div>
+                                <div class="value-chain-label value-chain-label-primary">Primary Activities<br>主要活動</div>
+                                <div class="value-chain-body">
+                                    <div class="value-chain-section-label">Support Activities</div>
+                                    <div class="value-chain-support">
+                                        <div class="value-chain-support-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Firm Infrastructure</span>
+                                            <div class="value-chain-card-title">企業基礎設施</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>全球12座晶圓廠與獲權超過15,560件專利。</li>
+                                                    <li>成立健全的風險管理委員會與 ESG 指導委員會。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-support-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Human Resources Management</span>
+                                            <div class="value-chain-card-title">人力資源管理</div>
+                                            <div class="value-chain-card-content">
+                                                全球約20,000名員工，實施員工持股信託計畫及教育訓練和人才發展計畫。
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-support-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Technology Development</span>
+                                            <div class="value-chain-card-title">技術開發</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>2024年研發投入達新台幣156億元，累計獲權專利超過15,560件。</li>
+                                                    <li>資本支出約美金29億元，用於設廠與子公司聯芯的產能擴充，及各廠產品組合的優化。</li>
+                                                    <li>深耕22/28奈米特殊製程，並積極佈局矽光子技術以迎接AI資料中心需求。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-support-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Procurement</span>
+                                            <div class="value-chain-card-title">採購</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>與主要供應商維持長期合作，並持續提升本地採購比例。</li>
+                                                    <li>藉由供應商管理委員會的季度評核，動態調整採購權重，並結合資源整合開發管理委員會執行跨廠區整合。</li>
+                                                    <li>執行成本優化措施，要求供應商提出可執行且降幅至少15%的降價方案。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="value-chain-section-label">Primary Activities</div>
+                                    <div class="value-chain-primary">
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Inbound Logistics</span>
+                                            <div class="value-chain-card-title">進料物流</div>
+                                            <div class="value-chain-card-content">採購在地化，縮短產品交期、建立供應鏈風險資料庫。</div>
+                                        </div>
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Operations</span>
+                                            <div class="value-chain-card-title">生產作業</div>
+                                            <div class="value-chain-card-content">擁有12座晶圓廠，總月產能超過40萬片12吋約當晶圓，並具備高良率成熟製程能力。</div>
+                                        </div>
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Outbound Logistics</span>
+                                            <div class="value-chain-card-title">出貨物流</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>將完成晶圓交付至客戶指定封測廠或直接客戶。</li>
+                                                    <li>佈局一站式解決方案，減少晶圓在廠際間搬運的風險與物流成本。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Marketing &amp; Sales</span>
+                                            <div class="value-chain-card-title">行銷與銷售</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>專注於通訊、消費性電子與車用領域。</li>
+                                                    <li>利用「多元生產基地」策略規避地緣政治風險。</li>
+                                                    <li>與客戶建立緊密的長期合作。</li>
+                                                    <li>設28奈米等關鍵製程長期供應協議，確保訂單穩定性。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Service</span>
+                                            <div class="value-chain-card-title">顧客服務</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>提供線上服務平台，全天候即時提供客戶包含訂單生產狀況等數據，並成立專案小組，定期追蹤改善成效。</li>
+                                                    <li>設有客戶線上即時申訴系統，強化雙向溝通。</li>
+                                                    <li>每季針對重要客戶進行季評核會議，進一步了解客戶的需求及滿意度。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="value-chain-margin">
+                                    <div class="value-chain-margin-content">
+                                        <div>
+                                            <span class="value-chain-margin-label">MARGIN</span>
+                                            <div class="value-chain-margin-title">利潤匯聚</div>
+                                        </div>
+                                        <div class="value-chain-margin-metric">
+                                            <span>2024年毛利率</span>
+                                            <strong>32.6%</strong>
+                                        </div>
+                                        <div class="value-chain-margin-metric">
+                                            <span>2024年營業利益率</span>
+                                            <strong>22.2%</strong>
+                                        </div>
+                                        <div class="value-chain-keywords">
+                                            <span class="value-chain-keyword">差異化</span>
+                                            <span class="value-chain-keyword">全球多元產能</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2761,12 +3284,121 @@
 
                         <div id="res-value-chain" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">2. Value Chain</h3>
-                            <div class="w-full bg-gray-950/60 light-mode-card-nested rounded-xl border border-gray-800 light-mode-border p-4">
-                                <div class="flex flex-col md:flex-row gap-2 text-center text-xs">
-                                    <div class="flex-1 bg-blue-900/20 border border-blue-900/50 p-3 rounded-lg"><div class="font-bold text-blue-400 mb-1">Inbound</div><span class="text-gray-400 light-mode-desc">Wafers & Chemicals Procurement</span></div>
-                                    <div class="flex-1 bg-indigo-900/20 border border-indigo-900/50 p-3 rounded-lg shadow-sm"><div class="font-bold text-indigo-400 mb-1">Operations (Core)</div><span class="text-gray-300 light-mode-desc font-semibold">High-yield specialty foundry manufacturing</span></div>
-                                    <div class="flex-1 bg-blue-900/20 border border-blue-900/50 p-3 rounded-lg"><div class="font-bold text-blue-400 mb-1">Outbound</div><span class="text-gray-400 light-mode-desc">Global JIT Delivery & Packaging</span></div>
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-6 flex items-center">2. Value Chain</h3>
+                            <div class="value-chain-arrow light-mode-card-nested">
+                                <div class="value-chain-label value-chain-label-support">Support Activities<br>支援活動</div>
+                                <div class="value-chain-label value-chain-label-primary">Primary Activities<br>主要活動</div>
+                                <div class="value-chain-body">
+                                    <div class="value-chain-section-label">Support Activities</div>
+                                    <div class="value-chain-support">
+                                        <div class="value-chain-support-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Firm Infrastructure</span>
+                                            <div class="value-chain-card-title">Enterprise Infrastructure</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>12 global fabs and more than 15,560 granted patents.</li>
+                                                    <li>Robust Risk Management Committee and ESG Steering Committee.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-support-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Human Resources Management</span>
+                                            <div class="value-chain-card-title">Human Resources</div>
+                                            <div class="value-chain-card-content">
+                                                About 20,000 employees worldwide, with employee stock ownership trusts plus education, training, and talent development programs.
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-support-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Technology Development</span>
+                                            <div class="value-chain-card-title">Technology Development</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>2024 R&amp;D investment reached NT$15.6 billion, with more than 15,560 cumulative granted patents.</li>
+                                                    <li>Capital expenditure of about US$2.9 billion supports fab construction, United Semi capacity expansion, and product-mix optimization across fabs.</li>
+                                                    <li>Deepening 22/28nm specialty processes while expanding silicon photonics capabilities for AI data-center demand.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-support-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Procurement</span>
+                                            <div class="value-chain-card-title">Procurement</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>Maintains long-term relationships with major suppliers and continues raising the local procurement ratio.</li>
+                                                    <li>Uses quarterly supplier management reviews to dynamically adjust purchasing weights, while coordinating cross-site integration through the resource integration and development committee.</li>
+                                                    <li>Executes cost optimization by requiring suppliers to propose actionable price-reduction plans with at least 15% savings.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="value-chain-section-label">Primary Activities</div>
+                                    <div class="value-chain-primary">
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Inbound Logistics</span>
+                                            <div class="value-chain-card-title">Inbound Logistics</div>
+                                            <div class="value-chain-card-content">Localized procurement shortens lead time and builds a supply-chain risk database.</div>
+                                        </div>
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Operations</span>
+                                            <div class="value-chain-card-title">Production Operations</div>
+                                            <div class="value-chain-card-content">12 fabs with total monthly capacity above 400,000 12-inch equivalent wafers, supported by high-yield mature-node manufacturing capability.</div>
+                                        </div>
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Outbound Logistics</span>
+                                            <div class="value-chain-card-title">Outbound Logistics</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>Delivers completed wafers to customer-designated OSAT partners or directly to customers.</li>
+                                                    <li>Builds one-stop solutions to reduce inter-fab transfer risk and logistics cost.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Marketing &amp; Sales</span>
+                                            <div class="value-chain-card-title">Marketing &amp; Sales</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>Focuses on communications, consumer electronics, and automotive markets.</li>
+                                                    <li>Uses a diversified manufacturing-base strategy to hedge geopolitical risk.</li>
+                                                    <li>Builds tight long-term customer partnerships.</li>
+                                                    <li>Sets long-term supply agreements for key processes such as 28nm to stabilize orders.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <div class="value-chain-primary-card light-mode-card-nested">
+                                            <span class="value-chain-card-en">Service</span>
+                                            <div class="value-chain-card-title">Customer Service</div>
+                                            <div class="value-chain-card-content">
+                                                <ol>
+                                                    <li>Provides an online service platform with 24/7 real-time customer data, including order and production status, supported by project teams that track improvement progress.</li>
+                                                    <li>Maintains an online real-time customer complaint system to strengthen two-way communication.</li>
+                                                    <li>Holds quarterly review meetings with key customers to understand needs and satisfaction.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="value-chain-margin">
+                                    <div class="value-chain-margin-content">
+                                        <div>
+                                            <span class="value-chain-margin-label">MARGIN</span>
+                                            <div class="value-chain-margin-title">Profit Capture</div>
+                                        </div>
+                                        <div class="value-chain-margin-metric">
+                                            <span>2024 Gross Margin</span>
+                                            <strong>32.6%</strong>
+                                        </div>
+                                        <div class="value-chain-margin-metric">
+                                            <span>2024 Operating Margin</span>
+                                            <strong>22.2%</strong>
+                                        </div>
+                                        <div class="value-chain-keywords">
+                                            <span class="value-chain-keyword">Differentiation</span>
+                                            <span class="value-chain-keyword">Global Diversified Capacity</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2972,19 +3604,55 @@
 
                         <div id="growth-dynamic" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-amber-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4">四、動態能力分析</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-start bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-10 h-10 icon-wrapper rounded-full flex items-center justify-center shrink-0 mr-4 text-indigo-400 font-bold text-lg">1</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold mb-1">感知能力 (Sensing)</h4><p class="text-xs text-gray-300 light-mode-desc">察覺 &lt;14nm 尖端製程高風險；洞察 5G、AIoT 對特殊工藝龐大需求。</p></div>
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-6">四、動態能力分析</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="dynamic-flip-card" style="--dynamic-color: #818cf8;" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="dynamic-flip-inner">
+                                        <div class="dynamic-card-face dynamic-card-front">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex flex-col items-center justify-center text-center">
+                                                <div class="dynamic-card-number mb-7">1</div>
+                                                <h4 class="dynamic-card-title mb-3">感知能力</h4>
+                                                <div class="dynamic-card-subtitle">Sensing</div>
+                                            </div>
+                                        </div>
+                                        <div class="dynamic-card-face dynamic-card-back">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex items-center justify-center text-center">
+                                                <p class="dynamic-card-back-text">察覺 &lt;14nm 尖端製程高風險，洞察 5G、AIoT 對特殊工藝擴大需求。</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex items-start bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-10 h-10 icon-wrapper rounded-full flex items-center justify-center shrink-0 mr-4 text-emerald-400 font-bold text-lg">2</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold mb-1">掌握能力 (Seizing)</h4><p class="text-xs text-gray-300 light-mode-desc">停止尖端競爭，資源集中於成熟製程，簽署 LTA 鎖定核心客戶。</p></div>
+                                <div class="dynamic-flip-card" style="--dynamic-color: #34d399;" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="dynamic-flip-inner">
+                                        <div class="dynamic-card-face dynamic-card-front">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex flex-col items-center justify-center text-center">
+                                                <div class="dynamic-card-number mb-7">2</div>
+                                                <h4 class="dynamic-card-title mb-3">掌握能力</h4>
+                                                <div class="dynamic-card-subtitle">Seizing</div>
+                                            </div>
+                                        </div>
+                                        <div class="dynamic-card-face dynamic-card-back">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex items-center justify-center text-center">
+                                                <p class="dynamic-card-back-text">停止尖端競爭，資源集中於成熟製程，簽署 LTA 鎖定核心客戶。</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex items-start bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-10 h-10 icon-wrapper rounded-full flex items-center justify-center shrink-0 mr-4 text-amber-400 font-bold text-lg">3</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold mb-1">轉型能力 (Reconfiguring)</h4><p class="text-xs text-gray-300 light-mode-desc">以輕資產模式與 Intel 合作，並跨足先進封裝生態系，重塑企業價值鏈。</p></div>
+                                <div class="dynamic-flip-card" style="--dynamic-color: #f59e0b;" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="dynamic-flip-inner">
+                                        <div class="dynamic-card-face dynamic-card-front">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex flex-col items-center justify-center text-center">
+                                                <div class="dynamic-card-number mb-7">3</div>
+                                                <h4 class="dynamic-card-title mb-3">轉型能力</h4>
+                                                <div class="dynamic-card-subtitle">Reconfiguring</div>
+                                            </div>
+                                        </div>
+                                        <div class="dynamic-card-face dynamic-card-back">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex items-center justify-center text-center">
+                                                <p class="dynamic-card-back-text">以輕資產模式與 Intel 合作，並跨足先進封裝生態系，重塑企業價值鏈。</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -3054,19 +3722,55 @@
 
                         <div id="growth-dynamic" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-amber-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4">4. Dynamic Capabilities</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-start bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-10 h-10 icon-wrapper rounded-full flex items-center justify-center shrink-0 mr-4 text-indigo-400 font-bold text-lg">1</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold mb-1">Sensing</h4><p class="text-xs text-gray-300 light-mode-desc">Perceived the high CAPEX risk of &lt;14nm; pinpointed the massive specialty node demand boom driven by 5G/AIoT.</p></div>
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-6">4. Dynamic Capabilities</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="dynamic-flip-card" style="--dynamic-color: #818cf8;" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="dynamic-flip-inner">
+                                        <div class="dynamic-card-face dynamic-card-front">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex flex-col items-center justify-center text-center">
+                                                <div class="dynamic-card-number mb-7">1</div>
+                                                <h4 class="dynamic-card-title mb-3">Sensing</h4>
+                                                <div class="dynamic-card-subtitle">Dynamic Capability</div>
+                                            </div>
+                                        </div>
+                                        <div class="dynamic-card-face dynamic-card-back">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex items-center justify-center text-center">
+                                                <p class="dynamic-card-back-text">Perceived the high risk of &lt;14nm leading-edge processes and identified expanding 5G and AIoT demand for specialty processes.</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex items-start bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-10 h-10 icon-wrapper rounded-full flex items-center justify-center shrink-0 mr-4 text-emerald-400 font-bold text-lg">2</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold mb-1">Seizing</h4><p class="text-xs text-gray-300 light-mode-desc">Halted cutting-edge fab building races, pooling all CAPEX into mature nodes, and locking clients via LTAs.</p></div>
+                                <div class="dynamic-flip-card" style="--dynamic-color: #34d399;" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="dynamic-flip-inner">
+                                        <div class="dynamic-card-face dynamic-card-front">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex flex-col items-center justify-center text-center">
+                                                <div class="dynamic-card-number mb-7">2</div>
+                                                <h4 class="dynamic-card-title mb-3">Seizing</h4>
+                                                <div class="dynamic-card-subtitle">Dynamic Capability</div>
+                                            </div>
+                                        </div>
+                                        <div class="dynamic-card-face dynamic-card-back">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex items-center justify-center text-center">
+                                                <p class="dynamic-card-back-text">Stopped cutting-edge competition, concentrated resources on mature processes, and signed LTAs to lock in core customers.</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex items-start bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-10 h-10 icon-wrapper rounded-full flex items-center justify-center shrink-0 mr-4 text-amber-400 font-bold text-lg">3</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold mb-1">Reconfiguring</h4><p class="text-xs text-gray-300 light-mode-desc">Leveraged asset-light partnership with Intel and expanded into advanced packaging ecosystems to restructure the value chain.</p></div>
+                                <div class="dynamic-flip-card" style="--dynamic-color: #f59e0b;" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="dynamic-flip-inner">
+                                        <div class="dynamic-card-face dynamic-card-front">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex flex-col items-center justify-center text-center">
+                                                <div class="dynamic-card-number mb-7">3</div>
+                                                <h4 class="dynamic-card-title mb-3">Reconfiguring</h4>
+                                                <div class="dynamic-card-subtitle">Dynamic Capability</div>
+                                            </div>
+                                        </div>
+                                        <div class="dynamic-card-face dynamic-card-back">
+                                            <div class="dynamic-card-shell light-mode-card-nested p-8 flex items-center justify-center text-center">
+                                                <p class="dynamic-card-back-text">Used an asset-light partnership with Intel and expanded into advanced packaging ecosystems to reshape the enterprise value chain.</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -3465,6 +4169,34 @@
             });
         }
 
+        function initDynamicFlipCards() {
+            const cards = document.querySelectorAll('.dynamic-flip-card');
+
+            cards.forEach(card => {
+                if (card.dataset.dynamicFlipBound === 'true') return;
+                card.dataset.dynamicFlipBound = 'true';
+
+                function toggleCard(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    card.classList.toggle('flipped');
+                    card.setAttribute(
+                        'aria-pressed',
+                        card.classList.contains('flipped') ? 'true' : 'false'
+                    );
+                }
+
+                card.addEventListener('pointerup', toggleCard);
+
+                card.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        toggleCard(event);
+                    }
+                });
+            });
+        }
+
         function toggleSixForceFlipCard(card) {
             card.classList.toggle('flipped');
             card.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
@@ -3553,6 +4285,7 @@
             document.getElementById('content-display-box').innerHTML = currentLang === 'zh' ? item.content_zh : item.content_en;
             setTimeout(() => {
                 initPestelFlipCards();
+                initDynamicFlipCards();
                 initStrategyGroupHighlight();
             }, 0);
 
@@ -3585,6 +4318,7 @@
                 displayBox.innerHTML = currentLang === 'zh' ? item.content_zh : item.content_en;
                 setTimeout(() => {
                     initPestelFlipCards();
+                    initDynamicFlipCards();
                     initStrategyGroupHighlight();
                 }, 0);
                 displayBox.style.opacity = '1';
@@ -3642,6 +4376,7 @@
                 document.getElementById('content-display-box').innerHTML = currentLang === 'zh' ? item.content_zh : item.content_en;
                 setTimeout(() => {
                     initPestelFlipCards();
+                    initDynamicFlipCards();
                     initStrategyGroupHighlight();
                 }, 0);
             }
