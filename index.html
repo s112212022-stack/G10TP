@@ -404,14 +404,32 @@
             transition: opacity 0.25s ease, stroke-width 0.25s ease;
         }
         .strategy-group-card {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-            animation: strategyCardIn 0.55s ease-out 2.1s forwards;
+            opacity: 1;
+            transform: translateY(0);
+            transition:
+                opacity 0.25s ease,
+                filter 0.25s ease,
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+            animation: strategyCardIn 0.55s ease-out 2.1s backwards;
         }
         .strategy-group-card:nth-child(2) { animation-delay: 2.2s; }
         .strategy-group-card:nth-child(3) { animation-delay: 2.3s; }
         .strategy-group-card:nth-child(4) { animation-delay: 2.4s; }
+        .strategy-analysis.has-active-group .strategy-group-card {
+            opacity: 0.35;
+            filter: grayscale(0.45);
+            transform: scale(0.98);
+        }
+        .strategy-analysis.has-active-group .strategy-group-card.active {
+            opacity: 1;
+            filter: none;
+            transform: translateY(-4px) scale(1.02);
+            border-color: color-mix(in srgb, var(--group-color), white 35%);
+            box-shadow: 0 18px 45px -24px var(--group-color);
+            z-index: 2;
+        }
         .strategy-analysis:has([data-strategy-group="a"]:hover) [data-group-line="a"],
         .strategy-analysis:has([data-strategy-group="a"]:focus-within) [data-group-line="a"],
         .strategy-analysis:has([data-group-card="a"]:hover) [data-group-line="a"],
@@ -463,6 +481,7 @@
             to { stroke-dashoffset: 0; }
         }
         @keyframes strategyCardIn {
+            from { opacity: 0; transform: translateY(14px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @media (max-width: 768px) {
@@ -1513,10 +1532,50 @@
                                                 <path d="M 944 448 L 930 440 M 944 448 L 930 456"></path>
                                                 <path d="M 88 42 L 80 56 M 88 42 L 96 56"></path>
                                             </g>
-                                            <ellipse class="strategy-zone strategy-zone-a" cx="790" cy="132" rx="130" ry="72" fill="rgba(139,92,246,0.18)" stroke="rgba(139,92,246,0.45)"></ellipse>
-                                            <ellipse class="strategy-zone strategy-zone-b" cx="615" cy="328" rx="154" ry="82" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.38)"></ellipse>
-                                            <ellipse class="strategy-zone strategy-zone-c" cx="212" cy="378" rx="125" ry="70" fill="rgba(52,211,153,0.14)" stroke="rgba(52,211,153,0.38)"></ellipse>
-                                            <ellipse class="strategy-zone strategy-zone-d" cx="510" cy="208" rx="130" ry="72" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)"></ellipse>
+                                            <ellipse
+                                                class="strategy-zone strategy-zone-a"
+                                                data-strategy-group="a"
+                                                pointer-events="all"
+                                                cx="790"
+                                                cy="132"
+                                                rx="130"
+                                                ry="72"
+                                                fill="rgba(139,92,246,0.18)"
+                                                stroke="rgba(139,92,246,0.45)">
+                                            </ellipse>
+                                            <ellipse
+                                                class="strategy-zone strategy-zone-b"
+                                                data-strategy-group="b"
+                                                pointer-events="all"
+                                                cx="615"
+                                                cy="328"
+                                                rx="154"
+                                                ry="82"
+                                                fill="rgba(34,211,238,0.15)"
+                                                stroke="rgba(34,211,238,0.38)">
+                                            </ellipse>
+                                            <ellipse
+                                                class="strategy-zone strategy-zone-c"
+                                                data-strategy-group="c"
+                                                pointer-events="all"
+                                                cx="212"
+                                                cy="378"
+                                                rx="125"
+                                                ry="70"
+                                                fill="rgba(52,211,153,0.14)"
+                                                stroke="rgba(52,211,153,0.38)">
+                                            </ellipse>
+                                            <ellipse
+                                                class="strategy-zone strategy-zone-d"
+                                                data-strategy-group="d"
+                                                pointer-events="all"
+                                                cx="510"
+                                                cy="208"
+                                                rx="130"
+                                                ry="72"
+                                                fill="rgba(245,158,11,0.15)"
+                                                stroke="rgba(245,158,11,0.4)">
+                                            </ellipse>
                                         </svg>
 
                                         <!-- Y 軸標題與端點標籤 -->
@@ -1545,17 +1604,17 @@
 
                                         <!-- 在象限圖上補充群組 A、B、C、D 標籤 -->
                                         <div class="absolute left-[70%] top-[7%] z-10 flex flex-col text-violet-400" style="line-height: 1.2;">
-                                            <span class="font-bold text-[10px] md:text-xs">群組D (先進製程領航者)</span>
+                                            <span class="font-bold text-[10px] md:text-xs">群組A (先進製程領航者)</span>
                                             <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">(廠商、高的製程節點 (3nm))</span>
                                         </div>
                                         <div class="absolute left-[45%] top-[21%] z-10 flex flex-col text-amber-400" style="line-height: 1.2;">
-                                            <span class="font-bold text-[10px] md:text-xs">群組B (IDM 廠)</span>
+                                            <span class="font-bold text-[10px] md:text-xs">群組D (IDM 廠)</span>
                                         </div>
                                         <div class="absolute left-[64%] top-[82%] z-10 flex flex-col text-cyan-400" style="line-height: 1.2;">
-                                            <span class="font-bold text-[10px] md:text-xs">群組C (成熟製程大型供應商)</span>
+                                            <span class="font-bold text-[10px] md:text-xs">群組B (成熟製程大型供應商)</span>
                                         </div>
                                         <div class="absolute left-[34%] top-[70%] z-10 flex flex-col text-emerald-400" style="line-height: 1.2; width: 180px;">
-                                            <span class="font-bold text-[10px] md:text-xs">群組A (特殊製程利基者)</span>
+                                            <span class="font-bold text-[10px] md:text-xs">群組C (特殊製程利基者)</span>
                                             <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">(通常 - 有特色技術以下的28nm)</span>
                                             <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">電源管理 IC 或驅動 IC</span>
                                         </div>
@@ -1580,23 +1639,24 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 <div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
                                     <div data-group-card="c" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-emerald-400/30 shadow-sm" style="--group-color: var(--group-c);">
-                                        <div class="text-emerald-400 font-bold text-sm mb-2">群組A｜特殊製程利基者</div>
-                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">VIS、力積電 PSMC 聚焦特定成熟與特殊應用，透過成本效率、彈性產能與差異化服務切入利基市場。</p>
+                                        <div class="text-emerald-400 font-bold text-sm mb-2">群組C｜特殊製程利基者</div>
+                                        <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">
+                                            世界先進 VIS、力積電 PSMC 聚焦特定成熟與特殊應用，透過成本效率、彈性產能與差異化服務切入利基市場。
+                                        </p>
                                     </div>
                                     <div data-group-card="d" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-amber-400/30 shadow-sm" style="--group-color: var(--group-d);">
-                                        <div class="text-amber-400 font-bold text-sm mb-2">群組B｜IDM廠</div>
+                                        <div class="text-amber-400 font-bold text-sm mb-2">群組D｜IDM廠</div>
                                         <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">Intel 與 Texas Instruments 兼具設計、製造與產品平台優勢，位於技術能力較高但服務廣度介於中段的位置。</p>
                                     </div>
                                     <div data-group-card="b" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-cyan-400/30 shadow-sm" style="--group-color: var(--group-b);">
-                                        <div class="text-cyan-400 font-bold text-sm mb-2">群組C｜成熟製程大型供應商</div>
+                                        <div class="text-cyan-400 font-bold text-sm mb-2">群組B｜成熟製程大型供應商</div>
                                         <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">聯電 UMC、GlobalFoundries、SMIC 位於中右區域。聯電選擇<strong class="text-purple-400">「避開尖端」</strong>，以<strong class="text-white light-mode-bold-highlight">輕資產模式</strong>取得 12nm 合作機會，並以 RFSOI、BCD 等<strong class="text-purple-400">特殊製程</strong>防禦低價競爭。</p>
                                     </div>
                                     <div data-group-card="a" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-violet-400/30 shadow-sm" style="--group-color: var(--group-a);">
-                                        <div class="text-violet-400 font-bold text-sm mb-2">群組D｜先進製程領導者</div>
+                                        <div class="text-violet-400 font-bold text-sm mb-2">群組A｜先進製程領導者</div>
                                         <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">台積電 TSMC 與 Samsung 位於右上角，投入最尖端製程與完整平台服務，資本支出高、技術門檻也最高。</p>
                                     </div>
                                 </div>
@@ -1912,10 +1972,50 @@
                                                 <path d="M 944 448 L 930 440 M 944 448 L 930 456"></path>
                                                 <path d="M 88 42 L 80 56 M 88 42 L 96 56"></path>
                                             </g>
-                                            <ellipse class="strategy-zone strategy-zone-a" cx="790" cy="132" rx="130" ry="72" fill="rgba(139,92,246,0.18)" stroke="rgba(139,92,246,0.45)"></ellipse>
-                                            <ellipse class="strategy-zone strategy-zone-b" cx="615" cy="328" rx="154" ry="82" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.38)"></ellipse>
-                                            <ellipse class="strategy-zone strategy-zone-c" cx="212" cy="378" rx="125" ry="70" fill="rgba(52,211,153,0.14)" stroke="rgba(52,211,153,0.38)"></ellipse>
-                                            <ellipse class="strategy-zone strategy-zone-d" cx="510" cy="208" rx="130" ry="72" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)"></ellipse>
+                                            <ellipse
+                                                class="strategy-zone strategy-zone-a"
+                                                data-strategy-group="a"
+                                                pointer-events="all"
+                                                cx="790"
+                                                cy="132"
+                                                rx="130"
+                                                ry="72"
+                                                fill="rgba(139,92,246,0.18)"
+                                                stroke="rgba(139,92,246,0.45)">
+                                            </ellipse>
+                                            <ellipse
+                                                class="strategy-zone strategy-zone-b"
+                                                data-strategy-group="b"
+                                                pointer-events="all"
+                                                cx="615"
+                                                cy="328"
+                                                rx="154"
+                                                ry="82"
+                                                fill="rgba(34,211,238,0.15)"
+                                                stroke="rgba(34,211,238,0.38)">
+                                            </ellipse>
+                                            <ellipse
+                                                class="strategy-zone strategy-zone-c"
+                                                data-strategy-group="c"
+                                                pointer-events="all"
+                                                cx="212"
+                                                cy="378"
+                                                rx="125"
+                                                ry="70"
+                                                fill="rgba(52,211,153,0.14)"
+                                                stroke="rgba(52,211,153,0.38)">
+                                            </ellipse>
+                                            <ellipse
+                                                class="strategy-zone strategy-zone-d"
+                                                data-strategy-group="d"
+                                                pointer-events="all"
+                                                cx="510"
+                                                cy="208"
+                                                rx="130"
+                                                ry="72"
+                                                fill="rgba(245,158,11,0.15)"
+                                                stroke="rgba(245,158,11,0.4)">
+                                            </ellipse>
                                         </svg>
 
                                         <!-- Y-axis title and endpoint labels -->
@@ -1942,17 +2042,17 @@
 
                                         <!-- Group Labels directly on the quadrant chart -->
                                         <div class="absolute left-[70%] top-[7%] z-10 flex flex-col text-violet-400" style="line-height: 1.2;">
-                                            <span class="font-bold text-[10px] md:text-xs">Group D (Advanced-Node Leaders)</span>
+                                            <span class="font-bold text-[10px] md:text-xs">Group A (Advanced-Node Leaders)</span>
                                             <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">(Suppliers, high process node (3nm))</span>
                                         </div>
                                         <div class="absolute left-[45%] top-[21%] z-10 flex flex-col text-amber-400" style="line-height: 1.2;">
-                                            <span class="font-bold text-[10px] md:text-xs">Group B (IDM Manufacturers)</span>
+                                            <span class="font-bold text-[10px] md:text-xs">Group D (IDM Manufacturers)</span>
                                         </div>
                                         <div class="absolute left-[64%] top-[82%] z-10 flex flex-col text-cyan-400" style="line-height: 1.2;">
-                                            <span class="font-bold text-[10px] md:text-xs">Group C (Mature-Node Scale Suppliers)</span>
+                                            <span class="font-bold text-[10px] md:text-xs">Group B (Mature-Node Scale Suppliers)</span>
                                         </div>
                                         <div class="absolute left-[34%] top-[70%] z-10 flex flex-col text-emerald-400" style="line-height: 1.2; width: 180px;">
-                                            <span class="font-bold text-[10px] md:text-xs">Group A (Specialty Niche Players)</span>
+                                            <span class="font-bold text-[10px] md:text-xs">Group C (Specialty Niche Players)</span>
                                             <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">(Usually specialized tech under 28nm)</span>
                                             <span class="text-[8px] md:text-[10px] text-gray-400 font-medium">PMIC or Display Driver ICs</span>
                                         </div>
@@ -1977,23 +2077,22 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 <div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
                                     <div data-group-card="c" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-emerald-400/30 shadow-sm" style="--group-color: var(--group-c);">
-                                        <div class="text-emerald-400 font-bold text-sm mb-2">Group A | Specialty Niche Players</div>
+                                        <div class="text-emerald-400 font-bold text-sm mb-2">Group C | Specialty Niche Players</div>
                                         <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">VIS and PSMC focus on selected mature and specialty applications, winning through cost efficiency, flexible capacity, and differentiated service.</p>
                                     </div>
                                     <div data-group-card="d" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-amber-400/30 shadow-sm" style="--group-color: var(--group-d);">
-                                        <div class="text-amber-400 font-bold text-sm mb-2">Group B | IDM Manufacturers</div>
+                                        <div class="text-amber-400 font-bold text-sm mb-2">Group D | IDM Manufacturers</div>
                                         <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">Intel and Texas Instruments combine design, manufacturing, and product-platform advantages, sitting higher on technology with medium service breadth.</p>
                                     </div>
                                     <div data-group-card="b" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-cyan-400/30 shadow-sm" style="--group-color: var(--group-b);">
-                                        <div class="text-cyan-400 font-bold text-sm mb-2">Group C | Mature-Node Scale Suppliers</div>
+                                        <div class="text-cyan-400 font-bold text-sm mb-2">Group B | Mature-Node Scale Suppliers</div>
                                         <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">UMC, GlobalFoundries, and SMIC occupy the mid-right zone. UMC strategically <strong class="text-purple-400">avoids the cutting-edge</strong>, uses an <strong class="text-white light-mode-bold-highlight">asset-light model</strong> for 12nm collaboration, and defends against price wars through high-barrier <strong class="text-purple-400">specialty nodes</strong>.</p>
                                     </div>
                                     <div data-group-card="a" class="strategy-group-card bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-violet-400/30 shadow-sm" style="--group-color: var(--group-a);">
-                                        <div class="text-violet-400 font-bold text-sm mb-2">Group D | Advanced-Node Leaders</div>
+                                        <div class="text-violet-400 font-bold text-sm mb-2">Group A | Advanced-Node Leaders</div>
                                         <p class="text-xs text-gray-400 light-mode-desc leading-relaxed">TSMC and Samsung sit in the upper-right corner, combining leading-edge process technology with broad platform services and the highest capital intensity.</p>
                                     </div>
                                 </div>
@@ -2171,21 +2270,22 @@
                         <div id="res-allocation" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
                             <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">一、資源配置分析</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="text-[10px] text-emerald-400 tracking-wider font-bold mb-1">CAPEX</div>
-                                    <h4 class="text-white light-mode-card-title font-bold mb-2">優化資本支出</h4>
-                                    <p class="text-xs text-gray-400 light-mode-desc">大幅減少無利可圖的尖端製程（&lt;14nm）建廠開銷，專注成熟製程設備升級。</p>
+                            <div class="resource-allocation-grid grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                                <div class="resource-allocation-card bg-gray-950/40 light-mode-card-nested border border-emerald-400/30 rounded-2xl p-8 md:p-10 min-h-[360px] shadow-sm">
+                                    <h4 class="text-2xl md:text-3xl font-bold text-blue-300 text-center mb-6">有形資源</h4>
+                                    <hr class="border-gray-600/70 mb-8">
+                                    <ol class="list-decimal space-y-8 pl-6 text-gray-300 light-mode-desc text-base md:text-lg leading-relaxed">
+                                        <li>新加坡 P3 廠的擴建提升了聯電的全球供應穩定性與地緣分散能力。</li>
+                                        <li>強健的現金流與高毛利產品組合，使聯電能持續支撐擴產與技術投資。</li>
+                                    </ol>
                                 </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="text-[10px] text-emerald-400 tracking-wider font-bold mb-1">R&D</div>
-                                    <h4 class="text-white light-mode-card-title font-bold mb-2">研發精準投入</h4>
-                                    <p class="text-xs text-gray-400 light-mode-desc">資金高度集中於次世代具潛力的技術，如：FinFET 研發、以及 3D IC / 矽光子 (CPO) 先進封裝領域。</p>
-                                </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="text-[10px] text-emerald-400 tracking-wider font-bold mb-1">Capacity</div>
-                                    <h4 class="text-white light-mode-card-title font-bold mb-2">產能長約鎖定</h4>
-                                    <p class="text-xs text-gray-400 light-mode-desc">推動 LTA（長期產能承諾協約），將成熟產能提前配置給核心 IC 設計客戶，鎖定獲利。</p>
+                                <div class="resource-allocation-card bg-gray-950/40 light-mode-card-nested border border-cyan-400/30 rounded-2xl p-8 md:p-10 min-h-[360px] shadow-sm">
+                                    <h4 class="text-2xl md:text-3xl font-bold text-blue-300 text-center mb-6">無形資源</h4>
+                                    <hr class="border-gray-600/70 mb-8">
+                                    <ol class="list-decimal space-y-8 pl-6 text-gray-300 light-mode-desc text-base md:text-lg leading-relaxed">
+                                        <li>特殊製程技術資產幫助聯電成功推動「去商品化」，提升技術附加價值與獲利能力。</li>
+                                        <li>與 Intel 的 12nm 戰略合作，讓聯電以較低成本快速跨入先進製程市場。</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -2275,21 +2375,22 @@
                         <div id="res-allocation" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
                             <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">1. Resource Allocation</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="text-[10px] text-emerald-400 tracking-wider font-bold mb-1">CAPEX</div>
-                                    <h4 class="text-white light-mode-card-title font-bold mb-2">CAPEX Optimizations</h4>
-                                    <p class="text-xs text-gray-400 light-mode-desc">Decreases capital on costly advanced nodes (&lt;14nm), focusing on mature equipment updates.</p>
+                            <div class="resource-allocation-grid grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                                <div class="resource-allocation-card bg-gray-950/40 light-mode-card-nested border border-emerald-400/30 rounded-2xl p-8 md:p-10 min-h-[360px] shadow-sm">
+                                    <h4 class="text-2xl md:text-3xl font-bold text-blue-300 text-center mb-6">Tangible Resources</h4>
+                                    <hr class="border-gray-600/70 mb-8">
+                                    <ol class="list-decimal space-y-8 pl-6 text-gray-300 light-mode-desc text-base md:text-lg leading-relaxed">
+                                        <li>The Singapore P3 fab expansion improves UMC's global supply stability and geographic diversification.</li>
+                                        <li>Strong cash flow and a high-margin product mix allow UMC to keep supporting capacity expansion and technology investment.</li>
+                                    </ol>
                                 </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="text-[10px] text-emerald-400 tracking-wider font-bold mb-1">R&D</div>
-                                    <h4 class="text-white light-mode-card-title font-bold mb-2">Targeted R&D</h4>
-                                    <p class="text-xs text-gray-400 light-mode-desc">Focuses on high-potential nodes including FinFET development, 3D IC, and Silicon Photonics.</p>
-                                </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="text-[10px] text-emerald-400 tracking-wider font-bold mb-1">Capacity</div>
-                                    <h4 class="text-white light-mode-card-title font-bold mb-2">LTA Capacity Locks</h4>
-                                    <p class="text-xs text-gray-400 light-mode-desc">Secures mature node outputs with global top-tier chip design partners early.</p>
+                                <div class="resource-allocation-card bg-gray-950/40 light-mode-card-nested border border-cyan-400/30 rounded-2xl p-8 md:p-10 min-h-[360px] shadow-sm">
+                                    <h4 class="text-2xl md:text-3xl font-bold text-blue-300 text-center mb-6">Intangible Resources</h4>
+                                    <hr class="border-gray-600/70 mb-8">
+                                    <ol class="list-decimal space-y-8 pl-6 text-gray-300 light-mode-desc text-base md:text-lg leading-relaxed">
+                                        <li>Specialty process technology assets help UMC drive de-commoditization, raising technical value and profitability.</li>
+                                        <li>The 12nm strategic collaboration with Intel lets UMC enter the advanced-node market faster with lower cost.</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -2934,11 +3035,73 @@
             toggleSixForceFlipCard(card);
         });
 
+        function initStrategyGroupHighlight() {
+            const analysis = document.querySelector('.strategy-analysis');
+            if (!analysis) return;
+
+            // 避免重複綁定
+            if (analysis.dataset.highlightBound === 'true') return;
+            analysis.dataset.highlightBound = 'true';
+
+            const cards = analysis.querySelectorAll('[data-group-card]');
+
+            function activateGroup(group) {
+                if (!group) return;
+
+                analysis.classList.add('has-active-group');
+
+                cards.forEach(card => {
+                    const isActive = card.dataset.groupCard === group;
+                    card.classList.toggle('active', isActive);
+                });
+            }
+
+            function resetGroups() {
+                analysis.classList.remove('has-active-group');
+
+                cards.forEach(card => {
+                    card.classList.remove('active');
+                });
+            }
+
+            analysis.addEventListener('pointerover', (event) => {
+                const trigger = event.target.closest('[data-strategy-group]');
+                if (!trigger || !analysis.contains(trigger)) return;
+
+                const group = trigger.dataset.strategyGroup;
+                activateGroup(group);
+            });
+
+            analysis.addEventListener('pointerleave', () => {
+                resetGroups();
+            });
+
+            analysis.addEventListener('click', (event) => {
+                const trigger = event.target.closest('[data-strategy-group]');
+
+                if (trigger && analysis.contains(trigger)) {
+                    const group = trigger.dataset.strategyGroup;
+                    activateGroup(group);
+                } else {
+                    resetGroups();
+                }
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!analysis.contains(event.target)) {
+                    resetGroups();
+                }
+            });
+        }
+
         function enterCurrentSection() {
             const item = SECTIONS[activeIndex];
             document.getElementById('current-section-title').innerText = currentLang === 'zh' ? item.title_zh : item.title_en;
             document.getElementById('current-section-index').innerText = `${activeIndex + 1} / ${SECTIONS.length}`;
             document.getElementById('content-display-box').innerHTML = currentLang === 'zh' ? item.content_zh : item.content_en;
+            setTimeout(() => {
+                initStrategyGroupHighlight();
+            }, 0);
 
             const landing = document.getElementById('landing-page');
             const content = document.getElementById('content-container');
@@ -2967,6 +3130,9 @@
             displayBox.style.opacity = '0';
             setTimeout(() => {
                 displayBox.innerHTML = currentLang === 'zh' ? item.content_zh : item.content_en;
+                setTimeout(() => {
+                    initStrategyGroupHighlight();
+                }, 0);
                 displayBox.style.opacity = '1';
                 document.getElementById('content-container').scrollTop = 0; 
             }, 150);
@@ -3020,6 +3186,9 @@
                 const item = SECTIONS[activeIndex];
                 document.getElementById('current-section-title').innerText = currentLang === 'zh' ? item.title_zh : item.title_en;
                 document.getElementById('content-display-box').innerHTML = currentLang === 'zh' ? item.content_zh : item.content_en;
+                setTimeout(() => {
+                    initStrategyGroupHighlight();
+                }, 0);
             }
         }
 
