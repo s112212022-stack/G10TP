@@ -5393,21 +5393,43 @@
                 title_en: 'Personal Background & Personality',
                 description_zh: '練習自我介紹、家庭背景、優缺點、生涯規劃等基本面試題。',
                 description_en: 'Practice self-introduction, background, strengths and weaknesses, and career planning.',
-                questions_zh: [
-                    '請進行簡單的自我介紹，包含在兩分鐘內介紹自己。',
-                    '請簡述您的家庭背景，以及父母在哪裡工作？',
-                    '在校成績如何？在學期間有沒有擔任幹部或參加社團的經驗？',
-                    '放假的時候有什麼休閒活動？',
-                    '請說明自己的優點和缺點。',
-                    '未來的 5 年內生涯規劃是什麼？'
-                ],
-                questions_en: [
-                    'Please briefly introduce yourself within two minutes.',
-                    'Please describe your family background and your parents’ occupations.',
-                    'How was your academic performance? Did you serve as a class officer or join any clubs?',
-                    'What do you usually do during your free time?',
-                    'Please describe your strengths and weaknesses.',
-                    'What is your career plan for the next five years?'
+                questions: [
+                    {
+                        question_zh: '請進行簡單的自我介紹，包含在兩分鐘內介紹自己。',
+                        question_en: 'Please briefly introduce yourself within two minutes.',
+                        tip_zh: '建議用「背景－能力－動機」三段式回答。先說明你的學校、科系或過去經驗，再挑 2 個與職缺最相關的能力，例如溝通、數據分析、專案執行，最後連結到為什麼想加入聯電。控制在 1.5 到 2 分鐘內，避免流水帳。',
+                        tip_en: 'Use a “background - strengths - motivation” structure. Briefly introduce your education or experience, highlight two abilities related to the role, and connect your motivation to UMC. Keep it within 1.5 to 2 minutes.'
+                    },
+                    {
+                        question_zh: '請簡述您的家庭背景，以及父母在哪裡工作？',
+                        question_en: 'Please describe your family background and your parents’ occupations.',
+                        tip_zh: '回答重點不是家庭細節，而是呈現你的穩定性與人格養成。可以簡短說明家庭給你的價值觀，例如責任感、踏實、獨立或溝通能力。若不想透露太多私人資訊，可以禮貌帶過，並把重點轉回自己的求學與工作態度。',
+                        tip_en: 'Focus less on private details and more on values shaped by your family, such as responsibility, independence, and communication. Keep it brief and bring the answer back to your learning and work attitude.'
+                    },
+                    {
+                        question_zh: '在校成績如何？在學期間有沒有擔任幹部或參加社團的經驗？',
+                        question_en: 'How was your academic performance? Did you serve as a class officer or join any clubs at school?',
+                        tip_zh: '若成績好，可以說明學習方法與專業基礎；若成績普通，請補充你在哪些課程、專題、社團或實習中展現能力。幹部或社團經驗要強調具體貢獻，例如活動規劃、團隊協調、解決衝突，而不是只列職稱。',
+                        tip_en: 'If your grades were strong, explain your learning method and academic foundation. If they were average, emphasize projects, internships, or club experiences where you demonstrated ability. Focus on concrete contributions rather than titles.'
+                    },
+                    {
+                        question_zh: '放假的時候有什麼休閒活動？',
+                        question_en: 'What do you usually do during your free time?',
+                        tip_zh: '這題可以展現你的個性與壓力調適方式。建議選擇健康、穩定、能連結到工作特質的活動，例如運動培養紀律、閱讀提升學習力、團隊運動展現合作。避免回答過度消極或讓人擔心作息不穩的內容。',
+                        tip_en: 'Use this question to show your personality and stress management. Choose healthy and stable activities, such as sports for discipline, reading for learning, or team activities for collaboration.'
+                    },
+                    {
+                        question_zh: '請說明自己的優點和缺點。',
+                        question_en: 'Please describe your strengths and weaknesses.',
+                        tip_zh: '優點請搭配例子，不要只說「負責」或「認真」。缺點要選擇可改善、不會直接影響職務核心的項目，並說明你正在如何改善。例如過去表達較緊張，但透過報告練習與整理講稿改善。',
+                        tip_en: 'Support your strengths with examples. For weaknesses, choose something improvable and not fatal to the role, then explain what you are doing to improve it.'
+                    },
+                    {
+                        question_zh: '未來的 5 年內生涯規劃是什麼？',
+                        question_en: 'What is your career plan for the next five years?',
+                        tip_zh: '建議用「短期學習－中期獨立－長期貢獻」回答。第一年熟悉製程、系統或客戶需求；三年內能獨立處理專案或異常；五年內希望成為能跨部門協作、改善流程或培養新人員的核心成員。',
+                        tip_en: 'Use a short-, mid-, and long-term structure. In year one, learn the process, systems, or customer needs. Within three years, handle projects independently. Within five years, become a reliable contributor who can coordinate across teams.'
+                    }
                 ]
             },
             professional: {
@@ -5415,29 +5437,67 @@
                 title_en: 'Professional Skills & Academic Experience',
                 description_zh: '練習研究論文、半導體基礎知識、實習經驗與職缺專業能力。',
                 description_en: 'Practice thesis discussion, semiconductor fundamentals, internship experience, and job-related skills.',
-                questions_zh: [
-                    '研究所論文或專題的內容在做什麼？請詳細說明。',
-                    '在研究過程中遇到了什麼困難與挫折？你是如何運用專業知識來解決的？',
-                    '你的研究成果可以如何應用於半導體產業？',
-                    '實習期間做了哪些事？',
-                    '請畫出任意 MosFET 並說明其工作原理。',
-                    '請說明你對 CMOS 的認識與工作原理。',
-                    '請在白板畫出 NMOS 電流與電壓的關係圖，並解釋若電壓加大，圖形會如何變化。',
-                    '請說明什麼是短通道效應。',
-                    '若你應徵 IE 工程師，請問你會不會使用資料庫來彙整資料？',
-                    '若你應徵設備維護工程師，請說明你對電機或設備維護相關知識的理解。'
-                ],
-                questions_en: [
-                    'Please explain the main content of your thesis or project in detail.',
-                    'What difficulties did you encounter during your research, and how did you solve them?',
-                    'How can your research results be applied to the semiconductor industry?',
-                    'What did you do during your internship?',
-                    'Please draw any MosFET and explain how it works.',
-                    'Please explain your understanding of CMOS and how it works.',
-                    'Please draw the relationship between NMOS current and voltage and explain what happens when voltage increases.',
-                    'Please explain what the short-channel effect is.',
-                    'If you are applying for an IE engineer position, can you use databases to organize data?',
-                    'If you are applying for an equipment maintenance engineer position, explain your knowledge of electrical or equipment maintenance.'
+                questions: [
+                    {
+                        question_zh: '研究所論文或專題的內容在做什麼？請詳細說明。',
+                        question_en: 'Please explain the main content of your thesis or project in detail.',
+                        tip_zh: '建議用「研究目的－方法－結果－應用」回答。先說為什麼做這個題目，再說你使用的方法、工具或實驗流程，接著說明結果，最後連結到半導體產業中的良率、製程改善、材料、設備或數據分析應用。',
+                        tip_en: 'Use a “purpose - method - result - application” structure. Explain why you chose the topic, what methods or tools you used, what results you obtained, and how it relates to semiconductor manufacturing, yield, process improvement, materials, equipment, or data analysis.'
+                    },
+                    {
+                        question_zh: '在研究過程中遇到了什麼困難與挫折？你是如何運用專業知識來解決的？',
+                        question_en: 'What difficulties did you encounter during your research, and how did you solve them using your professional knowledge?',
+                        tip_zh: '請用 STAR 架構回答。重點放在你如何判斷問題、拆解原因、查資料、設計實驗或調整參數。最後要說明改善成果，例如效率提升、誤差降低、壽命延長或方法更穩定。',
+                        tip_en: 'Use the STAR structure. Emphasize how you identified the problem, analyzed root causes, researched solutions, designed experiments, or adjusted parameters. End with measurable improvements.'
+                    },
+                    {
+                        question_zh: '你的研究成果可以如何應用於半導體產業？',
+                        question_en: 'How can your research results be applied to the semiconductor industry?',
+                        tip_zh: '請不要只說「可以應用在半導體」。要具體連結到製程、設備、材料、良率、可靠度、封裝、光電或資料分析。即使研究不是半導體，也可以從問題解決能力、實驗設計、數據判讀等角度連結。',
+                        tip_en: 'Do not simply say it can be applied to semiconductors. Connect it specifically to process, equipment, materials, yield, reliability, packaging, optoelectronics, or data analysis. If your research is not directly related, connect through problem-solving, experimental design, or data interpretation.'
+                    },
+                    {
+                        question_zh: '實習期間做了哪些事？',
+                        question_en: 'What did you do during your internship?',
+                        tip_zh: '建議回答工作內容、使用工具、你負責的任務、與團隊合作方式，以及具體成果。若成果難量化，可以說明你學到的流程、專業知識或職場溝通方式。',
+                        tip_en: 'Describe your tasks, tools used, responsibilities, teamwork, and concrete results. If results are hard to quantify, explain the workflow, professional knowledge, or communication skills you learned.'
+                    },
+                    {
+                        question_zh: '請畫出任意 MosFET 並說明其工作原理。',
+                        question_en: 'Please draw any MosFET and explain how it works.',
+                        tip_zh: '回答時先畫出 Source、Drain、Gate、Body，說明閘極電壓控制通道形成，進而影響源極到汲極的電流。若不確定細節，請先講基本概念，再補充 NMOS 或 PMOS 的差異。',
+                        tip_en: 'Draw Source, Drain, Gate, and Body. Explain that gate voltage controls channel formation and therefore the current between source and drain. Start with the basic concept, then mention the difference between NMOS and PMOS if possible.'
+                    },
+                    {
+                        question_zh: '請說明你對 CMOS 的認識與工作原理。',
+                        question_en: 'Please explain your understanding of CMOS and how it works.',
+                        tip_zh: '請說明 CMOS 是由 NMOS 與 PMOS 互補組成，常用於邏輯電路。可用反相器舉例：輸入高時 NMOS 導通、PMOS 關閉；輸入低時 PMOS 導通、NMOS 關閉，優點是靜態功耗低。',
+                        tip_en: 'Explain that CMOS uses complementary NMOS and PMOS devices, commonly in logic circuits. Use an inverter as an example and mention its advantage of low static power consumption.'
+                    },
+                    {
+                        question_zh: '請在白板畫出 NMOS 電流與電壓的關係圖，並解釋若電壓加大，圖形會如何變化。',
+                        question_en: 'Please draw the relationship between NMOS current and voltage, and explain what happens when voltage increases.',
+                        tip_zh: '可以先說明 Id-Vd 或 Id-Vg 曲線。若是 Id-Vd，請提到線性區與飽和區；若閘極電壓增加，通道載子增加，汲極電流上升，曲線整體往上。回答時要先確認面試官要的是哪一種曲線。',
+                        tip_en: 'Clarify whether the interviewer wants the Id-Vd or Id-Vg curve. For Id-Vd, mention the linear and saturation regions. When gate voltage increases, channel carriers increase and drain current rises.'
+                    },
+                    {
+                        question_zh: '請說明什麼是短通道效應。',
+                        question_en: 'Please explain what the short-channel effect is.',
+                        tip_zh: '可回答：當通道長度縮短到一定程度，閘極對通道的控制能力下降，汲極電場影響變大，可能造成臨界電壓下降、漏電增加、DIBL 等現象。最後可補充這是先進製程縮小化的重要挑戰。',
+                        tip_en: 'Explain that as channel length becomes very short, gate control weakens and drain electric field influence increases, causing threshold voltage roll-off, leakage, and DIBL. Mention that it is a key challenge in advanced scaling.'
+                    },
+                    {
+                        question_zh: '若你應徵 IE 工程師，請問你會不會使用資料庫來彙整資料？',
+                        question_en: 'If you are applying for an IE engineer position, can you use databases to organize data?',
+                        tip_zh: '請回答你用過的工具，例如 Excel、SQL、Python、Power BI 或 ERP/MES 相關系統。重點不是只說會，而是說你如何清理資料、建立欄位、查詢資料、做成報表，並支援決策。',
+                        tip_en: 'Mention tools such as Excel, SQL, Python, Power BI, ERP, or MES systems. Explain how you clean data, structure fields, query information, create reports, and support decision-making.'
+                    },
+                    {
+                        question_zh: '若你應徵設備維護工程師，請說明你對電機或設備維護相關知識的理解。',
+                        question_en: 'If you are applying for an equipment maintenance engineer position, explain your knowledge of electrical or equipment maintenance.',
+                        tip_zh: '建議回答基礎電路、感測器、馬達、PLC、冷凍空調或故障排除流程。可用「發現異常－確認警報－檢查零件－排除原因－紀錄與預防」的流程展現維修邏輯。',
+                        tip_en: 'Mention basic circuits, sensors, motors, PLC, HVAC, or troubleshooting processes. Use a flow such as identifying abnormality, checking alarms, inspecting parts, eliminating causes, and documenting prevention.'
+                    }
                 ]
             },
             pressure: {
@@ -5445,21 +5505,43 @@
                 title_en: 'Situational Response & Stress Tolerance',
                 description_zh: '練習挫折經驗、抗壓性、團隊合作與工作適應能力。',
                 description_en: 'Practice setbacks, stress tolerance, teamwork, and workplace adaptability.',
-                questions_zh: [
-                    '有沒有遇過什麼感到很挫折或低潮的事？你是如何解決問題的？',
-                    '請舉例說服面試官你具備足夠的抗壓性。',
-                    '你平常是如何排解壓力的？',
-                    '請分享你的團隊合作經驗。',
-                    '你覺得自己需要多久能適應這份工作？',
-                    '你認為自己何時能夠對公司有貢獻？'
-                ],
-                questions_en: [
-                    'Have you ever experienced a major setback? How did you solve the problem?',
-                    'Please give an example showing that you have strong stress tolerance.',
-                    'How do you usually relieve stress?',
-                    'Please share your teamwork experience.',
-                    'How long do you think it will take you to adapt to this job?',
-                    'When do you think you will be able to contribute to the company?'
+                questions: [
+                    {
+                        question_zh: '有沒有遇過什麼感到很挫折或低潮的事？你是如何解決問題的？',
+                        question_en: 'Have you ever experienced a major setback? How did you solve the problem?',
+                        tip_zh: '請選擇真實但不過度負面的例子。用 STAR 架構說明當時情境、你遇到的困難、你採取的行動，以及最後學到什麼。重點是展現復原力與問題解決能力。',
+                        tip_en: 'Choose a real but not overly negative example. Use STAR to explain the situation, difficulty, actions taken, and what you learned. Focus on resilience and problem-solving.'
+                    },
+                    {
+                        question_zh: '請舉例說服面試官你具備足夠的抗壓性。',
+                        question_en: 'Please give an example showing that you have strong stress tolerance.',
+                        tip_zh: '請用具體情境，例如期限壓力、專題進度、客戶需求或團隊衝突。強調你如何排定優先順序、尋求資源、穩定情緒，並在壓力下完成任務。',
+                        tip_en: 'Use a concrete situation such as deadline pressure, project progress, customer needs, or team conflict. Emphasize prioritization, resource seeking, emotional stability, and task completion under pressure.'
+                    },
+                    {
+                        question_zh: '你平常是如何排解壓力的？',
+                        question_en: 'How do you usually relieve stress?',
+                        tip_zh: '建議回答健康且可持續的方法，例如運動、整理待辦、與同儕討論、休息後重新規劃。避免讓面試官覺得你會逃避問題，最好補充你會先釐清壓力來源。',
+                        tip_en: 'Mention healthy and sustainable methods such as exercise, organizing tasks, discussing with peers, or taking a short break and replanning. Avoid sounding like you escape problems.'
+                    },
+                    {
+                        question_zh: '請分享你的團隊合作經驗。',
+                        question_en: 'Please share your teamwork experience.',
+                        tip_zh: '請描述團隊目標、你的角色、你如何溝通協調，以及最後成果。若有衝突，可以說你如何處理不同意見。重點是展現你不是只完成個人工作，也能推動團隊前進。',
+                        tip_en: 'Describe the team goal, your role, how you communicated and coordinated, and the outcome. If there was conflict, explain how you handled different opinions.'
+                    },
+                    {
+                        question_zh: '你覺得自己需要多久能適應這份工作？',
+                        question_en: 'How long do you think it will take you to adapt to this job?',
+                        tip_zh: '建議不要回答太武斷。可以說前三個月熟悉流程與工具，半年內能獨立處理基本任務，一年內希望能參與改善或專案。展現積極但務實的態度。',
+                        tip_en: 'Avoid being overly absolute. You can say you expect to learn processes and tools in the first three months, handle basic tasks independently within six months, and contribute to improvements within a year.'
+                    },
+                    {
+                        question_zh: '你認為自己何時能夠對公司有貢獻？',
+                        question_en: 'When do you think you will be able to contribute to the company?',
+                        tip_zh: '可回答短期先從穩定完成交辦任務開始，中期透過熟悉流程提升效率，長期能提出改善建議。請強調會主動學習、詢問前輩並盡快進入狀況。',
+                        tip_en: 'Answer that you will first contribute by completing assigned tasks reliably, then improve efficiency as you understand workflows, and later propose improvements. Emphasize proactive learning.'
+                    }
                 ]
             },
             motivation: {
@@ -5467,25 +5549,55 @@
                 title_en: 'Motivation & Job Fit',
                 description_zh: '練習應徵動機、輪班接受度、薪資期待與錄取意願。',
                 description_en: 'Practice motivation, shift work acceptance, salary expectations, and willingness to join.',
-                questions_zh: [
-                    '為什麼選擇聯電？來聯電應徵的動機是什麼？',
-                    '為什麼想來台南？',
-                    '前任工作的離職原因為何？',
-                    '你對這個工作內容的認知與期待是什麼？',
-                    '能不能接受輪班，包含小夜、大夜以及假日值班？',
-                    '有沒有去其他公司面試？有沒有去台積電面試？',
-                    '你期望的薪資是多少？你認為自己為何能拿這麼高的薪水？',
-                    '如果錄取你，確定會來上班嗎？'
-                ],
-                questions_en: [
-                    'Why did you choose UMC? What motivated you to apply here?',
-                    'Why do you want to work in Tainan?',
-                    'Why did you leave your previous job?',
-                    'What is your understanding and expectation of this job?',
-                    'Can you accept shift work, including evening shifts, night shifts, and holiday duty?',
-                    'Have you interviewed with other companies? Have you interviewed with TSMC?',
-                    'What is your expected salary, and why do you think you deserve that level of pay?',
-                    'If you receive an offer, are you sure you will join the company?'
+                questions: [
+                    {
+                        question_zh: '為什麼選擇聯電？來聯電應徵的動機是什麼？',
+                        question_en: 'Why did you choose UMC? What motivated you to apply here?',
+                        tip_zh: '建議從產業、公司與職務三層回答。產業上看好半導體長期需求；公司上提到聯電成熟製程、特殊製程與全球布局；職務上連結自己的能力與想累積的經驗。',
+                        tip_en: 'Answer from three levels: industry, company, and role. Mention long-term semiconductor demand, UMC’s mature and specialty process strengths and global footprint, and how the role matches your abilities and goals.'
+                    },
+                    {
+                        question_zh: '為什麼想來台南？',
+                        question_en: 'Why do you want to work in Tainan?',
+                        tip_zh: '若應徵南科職缺，請回答你對工作地點已有理解，例如南科半導體聚落、職務發展機會或生活安排。避免只說「可以」而沒有理由，要展現穩定就職意願。',
+                        tip_en: 'For Tainan Science Park roles, show that you understand the location, semiconductor cluster, career opportunities, or living arrangements. Demonstrate stable willingness to work there.'
+                    },
+                    {
+                        question_zh: '前任工作的離職原因為何？',
+                        question_en: 'Why did you leave your previous job?',
+                        tip_zh: '回答時保持正向，不批評前公司或主管。可說明希望尋找更符合長期發展、技術累積或產業方向的機會，並把重點轉到為什麼這份職缺更適合你。',
+                        tip_en: 'Stay positive and avoid criticizing your previous company or manager. Explain that you are seeking better long-term growth, technical development, or industry alignment, and connect it to this role.'
+                    },
+                    {
+                        question_zh: '你對這個工作內容的認知與期待是什麼？',
+                        question_en: 'What is your understanding and expectation of this job?',
+                        tip_zh: '請先說明你理解的工作內容，例如客戶溝通、設備維護、製程改善、資料分析或輪班支援，再說明你期待透過這份工作累積專業能力。避免只談薪資或福利。',
+                        tip_en: 'First explain your understanding of the role, such as customer communication, equipment maintenance, process improvement, data analysis, or shift support. Then explain what professional abilities you hope to build.'
+                    },
+                    {
+                        question_zh: '能不能接受輪班，包含小夜、大夜以及假日值班？',
+                        question_en: 'Can you accept shift work, including evening shifts, night shifts, and holiday duty?',
+                        tip_zh: '若可以接受，請明確回答可以，並補充你理解半導體製造需要 24 小時運作，會調整作息並遵守交接流程。若有限制，請誠實但用正向方式說明可配合範圍。',
+                        tip_en: 'If yes, answer clearly and mention that you understand semiconductor manufacturing runs 24/7. Explain that you can adjust your schedule and follow handover procedures. If there are limits, state them honestly but positively.'
+                    },
+                    {
+                        question_zh: '開拓其他面試管道時，有沒有去其他公司面試？有沒有去台積電面試？',
+                        question_en: 'Have you interviewed with other companies? Have you interviewed with TSMC?',
+                        tip_zh: '請誠實但不需要提供過多細節。可以說正在了解半導體相關機會，但聯電吸引你的地方是成熟製程、特殊製程、職務內容或公司文化。重點是展現你對聯電有明確動機。',
+                        tip_en: 'Be honest but do not provide excessive details. You can say you are exploring semiconductor opportunities, but UMC attracts you because of its mature processes, specialty processes, role content, or company culture.'
+                    },
+                    {
+                        question_zh: '你期望的薪資是多少？你認為自己為何能拿這麼高的薪水？',
+                        question_en: 'What is your expected salary, and why do you think you deserve that level of pay?',
+                        tip_zh: '建議先說你尊重公司制度，也有參考市場行情與自身能力。若提出數字，請用區間表示，並用學歷、經驗、專業技能、語言能力或輪班配合度說明理由。',
+                        tip_en: 'Say that you respect the company’s salary structure and have considered market standards and your abilities. If you provide a number, give a range and support it with education, experience, skills, language ability, or shift flexibility.'
+                    },
+                    {
+                        question_zh: '如果錄取你，確定會來上班嗎？',
+                        question_en: 'If you receive an offer, are you sure you will join the company?',
+                        tip_zh: '若聯電是你的優先選項，請明確表達意願，並說明原因。若仍在比較其他機會，也要誠實但積極，例如「若職務內容與條件確認符合，我會非常願意加入」。',
+                        tip_en: 'If UMC is your priority, clearly express your willingness and explain why. If you are comparing options, be honest but positive, such as saying you would be very willing to join if the role and conditions are confirmed.'
+                    }
                 ]
             }
         };
@@ -5573,7 +5685,7 @@
                     ${entries.map(([key, item]) => {
                         const title = getInterviewText(item, 'title');
                         const description = getInterviewText(item, 'description');
-                        const questions = item[`questions_${getInterviewLang()}`] || item.questions_zh || [];
+                        const questions = item.questions || [];
 
                         return `
                             <button type="button" class="interview-category-card" onclick="renderInterviewQuestionList('${key}')">
@@ -5594,17 +5706,20 @@
 
             const labels = getInterviewLabels();
             const title = getInterviewText(category, 'title');
-            const questions = category[`questions_${getInterviewLang()}`] || category.questions_zh || [];
+            const questions = category.questions || [];
 
             setInterviewModalHeader(title, labels.questionListSubtitle);
 
             content.innerHTML = `
                 <div class="space-y-3">
-                    ${questions.map((question, index) => `
-                        <button type="button" class="interview-question-card" onclick="renderInterviewQuestionPractice('${categoryKey}', ${index})">
-                            <h4>${index + 1}. ${question}</h4>
-                        </button>
-                    `).join('')}
+                    ${questions.map((item, index) => {
+                        const questionText = item[`question_${getInterviewLang()}`] || item.question_zh || '';
+                        return `
+                            <button type="button" class="interview-question-card" onclick="renderInterviewQuestionPractice('${categoryKey}', ${index})">
+                                <h4>${index + 1}. ${questionText}</h4>
+                            </button>
+                        `;
+                    }).join('')}
                 </div>
 
                 <div class="mt-6 flex flex-wrap gap-3 justify-end">
@@ -5621,38 +5736,44 @@
 
             const labels = getInterviewLabels();
             const title = getInterviewText(category, 'title');
-            const questions = category[`questions_${getInterviewLang()}`] || category.questions_zh || [];
-            const question = questions[questionIndex];
+            const questionItem = category.questions?.[questionIndex];
 
-            if (!question) return;
+            if (!questionItem) return;
+
+            const questionText = questionItem[`question_${getInterviewLang()}`] || questionItem.question_zh || '';
 
             setInterviewModalHeader(title, labels.practiceHint);
 
             content.innerHTML = `
                 <div class="interview-question-card">
-                    <h4>${questionIndex + 1}. ${question}</h4>
+                    <h4>${questionIndex + 1}. ${questionText}</h4>
                     <p>${labels.practiceHint}</p>
                 </div>
 
                 <div id="interviewAnswerTipBox"></div>
 
                 <div class="mt-6 flex flex-wrap gap-3 justify-end">
-                    <button type="button" class="interview-action-btn" onclick="showInterviewAnswerTip()">${labels.viewTip}</button>
+                    <button type="button" class="interview-action-btn" onclick="showInterviewAnswerTip('${categoryKey}', ${questionIndex})">${labels.viewTip}</button>
                     <button type="button" class="interview-secondary-btn" onclick="renderInterviewQuestionList('${categoryKey}')">${labels.back}</button>
                     <button type="button" class="interview-secondary-btn" onclick="closeInterviewPracticeModal()">${labels.close}</button>
                 </div>
             `;
         }
 
-        function showInterviewAnswerTip() {
+        function showInterviewAnswerTip(categoryKey, questionIndex) {
             const box = document.getElementById('interviewAnswerTipBox');
-            if (!box) return;
+            const category = interviewQuestionBank[categoryKey];
+            if (!box || !category) return;
 
-            const labels = getInterviewLabels();
+            const questionItem = category.questions?.[questionIndex];
+            if (!questionItem) return;
+
+            const lang = getInterviewLang();
+            const customTip = questionItem[`tip_${lang}`] || questionItem.tip_zh || getInterviewLabels().answerTip;
 
             box.innerHTML = `
                 <div class="interview-answer-tip">
-                    ${labels.answerTip}
+                    ${customTip}
                 </div>
             `;
         }
