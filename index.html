@@ -4540,36 +4540,66 @@
         ];
 
         const jobOpenings = [
-            { id: 1, category: 1, title: "銷售工程師", location: "竹科", icon: "briefcase", color: "#3b82f6",
-              description: "晶圓專工整體解決方案的銷售與客戶管理、處理報價與訂單審查。",
-              salary: "月薪約 $55,000 ~ $75,000", detail: "要求 4 年以上相關經驗，需具備良好英語能力。績效與分紅與當年度業績掛鉤。" },
-            { id: 2, category: 1, title: "商務服務臨時人員", location: "竹科", icon: "users", color: "#94a3b8",
-              description: "建物投資管理、總機接待暨公關服務、商務中心營運。",
-              salary: "月薪約 $38,000 ~ $45,000", detail: "一年期定期契約，享有勞健保與基本福利。" },
-            { id: 3, category: 2, title: "人資系統管理師", location: "竹科 - HRIS", icon: "database", color: "#a855f7",
-              description: "Workday 或 SAP HCM 等人資系統日常維護與權限設定。",
-              salary: "月薪約 $50,000 ~ $70,000", detail: "要求 3 年以上 Workday / SAP HCM 系統維護經驗。" },
-            { id: 4, category: 2, title: "研發替代役_IT工程師", location: "竹科", icon: "cpu", color: "#f59e0b",
-              description: "Fab 自動化程式開發、ERP 與 HR 相關系統開發。",
-              salary: "碩士起薪 $52,000 ~ $57,000", detail: "2026 研替職缺，第一年年薪可達 14~16 個月。" },
-            { id: 5, category: 3, title: "客戶服務工程師", location: "日本三重", icon: "globe", color: "#f43f5e",
-              description: "日本客戶對接、資訊收集。錄取後先赴日報到。",
-              salary: "台灣核心月薪 + 外派津貼", detail: "需 3 年以上經驗，2 個月後至南科廠受訓半年。" },
-            { id: 6, category: 4, title: "矽光子元件測試研發工程師", location: "竹科", icon: "zap", color: "#22d3ee",
-              description: "主被動光學元件模擬與優化、量測與光電協同驗證。",
-              salary: "碩士起薪 $55,000 ~ $60,000", detail: "要求 5 年以上經驗，年薪第一年約 85萬 ~ 100萬。" },
-            { id: 7, category: 4, title: "研發替代役_技術開發工程師", location: "竹/南科", icon: "flask-conical", color: "#f59e0b",
-              description: "產品與技術開發、分析製程異常、改善元件特性。",
-              salary: "大學 $45,000+ / 碩士 $53,000+", detail: "2026 研替，接受應屆畢業生。" },
-            { id: 8, category: 5, title: "設備副工程師", location: "竹科 / 南科", icon: "settings", color: "#10b981",
-              description: "四班二輪制，執行機台保養、零件組裝校正。",
-              salary: "月薪 $38,000 ~ $45,000 + 輪班津貼", detail: "做二休二，夜班津貼與加班費另計。" },
-            { id: 9, category: 5, title: "固定夜班技術員", location: "南科", icon: "moon", color: "#6366f1",
-              description: "無塵室機台操作，固定夜班制（19:20-07:20）。",
-              salary: "平均月薪約 $39,300", detail: "享有新人簽約金、久任獎金及夜班服務獎金。" },
-            { id: 10, category: 5, title: "健康中心護理管理師", location: "南科", icon: "heart-pulse", color: "#14b8a6",
-              description: "員工健康管理、傷病評估與緊急救護。",
-              salary: "月薪約 $40,000 ~ $50,000", detail: "要求 2 年以上護理經驗，常日班。" }
+            { id: 1, category: 1, title_zh: "銷售工程師", title_en: "Sales Engineer", location_zh: "竹科", location_en: "Hsinchu Science Park", icon: "briefcase", color: "#3b82f6",
+              description_zh: "晶圓專工整體解決方案的銷售與客戶管理、處理報價與訂單審查。",
+              description_en: "Sell wafer foundry solutions, manage customer accounts, and handle quotations and order reviews.",
+              salary_zh: "月薪約 $55,000 ~ $75,000", salary_en: "Approx. NT$55,000 ~ NT$75,000 per month",
+              detail_zh: "要求 4 年以上相關經驗，需具備良好英語能力。績效與分紅與當年度業績掛鉤。",
+              detail_en: "Requires more than 4 years of relevant experience and strong English communication skills. Performance bonuses are tied to annual business results." },
+            { id: 2, category: 1, title_zh: "商務服務臨時人員", title_en: "Temporary Business Services Staff", location_zh: "竹科", location_en: "Hsinchu Science Park", icon: "users", color: "#94a3b8",
+              description_zh: "建物投資管理、總機接待暨公關服務、商務中心營運。",
+              description_en: "Support facility investment management, reception and public relations services, and business center operations.",
+              salary_zh: "月薪約 $38,000 ~ $45,000", salary_en: "Approx. NT$38,000 ~ NT$45,000 per month",
+              detail_zh: "一年期定期契約，享有勞健保與基本福利。",
+              detail_en: "One-year fixed-term contract with basic labor insurance and employee benefits." },
+            { id: 3, category: 2, title_zh: "人資系統管理師", title_en: "HRIS Administrator", location_zh: "竹科 - HRIS", location_en: "Hsinchu Science Park - HRIS", icon: "database", color: "#a855f7",
+              description_zh: "Workday 或 SAP HCM 等人資系統日常維護與權限設定。",
+              description_en: "Maintain HR systems such as Workday or SAP HCM and manage system permissions.",
+              salary_zh: "月薪約 $50,000 ~ $70,000", salary_en: "Approx. NT$50,000 ~ NT$70,000 per month",
+              detail_zh: "要求 3 年以上 Workday / SAP HCM 系統維護經驗。",
+              detail_en: "Requires more than 3 years of Workday or SAP HCM system maintenance experience." },
+            { id: 4, category: 2, title_zh: "研發替代役_IT工程師", title_en: "R&D Substitute Service IT Engineer", location_zh: "竹科", location_en: "Hsinchu Science Park", icon: "cpu", color: "#f59e0b",
+              description_zh: "Fab 自動化程式開發、ERP 與 HR 相關系統開發。",
+              description_en: "Develop fab automation programs and ERP / HR-related systems.",
+              salary_zh: "碩士起薪 $52,000 ~ $57,000", salary_en: "Master's starting salary NT$52,000 ~ NT$57,000",
+              detail_zh: "2026 研替職缺，第一年年薪可達 14~16 個月。",
+              detail_en: "2026 R&D substitute service opening. First-year annual compensation may reach 14 to 16 months of salary." },
+            { id: 5, category: 3, title_zh: "客戶服務工程師", title_en: "Customer Service Engineer", location_zh: "日本三重", location_en: "Mie, Japan", icon: "globe", color: "#f43f5e",
+              description_zh: "日本客戶對接、資訊收集。錄取後先赴日報到。",
+              description_en: "Coordinate with Japanese customers and collect customer information. The selected candidate will report to Japan first.",
+              salary_zh: "台灣核心月薪 + 外派津貼", salary_en: "Taiwan base salary + Expatriate allowance",
+              detail_zh: "需 3 年以上經驗，2 個月後至南科廠受訓半年。",
+              detail_en: "Requires more than 3 years of experience. After two months, the candidate will receive six months of training at the Tainan Science Park fab." },
+            { id: 6, category: 4, title_zh: "矽光子元件測試研發工程師", title_en: "Silicon Photonics Device Test R&D Engineer", location_zh: "竹科", location_en: "Hsinchu Science Park", icon: "zap", color: "#22d3ee",
+              description_zh: "主被動光學元件模擬與優化、量測與光電協同驗證。",
+              description_en: "Work on passive and active optical device simulation, optimization, measurement, and optoelectronic verification.",
+              salary_zh: "碩士起薪 $55,000 ~ $60,000", salary_en: "Master's starting salary NT$55,000 ~ NT$60,000",
+              detail_zh: "要求 5 年以上經驗，年薪第一年約 85萬 ~ 100萬。",
+              detail_en: "Requires more than 5 years of experience. First-year annual compensation is approximately NT$850,000 to NT$1,000,000." },
+            { id: 7, category: 4, title_zh: "研發替代役_技術開發工程師", title_en: "R&D Substitute Service Technology Development Engineer", location_zh: "竹/南科", location_en: "Hsinchu / Tainan Science Park", icon: "flask-conical", color: "#f59e0b",
+              description_zh: "產品與技術開發、分析製程異常、改善元件特性。",
+              description_en: "Develop products and technologies, analyze process abnormalities, and improve device characteristics.",
+              salary_zh: "大學 $45,000+ / 碩士 $53,000+", salary_en: "Bachelor's NT$45,000+ / Master's NT$53,000+",
+              detail_zh: "2026 研替，接受應屆畢業生。",
+              detail_en: "2026 R&D substitute service opening. Fresh graduates are welcome." },
+            { id: 8, category: 5, title_zh: "設備副工程師", title_en: "Associate Equipment Engineer", location_zh: "竹科 / 南科", location_en: "Hsinchu / Tainan Science Park", icon: "settings", color: "#10b981",
+              description_zh: "四班二輪制，執行機台保養、零件組裝校正。",
+              description_en: "Work on equipment maintenance, parts assembly, and calibration under a rotating shift schedule.",
+              salary_zh: "月薪 $38,000 ~ $45,000 + 輪班津貼", salary_en: "Monthly salary NT$38,000 ~ NT$45,000 + Shift allowance",
+              detail_zh: "做二休二，夜班津貼與加班費另計。",
+              detail_en: "Two-days-on, two-days-off shift schedule. Night shift allowance and overtime pay are provided separately." },
+            { id: 9, category: 5, title_zh: "固定夜班技術員", title_en: "Fixed Night Shift Technician", location_zh: "南科", location_en: "Tainan Science Park", icon: "moon", color: "#6366f1",
+              description_zh: "無塵室機台操作，固定夜班制（19:20-07:20）。",
+              description_en: "Operate cleanroom equipment on a fixed night shift schedule from 19:20 to 07:20.",
+              salary_zh: "平均月薪約 $39,300", salary_en: "Average monthly salary approx. NT$39,300",
+              detail_zh: "享有新人簽約金、久任獎金及夜班服務獎金。",
+              detail_en: "Includes new employee signing bonus, retention bonus, and night shift service bonus." },
+            { id: 10, category: 5, title_zh: "健康中心護理管理師", title_en: "Health Center Nursing Administrator", location_zh: "南科", location_en: "Tainan Science Park", icon: "heart-pulse", color: "#14b8a6",
+              description_zh: "員工健康管理、傷病評估與緊急救護。",
+              description_en: "Manage employee health, evaluate injuries and illnesses, and provide emergency medical support.",
+              salary_zh: "月薪約 $40,000 ~ $50,000", salary_en: "Approx. NT$40,000 ~ NT$50,000 per month",
+              detail_zh: "要求 2 年以上護理經驗，常日班。",
+              detail_en: "Requires more than 2 years of nursing experience. Regular day shift." }
         ];
 
         let currentJobDetail = null;
@@ -4937,19 +4967,32 @@
             });
         }
 
+        function getJobText(job, field) {
+            const langKey = `${field}_${currentLang}`;
+            const fallbackZhKey = `${field}_zh`;
+            return job[langKey] || job[fallbackZhKey] || job[field] || '';
+        }
+
         function createJobCard(job) {
             const card = document.createElement('button');
             card.type = 'button';
             card.className = 'job-square light-mode-card-nested rounded-3xl p-5 cursor-pointer h-full flex flex-col items-center justify-center text-center group';
             card.style.setProperty('--job-color', job.color);
-            card.setAttribute('aria-label', `查看 ${job.title} 職缺詳細資訊`);
+
+            const title = getJobText(job, 'title');
+            const location = getJobText(job, 'location');
+            const hint = currentLang === 'en'
+                ? 'Click the card to view job details'
+                : '點擊卡片查看職位詳細資訊';
+
+            card.setAttribute('aria-label', currentLang === 'en' ? `View details for ${title}` : `查看 ${title} 職缺詳細資訊`);
             card.innerHTML = `
                 <div class="job-icon-badge w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                     <i data-lucide="${job.icon}" class="w-9 h-9 md:w-10 md:h-10 text-white"></i>
                 </div>
-                <h3 class="font-bold text-base md:text-lg leading-tight text-white light-mode-card-title mb-2">${job.title}</h3>
-                <p class="text-xs text-gray-400 light-mode-desc">${job.location}</p>
-                <p class="job-card-hint">點擊卡片查看職位詳細資訊</p>
+                <h3 class="font-bold text-base md:text-lg leading-tight text-white light-mode-card-title mb-2">${title}</h3>
+                <p class="text-xs text-gray-400 light-mode-desc">${location}</p>
+                <p class="job-card-hint">${hint}</p>
             `;
             card.addEventListener('click', () => showJobDetailModal(job));
             return card;
@@ -4968,18 +5011,30 @@
             }
 
             currentJobDetail = job;
-            titleEl.textContent = job.title;
+            const title = getJobText(job, 'title');
+            const location = getJobText(job, 'location');
+            const salary = getJobText(job, 'salary');
+            const description = getJobText(job, 'description');
+            const detail = getJobText(job, 'detail');
+
+            titleEl.textContent = title;
 
             const labels = currentLang === 'en'
               ? {
                   voice: 'Voice Guide',
                   close: 'Close',
-                  detail: 'Details'
+                  detail: 'Details',
+                  location: 'Location',
+                  salary: 'Salary',
+                  description: 'Responsibilities'
                 }
               : {
                   voice: '語音導覽',
                   close: '關閉',
-                  detail: '詳細說明'
+                  detail: '詳細說明',
+                  location: '工作地點',
+                  salary: '薪資',
+                  description: '工作重點'
                 };
 
             const voiceSpan = modal.querySelector('#jobVoiceBtn span');
@@ -5001,17 +5056,17 @@
                     <div class="flex-1 min-w-0">
                         <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                             <div>
-                                <h3 class="text-2xl md:text-3xl font-bold text-white light-mode-card-title">${job.title}</h3>
-                                <p class="font-medium mt-1" style="color: ${job.color};">${job.location}</p>
+                                <h3 class="text-2xl md:text-3xl font-bold text-white light-mode-card-title">${title}</h3>
+                                <p class="font-medium mt-1" style="color: ${job.color};">${location}</p>
                             </div>
-                            <span class="inline-block px-4 py-1.5 bg-emerald-500/12 border border-emerald-400/30 text-emerald-300 text-sm font-semibold rounded-2xl">${job.salary}</span>
+                            <span class="inline-block px-4 py-1.5 bg-emerald-500/12 border border-emerald-400/30 text-emerald-300 text-sm font-semibold rounded-2xl">${salary}</span>
                         </div>
                         <div class="my-7 border-l-4 pl-5" style="border-color: ${job.color};">
-                            <p class="text-gray-300 light-mode-desc leading-relaxed">${job.description}</p>
+                            <p class="text-gray-300 light-mode-desc leading-relaxed">${description}</p>
                         </div>
                         <div class="bg-gray-900/70 light-mode-card-nested rounded-2xl p-5 text-sm border border-gray-800 light-mode-border">
                             <p class="font-semibold text-white light-mode-card-title mb-2">${labels.detail}</p>
-                            <p class="text-gray-300 light-mode-desc leading-relaxed">${job.detail}</p>
+                            <p class="text-gray-300 light-mode-desc leading-relaxed">${detail}</p>
                         </div>
                     </div>
                 </div>
@@ -5130,10 +5185,23 @@
             if (!job || !('speechSynthesis' in window)) return;
 
             window.speechSynthesis.cancel();
-            const spokenSalary = jobSalaryToSpoken(job.salary);
-            const text = `${job.title}。工作地點：${job.location}。薪資範圍：${spokenSalary}。工作重點：${job.description}。詳細說明：${job.detail}。`;
+            const title = getJobText(job, 'title');
+            const location = getJobText(job, 'location');
+            const salary = getJobText(job, 'salary');
+            const description = getJobText(job, 'description');
+            const detail = getJobText(job, 'detail');
+
+            let text, lang;
+            if (currentLang === 'en') {
+                text = `${title}. Job location: ${location}. Salary range: ${salary}. Key responsibilities: ${description}. Job details: ${detail}.`;
+                lang = 'en-US';
+            } else {
+                const spokenSalary = jobSalaryToSpoken(salary);
+                text = `${title}。工作地點：${location}。薪資範圍：${spokenSalary}。工作重點：${description}。詳細說明：${detail}。`;
+                lang = 'zh-TW';
+            }
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'zh-TW';
+            utterance.lang = lang;
             utterance.rate = 0.95;
             window.speechSynthesis.speak(utterance);
         }
@@ -5435,6 +5503,9 @@
                     initStrategyGroupHighlight();
                     initJobsSection();
                 }, 0);
+            }
+            if (typeof initJobsSection === 'function') {
+                initJobsSection();
             }
         }
 
