@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -97,9 +97,13 @@
 
         .jobs-section {
             --job-panel: rgba(15, 23, 42, 0.52);
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
         }
         .jobs-category-section {
             position: relative;
+            margin-bottom: 0;
         }
         .jobs-category-heading {
             display: flex;
@@ -139,15 +143,36 @@
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
+        .job-card-grid-compact {
+            max-width: 32.5rem;
+        }
+        @media (min-width: 640px) {
+            .job-card-grid-compact {
+                grid-template-columns: repeat(2, minmax(0, 14.375rem));
+                gap: 1.5rem;
+                justify-content: start;
+            }
+            .job-card-grid-compact .job-square {
+                max-width: 14.375rem;
+            }
+        }
         .job-square {
             position: relative;
             overflow: hidden;
+            width: 100%;
+            min-width: 0;
             min-height: 13rem;
+            padding: 1.5rem;
             border: 1px solid rgba(34, 211, 238, 0.28);
             background:
                 radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--job-color), transparent 78%), transparent 48%),
                 rgba(15, 23, 42, 0.56);
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        @media (min-width: 768px) {
+            .job-square {
+                min-height: 13.125rem;
+            }
         }
         .job-square::before {
             content: '';
@@ -170,19 +195,103 @@
                 linear-gradient(135deg, color-mix(in srgb, var(--job-color), transparent 35%), color-mix(in srgb, var(--job-color), #0f172a 58%));
             box-shadow: 0 16px 30px -22px var(--job-color);
         }
-        .ai-coach-card,
-        .ksa-card {
+        .job-card-hint {
+            margin-top: 0.75rem;
+            color: rgba(148, 163, 184, 0.78);
+            font-size: 0.72rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .ai-coach-card {
             border: 1px solid rgba(34, 211, 238, 0.24);
             background:
                 radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.12), transparent 38%),
                 rgba(15, 23, 42, 0.54);
             transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
-        .ai-coach-card:hover,
-        .ksa-card:hover {
+        .ai-coach-card:hover {
             transform: translateY(-4px);
             border-color: rgba(34, 211, 238, 0.48);
             box-shadow: 0 22px 45px -32px rgba(34, 211, 238, 0.65);
+        }
+        .ksa-card {
+            border: 1px solid rgba(34, 211, 238, 0.24);
+            background:
+                radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.12), transparent 38%),
+                rgba(15, 23, 42, 0.54);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .ksa-card:hover {
+            transform: none;
+        }
+        .ksa-mini-card {
+            position: relative;
+            padding: 1.25rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(168, 85, 247, 0.32);
+            background: rgba(15, 23, 42, 0.48);
+            text-align: center;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .ksa-mini-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(168, 85, 247, 0.72);
+            box-shadow: 0 18px 40px -26px rgba(168, 85, 247, 0.75);
+            background: rgba(30, 41, 59, 0.58);
+        }
+        .ksa-letter {
+            width: 3rem;
+            height: 3rem;
+            margin: 0 auto 0.85rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c4b5fd;
+            background: rgba(168, 85, 247, 0.18);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            font-size: 1.45rem;
+            font-weight: 900;
+        }
+        .ksa-mini-card h4 {
+            color: #f8fafc;
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .ksa-mini-card p {
+            color: #94a3b8;
+            font-size: 0.82rem;
+            line-height: 1.65;
+        }
+        @media (max-width: 768px) {
+            .ksa-grid {
+                grid-template-columns: 1fr;
+            }
+            .ksa-mini-card {
+                padding: 1rem;
+            }
+        }
+        /* Light mode overrides for KSA mini-cards */
+        .light-mode .ksa-mini-card {
+            border-color: rgba(168, 85, 247, 0.25) !important;
+            background: rgba(255, 255, 255, 0.6) !important;
+        }
+        .light-mode .ksa-mini-card:hover {
+            border-color: rgba(168, 85, 247, 0.6) !important;
+            background: rgba(255, 255, 255, 0.85) !important;
+            box-shadow: 0 18px 40px -26px rgba(168, 85, 247, 0.4) !important;
+        }
+        .light-mode .ksa-mini-card h4 {
+            color: #1e1b4b !important;
+        }
+        .light-mode .ksa-mini-card p {
+            color: #475569 !important;
+        }
+        .light-mode .ksa-letter {
+            background: rgba(168, 85, 247, 0.1) !important;
+            border-color: rgba(168, 85, 247, 0.2) !important;
+            color: #6d28d9 !important;
         }
         .job-modal-card {
             animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -201,6 +310,9 @@
         .light-mode .job-square {
             border-color: rgba(14, 165, 233, 0.25) !important;
         }
+        .light-mode .job-card-hint {
+            color: #64748b !important;
+        }
         .light-mode .jobs-category-heading,
         .light-mode .job-modal-card h2,
         .light-mode .job-modal-card h3 {
@@ -214,8 +326,26 @@
             .job-card-grid {
                 grid-template-columns: 1fr;
             }
+            .job-card-grid-compact {
+                max-width: none;
+            }
+            .job-card-grid-compact .job-square {
+                max-width: none;
+            }
             .job-square {
                 min-height: 11rem;
+            }
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+        .content-scroll-area.modal-scroll-locked {
+            overflow: hidden !important;
+        }
+        @media (max-width: 768px) {
+            .job-modal-panel {
+                width: calc(100vw - 2rem) !important;
+                max-height: 86vh !important;
             }
         }
         
@@ -1866,6 +1996,30 @@
             </footer>
         </div>
     </section>
+
+    <!-- 職缺詳細 Modal -->
+    <div id="jobModal" class="hidden fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm items-center justify-center p-4">
+        <div class="job-modal-card job-modal-panel modal w-full max-w-2xl max-h-[88vh] overflow-hidden rounded-3xl bg-gray-950 border border-cyan-500/40 shadow-2xl">
+            <div class="px-5 md:px-8 py-5 border-b border-gray-800 light-mode-border flex items-center justify-between gap-4 bg-gray-900/70">
+                <h2 id="jobModalTitle" class="text-xl md:text-2xl font-bold text-white light-mode-card-title"></h2>
+                <div class="flex items-center gap-3 shrink-0">
+                    <button id="jobVoiceBtn" class="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl transition-all active:scale-95">
+                        <i data-lucide="volume-2" class="w-5 h-5"></i>
+                        <span class="font-medium text-sm hidden sm:inline">語音導覽</span>
+                    </button>
+                    <button onclick="closeJobModal()" class="text-gray-400 hover:text-white transition-colors" aria-label="關閉職缺詳細視窗">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-8 overflow-y-auto custom-scrollbar" style="max-height: calc(88vh - 160px);" id="jobModalContent"></div>
+            <div class="border-t border-gray-800 light-mode-border px-5 md:px-8 py-5 flex justify-end">
+                <button onclick="closeJobModal()" class="px-7 py-3 bg-gray-800 hover:bg-gray-700 light-mode-card-nested text-white light-mode-card-title font-medium rounded-2xl transition-colors">
+                    關閉
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- JavaScript 核心邏輯 -->
     <script>
@@ -4209,14 +4363,46 @@
                 desc_zh: "加入聯華電子，與我們一起深耕特殊製程，共創半導體未來", desc_en: "Join UMC, master mature node innovations together",
                 icon: `<svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>`,
                 content_zh: `
-                    <div class="space-y-10 animate-fade-in jobs-section">
+                    <div class="animate-fade-in jobs-section">
                         <div class="border-b border-gray-800 pb-4 light-mode-border">
                             <h2 class="text-3xl font-black text-white light-mode-section-title">探索 UMC 職缺</h2>
-                            <p class="text-gray-400 light-mode-desc mt-2">點擊方塊查看職位詳細資訊</p>
                         </div>
 
                         <div class="jobs-feature-layout flex flex-col lg:flex-row gap-8">
                             <section class="jobs-category-section lg:w-3/5">
+                                <div class="jobs-ksa-section mb-8">
+                                    <div class="ksa-card bg-gray-950/40 light-mode-card-nested border border-purple-400/30 rounded-3xl p-6 md:p-8 shadow-sm">
+                                        <div class="flex items-center gap-4 mb-6">
+                                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center shrink-0">
+                                                <i data-lucide="target" class="w-7 h-7 text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-bold text-2xl text-white light-mode-card-title">KSA 職能</h3>
+                                                <p class="text-purple-400 text-sm">知識・技能・能力</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="ksa-grid grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <div class="ksa-mini-card">
+                                                <div class="ksa-letter">K</div>
+                                                <h4>知識</h4>
+                                                <p>半導體產業知識<br>客戶需求分析</p>
+                                            </div>
+
+                                            <div class="ksa-mini-card">
+                                                <div class="ksa-letter">S</div>
+                                                <h4>技能</h4>
+                                                <p>解決方案提案<br>合約談判</p>
+                                            </div>
+
+                                            <div class="ksa-mini-card">
+                                                <div class="ksa-letter">A</div>
+                                                <h4>能力</h4>
+                                                <p>客戶關係管理<br>跨部門協調</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <h3 class="jobs-category-heading">一、行銷業務與商務服務類</h3>
                                 <div id="job-category-1" class="job-card-grid"></div>
                             </section>
@@ -4243,46 +4429,10 @@
                             </aside>
                         </div>
 
-                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-                            <section class="jobs-category-section lg:col-span-3">
-                                <h3 class="jobs-category-heading">二、資訊與人資系統管理類</h3>
-                                <div id="job-category-2" class="job-card-grid"></div>
-                            </section>
-
-                            <aside class="lg:col-span-2">
-                                <div class="ksa-card light-mode-card-nested rounded-3xl p-7 md:p-8 shadow-sm">
-                                    <div class="flex items-center gap-4 mb-6">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center shrink-0">
-                                            <i data-lucide="target" class="w-7 h-7 text-white"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-bold text-2xl text-white light-mode-card-title">KSA 職能</h3>
-                                            <p class="text-purple-300 text-sm">知識・技能・能力</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-400 light-mode-desc mb-8 leading-relaxed">
-                                        每個職位對應的核心職能（Knowledge, Skills, Abilities），幫助您了解所需條件。
-                                    </p>
-                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
-                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">K</div>
-                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">知識</h4>
-                                            <p class="text-sm text-gray-400 light-mode-desc">半導體產業知識<br>客戶需求分析</p>
-                                        </div>
-                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
-                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">S</div>
-                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">技能</h4>
-                                            <p class="text-sm text-gray-400 light-mode-desc">解決方案提案<br>合約談判</p>
-                                        </div>
-                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
-                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">A</div>
-                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">能力</h4>
-                                            <p class="text-sm text-gray-400 light-mode-desc">客戶關係管理<br>跨部門協調</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div>
+                        <section class="jobs-category-section">
+                            <h3 class="jobs-category-heading">二、資訊與人資系統管理類</h3>
+                            <div id="job-category-2" class="job-card-grid job-card-grid-compact"></div>
+                        </section>
 
                         <section class="jobs-category-section">
                             <h3 class="jobs-category-heading">三、海外與外派機會</h3>
@@ -4298,39 +4448,48 @@
                             <h3 class="jobs-category-heading">五、廠區營運與生產支援類</h3>
                             <div id="job-category-5" class="job-card-grid"></div>
                         </section>
-
-                        <div id="jobModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[120] p-4">
-                            <div class="job-modal-card bg-gray-950/95 light-mode-card border border-cyan-400/30 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-                                <div class="px-5 md:px-8 py-5 border-b border-gray-800 light-mode-border flex items-center justify-between gap-4 bg-gray-900/70">
-                                    <h2 id="jobModalTitle" class="text-xl md:text-2xl font-bold text-white light-mode-card-title"></h2>
-                                    <div class="flex items-center gap-3 shrink-0">
-                                        <button id="jobVoiceBtn" class="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl transition-all active:scale-95">
-                                            <i data-lucide="volume-2" class="w-5 h-5"></i>
-                                            <span class="font-medium text-sm hidden sm:inline">語音導覽</span>
-                                        </button>
-                                        <button onclick="closeJobModal()" class="text-gray-400 hover:text-white transition-colors" aria-label="關閉職缺詳細視窗">
-                                            <i data-lucide="x" class="w-6 h-6"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="p-5 md:p-8 overflow-y-auto custom-scrollbar" style="max-height: calc(90vh - 150px);" id="jobModalContent"></div>
-                                <div class="border-t border-gray-800 light-mode-border px-5 md:px-8 py-5 flex justify-end">
-                                    <button onclick="closeJobModal()" class="px-7 py-3 bg-gray-800 hover:bg-gray-700 light-mode-card-nested text-white light-mode-card-title font-medium rounded-2xl transition-colors">
-                                        關閉
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>`,
                 content_en: `
-                    <div class="space-y-10 animate-fade-in jobs-section">
+                    <div class="animate-fade-in jobs-section">
                         <div class="border-b border-gray-800 pb-4 light-mode-border">
                             <h2 class="text-3xl font-black text-white light-mode-section-title">Explore UMC Careers</h2>
-                            <p class="text-gray-400 light-mode-desc mt-2">Click a role card to view salary, focus areas, and details.</p>
                         </div>
 
                         <div class="jobs-feature-layout flex flex-col lg:flex-row gap-8">
                             <section class="jobs-category-section lg:w-3/5">
+                                <div class="jobs-ksa-section mb-8">
+                                    <div class="ksa-card bg-gray-950/40 light-mode-card-nested border border-purple-400/30 rounded-3xl p-6 md:p-8 shadow-sm">
+                                        <div class="flex items-center gap-4 mb-6">
+                                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center shrink-0">
+                                                <i data-lucide="target" class="w-7 h-7 text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-bold text-2xl text-white light-mode-card-title">KSA Competencies</h3>
+                                                <p class="text-purple-400 text-sm">Knowledge・Skills・Abilities</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="ksa-grid grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <div class="ksa-mini-card">
+                                                <div class="ksa-letter">K</div>
+                                                <h4>Knowledge</h4>
+                                                <p>Semiconductor industry knowledge<br>Customer needs analysis</p>
+                                            </div>
+
+                                            <div class="ksa-mini-card">
+                                                <div class="ksa-letter">S</div>
+                                                <h4>Skills</h4>
+                                                <p>Solution proposal<br>Contract negotiation</p>
+                                            </div>
+
+                                            <div class="ksa-mini-card">
+                                                <div class="ksa-letter">A</div>
+                                                <h4>Abilities</h4>
+                                                <p>Customer relationship management<br>Cross-functional coordination</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <h3 class="jobs-category-heading">1. Sales, Marketing & Business Services</h3>
                                 <div id="job-category-1" class="job-card-grid"></div>
                             </section>
@@ -4357,46 +4516,10 @@
                             </aside>
                         </div>
 
-                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-                            <section class="jobs-category-section lg:col-span-3">
-                                <h3 class="jobs-category-heading">2. IT & HR Systems Management</h3>
-                                <div id="job-category-2" class="job-card-grid"></div>
-                            </section>
-
-                            <aside class="lg:col-span-2">
-                                <div class="ksa-card light-mode-card-nested rounded-3xl p-7 md:p-8 shadow-sm">
-                                    <div class="flex items-center gap-4 mb-6">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center shrink-0">
-                                            <i data-lucide="target" class="w-7 h-7 text-white"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-bold text-2xl text-white light-mode-card-title">KSA Competencies</h3>
-                                            <p class="text-purple-300 text-sm">Knowledge, Skills, Abilities</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-400 light-mode-desc mb-8 leading-relaxed">
-                                        Core competencies linked to each role help you understand what UMC expects from candidates.
-                                    </p>
-                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
-                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">K</div>
-                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">Knowledge</h4>
-                                            <p class="text-sm text-gray-400 light-mode-desc">Semiconductor industry knowledge<br>Customer needs analysis</p>
-                                        </div>
-                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
-                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">S</div>
-                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">Skills</h4>
-                                            <p class="text-sm text-gray-400 light-mode-desc">Solution proposals<br>Contract negotiation</p>
-                                        </div>
-                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
-                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">A</div>
-                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">Abilities</h4>
-                                            <p class="text-sm text-gray-400 light-mode-desc">Customer relationship management<br>Cross-functional coordination</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div>
+                        <section class="jobs-category-section">
+                            <h3 class="jobs-category-heading">2. IT & HR Systems Management</h3>
+                            <div id="job-category-2" class="job-card-grid job-card-grid-compact"></div>
+                        </section>
 
                         <section class="jobs-category-section">
                             <h3 class="jobs-category-heading">3. Overseas & Expatriate Opportunities</h3>
@@ -4412,29 +4535,6 @@
                             <h3 class="jobs-category-heading">5. Fab Operations & Production Support</h3>
                             <div id="job-category-5" class="job-card-grid"></div>
                         </section>
-
-                        <div id="jobModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[120] p-4">
-                            <div class="job-modal-card bg-gray-950/95 light-mode-card border border-cyan-400/30 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-                                <div class="px-5 md:px-8 py-5 border-b border-gray-800 light-mode-border flex items-center justify-between gap-4 bg-gray-900/70">
-                                    <h2 id="jobModalTitle" class="text-xl md:text-2xl font-bold text-white light-mode-card-title"></h2>
-                                    <div class="flex items-center gap-3 shrink-0">
-                                        <button id="jobVoiceBtn" class="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl transition-all active:scale-95">
-                                            <i data-lucide="volume-2" class="w-5 h-5"></i>
-                                            <span class="font-medium text-sm hidden sm:inline">Voice Guide</span>
-                                        </button>
-                                        <button onclick="closeJobModal()" class="text-gray-400 hover:text-white transition-colors" aria-label="Close job detail modal">
-                                            <i data-lucide="x" class="w-6 h-6"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="p-5 md:p-8 overflow-y-auto custom-scrollbar" style="max-height: calc(90vh - 150px);" id="jobModalContent"></div>
-                                <div class="border-t border-gray-800 light-mode-border px-5 md:px-8 py-5 flex justify-end">
-                                    <button onclick="closeJobModal()" class="px-7 py-3 bg-gray-800 hover:bg-gray-700 light-mode-card-nested text-white light-mode-card-title font-medium rounded-2xl transition-colors">
-                                        Close
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>`
             }
         ];
@@ -4849,6 +4949,7 @@
                 </div>
                 <h3 class="font-bold text-base md:text-lg leading-tight text-white light-mode-card-title mb-2">${job.title}</h3>
                 <p class="text-xs text-gray-400 light-mode-desc">${job.location}</p>
+                <p class="job-card-hint">點擊卡片查看職位詳細資訊</p>
             `;
             card.addEventListener('click', () => showJobDetailModal(job));
             return card;
@@ -4860,8 +4961,38 @@
             const titleEl = document.getElementById('jobModalTitle');
             if (!modal || !content || !titleEl) return;
 
+            document.body.classList.add('modal-open');
+            const scrollArea = document.querySelector('.content-scroll-area');
+            if (scrollArea) {
+                scrollArea.classList.add('modal-scroll-locked');
+            }
+
             currentJobDetail = job;
             titleEl.textContent = job.title;
+
+            const labels = currentLang === 'en'
+              ? {
+                  voice: 'Voice Guide',
+                  close: 'Close',
+                  detail: 'Details'
+                }
+              : {
+                  voice: '語音導覽',
+                  close: '關閉',
+                  detail: '詳細說明'
+                };
+
+            const voiceSpan = modal.querySelector('#jobVoiceBtn span');
+            if (voiceSpan) voiceSpan.textContent = labels.voice;
+
+            const closeBtn = modal.querySelector('.border-t button');
+            if (closeBtn) closeBtn.textContent = labels.close;
+
+            const headerCloseBtn = modal.querySelector('button[aria-label]');
+            if (headerCloseBtn) {
+                headerCloseBtn.setAttribute('aria-label', currentLang === 'en' ? 'Close job detail modal' : '關閉職缺詳細視窗');
+            }
+
             content.innerHTML = `
                 <div class="flex flex-col md:flex-row items-start gap-6">
                     <div class="job-icon-badge w-20 h-20 rounded-3xl flex-shrink-0 flex items-center justify-center" style="--job-color: ${job.color};">
@@ -4879,7 +5010,7 @@
                             <p class="text-gray-300 light-mode-desc leading-relaxed">${job.description}</p>
                         </div>
                         <div class="bg-gray-900/70 light-mode-card-nested rounded-2xl p-5 text-sm border border-gray-800 light-mode-border">
-                            <p class="font-semibold text-white light-mode-card-title mb-2">詳細說明</p>
+                            <p class="font-semibold text-white light-mode-card-title mb-2">${labels.detail}</p>
                             <p class="text-gray-300 light-mode-desc leading-relaxed">${job.detail}</p>
                         </div>
                     </div>
@@ -4887,15 +5018,26 @@
             `;
 
             modal.classList.remove('hidden');
+            modal.classList.add('flex');
             if (window.lucide) {
                 lucide.createIcons();
             }
         }
 
         function closeJobModal() {
+            const modal = document.getElementById('jobModal');
+            if (!modal) return;
+
             if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            document.body.classList.remove('modal-open');
+            const scrollArea = document.querySelector('.content-scroll-area');
+            if (scrollArea) {
+                scrollArea.classList.remove('modal-scroll-locked');
+            }
+
             currentJobDetail = null;
-            document.getElementById('jobModal')?.classList.add('hidden');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
         function startJobAICoach() {
@@ -4904,9 +5046,50 @@
             const titleEl = document.getElementById('jobModalTitle');
             if (!modal || !content || !titleEl) return;
 
+            document.body.classList.add('modal-open');
+            const scrollArea = document.querySelector('.content-scroll-area');
+            if (scrollArea) {
+                scrollArea.classList.add('modal-scroll-locked');
+            }
+
             currentJobDetail = null;
-            titleEl.textContent = 'AI 面試教練';
-            content.innerHTML = `
+
+            const isEn = currentLang === 'en';
+            titleEl.textContent = isEn ? 'AI Interview Coach' : 'AI 面試教練';
+
+            const labels = isEn
+              ? {
+                  voice: 'Voice Guide',
+                  close: 'Close'
+                }
+              : {
+                  voice: '語音導覽',
+                  close: '關閉'
+                };
+
+            const voiceSpan = modal.querySelector('#jobVoiceBtn span');
+            if (voiceSpan) voiceSpan.textContent = labels.voice;
+
+            const closeBtn = modal.querySelector('.border-t button');
+            if (closeBtn) closeBtn.textContent = labels.close;
+
+            const headerCloseBtn = modal.querySelector('button[aria-label]');
+            if (headerCloseBtn) {
+                headerCloseBtn.setAttribute('aria-label', isEn ? 'Close job detail modal' : '關閉職缺詳細視窗');
+            }
+
+            content.innerHTML = isEn ? `
+                <div class="text-center py-8">
+                    <i data-lucide="bot" class="w-16 h-16 mx-auto text-cyan-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white light-mode-card-title mb-4">Start UMC Interview Practice</h3>
+                    <p class="text-gray-400 light-mode-desc mb-8 max-w-md mx-auto leading-relaxed">
+                        Select a target position and use the job description as interview practice material to prepare effectively.
+                    </p>
+                    <button onclick="alert('The AI interview practice feature will connect to custom question banks or generative AI. This is a demo version.')" class="bg-blue-600 text-white px-10 py-4 rounded-2xl font-medium hover:bg-blue-700 transition">
+                        Start Practice
+                    </button>
+                </div>
+            ` : `
                 <div class="text-center py-8">
                     <i data-lucide="bot" class="w-16 h-16 mx-auto text-cyan-400 mb-6"></i>
                     <h3 class="text-2xl font-bold text-white light-mode-card-title mb-4">準備開始 UMC 面試練習</h3>
@@ -4919,6 +5102,7 @@
                 </div>
             `;
             modal.classList.remove('hidden');
+            modal.classList.add('flex');
             if (window.lucide) {
                 lucide.createIcons();
             }
@@ -4964,7 +5148,7 @@
             }
 
             const modal = document.getElementById('jobModal');
-            if (modal && event.target === modal) {
+            if (modal && !modal.classList.contains('hidden') && event.target === modal) {
                 closeJobModal();
             }
         });
