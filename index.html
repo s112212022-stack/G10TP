@@ -3224,19 +3224,16 @@
                 if (card.dataset.pestelFlipBound === 'true') return;
                 card.dataset.pestelFlipBound = 'true';
 
-                function toggleCard(event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
+                card.addEventListener('click', () => {
                     card.classList.toggle('flipped');
                     card.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
-                }
-
-                card.addEventListener('pointerup', toggleCard);
+                });
 
                 card.addEventListener('keydown', (event) => {
                     if (event.key === 'Enter' || event.key === ' ') {
-                        toggleCard(event);
+                        event.preventDefault();
+                        card.classList.toggle('flipped');
+                        card.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
                     }
                 });
             });
