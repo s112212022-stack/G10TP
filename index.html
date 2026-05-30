@@ -904,6 +904,135 @@
             }
         }
 
+        .complementary-flip-card {
+            position: relative;
+            perspective: 1200px;
+            cursor: pointer;
+            min-height: 320px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .complementary-flip-inner {
+            position: relative;
+            width: 100%;
+            min-height: inherit;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            transform-origin: center center;
+            transition: transform 0.7s ease-in-out;
+            will-change: transform;
+        }
+        .complementary-flip-card.flipped .complementary-flip-inner {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+        .complementary-card-face {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            min-height: inherit;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(52, 211, 153, 0.45);
+            background:
+                radial-gradient(circle at 50% 0%, rgba(52, 211, 153, 0.1), transparent 42%),
+                rgba(15, 23, 42, 0.55);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            overflow: hidden;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .complementary-card-front {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: rotateY(0deg) translateZ(0.1px);
+            -webkit-transform: rotateY(0deg) translateZ(0.1px);
+        }
+        .complementary-card-back {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transform: rotateY(180deg) translateZ(0.1px);
+            -webkit-transform: rotateY(180deg) translateZ(0.1px);
+            overflow-y: auto;
+        }
+        .complementary-flip-card:hover .complementary-card-face {
+            border-color: rgba(52, 211, 153, 0.75);
+            box-shadow: 0 18px 45px -28px rgba(52, 211, 153, 0.6);
+            background:
+                radial-gradient(circle at 50% 0%, rgba(52, 211, 153, 0.14), transparent 42%),
+                rgba(15, 23, 42, 0.64);
+        }
+        .complementary-card-front h4 {
+            color: #93c5fd;
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1.3;
+            text-align: center;
+        }
+        .complementary-card-hint {
+            margin-top: 0.75rem;
+            color: rgba(148, 163, 184, 0.85);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .complementary-divider {
+            width: 82%;
+            height: 1px;
+            margin: 1rem auto 0;
+            background: rgba(52, 211, 153, 0.42);
+        }
+        .complementary-card-back p {
+            color: #e5e7eb;
+            font-size: 0.95rem;
+            line-height: 1.85;
+            text-align: center;
+        }
+        .complementary-partner {
+            margin-top: 1.25rem;
+            font-weight: 700;
+        }
+        .complementary-card-back .complementary-small-text p {
+            font-size: 0.84rem;
+            line-height: 1.65;
+            text-align: left;
+        }
+        .light-mode .complementary-card-face {
+            background: rgba(255, 255, 255, 0.78) !important;
+        }
+        .light-mode .complementary-card-front h4 {
+            color: #047857 !important;
+        }
+        .light-mode .complementary-card-back p {
+            color: #374151 !important;
+        }
+        .light-mode .complementary-card-hint {
+            color: #64748b !important;
+        }
+        @media (max-width: 768px) {
+            .complementary-flip-card {
+                min-height: 280px;
+            }
+            .complementary-card-face {
+                padding: 1.5rem;
+            }
+            .complementary-card-front h4 {
+                font-size: 1.2rem;
+            }
+            .complementary-card-back p {
+                font-size: 0.9rem;
+                line-height: 1.75;
+            }
+            .complementary-card-back .complementary-small-text p {
+                font-size: 0.8rem;
+                line-height: 1.6;
+            }
+        }
+
         .strategy-analysis {
             position: relative;
             --group-a: #8b5cf6;
@@ -3240,15 +3369,63 @@
 
                         <div id="res-complementary" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">五、互補性資產</h3>
-                            <div class="space-y-3">
-                                <div class="flex items-center p-4 bg-gray-950/40 light-mode-card-nested rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-12 h-12 rounded-full icon-wrapper text-indigo-400 flex items-center justify-center font-bold shrink-0 mr-4">1</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold text-sm">EDA 與 IP 生態系</h4><p class="text-xs text-gray-400 light-mode-desc mt-1">順暢的軟硬體驗證平台，降低客戶設計風險。</p></div>
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-8 flex items-center">五、互補性資產</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="complementary-flip-card" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="complementary-flip-inner">
+                                        <div class="complementary-card-face complementary-card-front light-mode-card-nested">
+                                            <h4>生產資源</h4>
+                                            <div class="complementary-divider"></div>
+                                            <p class="complementary-card-hint">點擊查看詳細說明</p>
+                                        </div>
+                                        <div class="complementary-card-face complementary-card-back light-mode-card-nested">
+                                            <p>設備供應商與矽晶圓、化學材料、氣體等材料供應商</p>
+                                            <p class="complementary-partner">合作夥伴：ASML、Soitec 等</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex items-center p-4 bg-gray-950/40 light-mode-card-nested rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-12 h-12 rounded-full icon-wrapper text-blue-400 flex items-center justify-center font-bold shrink-0 mr-4">2</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold text-sm">封測夥伴 (ASE等)</h4><p class="text-xs text-gray-400 light-mode-desc mt-1">合作推進 W2W 3D IC 先進封裝。</p></div>
+                                <div class="complementary-flip-card" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="complementary-flip-inner">
+                                        <div class="complementary-card-face complementary-card-front light-mode-card-nested">
+                                            <h4>垂直合作</h4>
+                                            <div class="complementary-divider"></div>
+                                            <p class="complementary-card-hint">點擊查看詳細說明</p>
+                                        </div>
+                                        <div class="complementary-card-face complementary-card-back light-mode-card-nested">
+                                            <p>聯電透過持有子公司或相關企業的股份，建立垂直合作的互補生態系。</p>
+                                            <p class="complementary-partner">合作夥伴：智原、聯詠、聯陽等</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="complementary-flip-card" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="complementary-flip-inner">
+                                        <div class="complementary-card-face complementary-card-front light-mode-card-nested">
+                                            <h4>技術合作</h4>
+                                            <div class="complementary-divider"></div>
+                                            <p class="complementary-card-hint">點擊查看詳細說明</p>
+                                        </div>
+                                        <div class="complementary-card-face complementary-card-back light-mode-card-nested">
+                                            <p>提供晶片代工及研發之技術合作</p>
+                                            <p class="complementary-partner">合作夥伴：聯電和 Intel 合作開發 12 奈米製程平台，聯電提供技術，Intel 提供產能，利用現有設備，大幅降低資本支出。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="complementary-flip-card" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="complementary-flip-inner">
+                                        <div class="complementary-card-face complementary-card-front light-mode-card-nested">
+                                            <h4>AI生態系</h4>
+                                            <div class="complementary-divider"></div>
+                                            <p class="complementary-card-hint">點擊查看詳細說明</p>
+                                        </div>
+                                        <div class="complementary-card-face complementary-card-back light-mode-card-nested">
+                                            <p>順應 AI 時代擴展產品線，達到差異化。</p>
+                                            <div class="complementary-small-text mt-4">
+                                                <p class="font-semibold mb-2">合作夥伴：</p>
+                                                <p>1. 聯電攜手旗下聯穎光電，與光通訊大廠 HyperLight 合作，在 6 吋及 8 吋晶圓上量產 HyperLight 的 TFLN 小晶片。</p>
+                                                <p class="mt-2">2. 與全球領先的先進半導體技術創新研發中心 imec 簽署技術授權協議，取得 imec iSiPP300，藉由此次授權合作，聯電將推出 12 吋矽光子平台，以瞄準下世代高速連接應用市場。</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -3520,15 +3697,63 @@
 
                         <div id="res-complementary" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">5. Complementary Assets</h3>
-                            <div class="space-y-3">
-                                <div class="flex items-center p-4 bg-gray-950/40 light-mode-card-nested rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-12 h-12 rounded-full icon-wrapper text-indigo-400 flex items-center justify-center font-bold shrink-0 mr-4">1</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold text-sm">EDA & IP Ecosystems</h4><p class="text-xs text-gray-400 light-mode-desc mt-1">Seamless hw/sw verification platforms reducing client design risks.</p></div>
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-8 flex items-center">5. Complementary Assets</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="complementary-flip-card" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="complementary-flip-inner">
+                                        <div class="complementary-card-face complementary-card-front light-mode-card-nested">
+                                            <h4>Production Resources</h4>
+                                            <div class="complementary-divider"></div>
+                                            <p class="complementary-card-hint">Click for details</p>
+                                        </div>
+                                        <div class="complementary-card-face complementary-card-back light-mode-card-nested">
+                                            <p>Equipment suppliers and material suppliers for silicon wafers, chemicals, gases, and related inputs.</p>
+                                            <p class="complementary-partner">Partners: ASML, Soitec, and others</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex items-center p-4 bg-gray-950/40 light-mode-card-nested rounded-xl border border-gray-800 light-mode-border">
-                                    <div class="w-12 h-12 rounded-full icon-wrapper text-blue-400 flex items-center justify-center font-bold shrink-0 mr-4">2</div>
-                                    <div><h4 class="text-white light-mode-card-title font-bold text-sm">Packaging Partners (ASE)</h4><p class="text-xs text-gray-400 light-mode-desc mt-1">Co-developing W2W stacking to enhance cost-performance and elevate switching costs.</p></div>
+                                <div class="complementary-flip-card" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="complementary-flip-inner">
+                                        <div class="complementary-card-face complementary-card-front light-mode-card-nested">
+                                            <h4>Vertical Collaboration</h4>
+                                            <div class="complementary-divider"></div>
+                                            <p class="complementary-card-hint">Click for details</p>
+                                        </div>
+                                        <div class="complementary-card-face complementary-card-back light-mode-card-nested">
+                                            <p>UMC builds a complementary vertical ecosystem by holding shares in subsidiaries or related companies.</p>
+                                            <p class="complementary-partner">Partners: Faraday, Novatek, ITE Tech, and others</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="complementary-flip-card" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="complementary-flip-inner">
+                                        <div class="complementary-card-face complementary-card-front light-mode-card-nested">
+                                            <h4>Technology Collaboration</h4>
+                                            <div class="complementary-divider"></div>
+                                            <p class="complementary-card-hint">Click for details</p>
+                                        </div>
+                                        <div class="complementary-card-face complementary-card-back light-mode-card-nested">
+                                            <p>Technical cooperation for foundry manufacturing and R&amp;D.</p>
+                                            <p class="complementary-partner">Partners: UMC and Intel jointly develop a 12nm process platform. UMC provides technology, Intel provides capacity, and existing equipment is used to significantly reduce capital expenditure.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="complementary-flip-card" tabindex="0" role="button" aria-pressed="false">
+                                    <div class="complementary-flip-inner">
+                                        <div class="complementary-card-face complementary-card-front light-mode-card-nested">
+                                            <h4>AI Ecosystem</h4>
+                                            <div class="complementary-divider"></div>
+                                            <p class="complementary-card-hint">Click for details</p>
+                                        </div>
+                                        <div class="complementary-card-face complementary-card-back light-mode-card-nested">
+                                            <p>Expands product lines for the AI era and strengthens differentiation.</p>
+                                            <div class="complementary-small-text mt-4">
+                                                <p class="font-semibold mb-2">Partners:</p>
+                                                <p>1. UMC works with its subsidiary United Micro Technology and optical communications leader HyperLight to mass-produce HyperLight TFLN chiplets on 6-inch and 8-inch wafers.</p>
+                                                <p class="mt-2">2. UMC signed a licensing agreement with imec, a leading advanced semiconductor R&amp;D center, to obtain imec iSiPP300. Through this collaboration, UMC will launch a 12-inch silicon photonics platform for next-generation high-speed connectivity applications.</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -4197,6 +4422,34 @@
             });
         }
 
+        function initComplementaryFlipCards() {
+            const cards = document.querySelectorAll('.complementary-flip-card');
+
+            cards.forEach(card => {
+                if (card.dataset.complementaryFlipBound === 'true') return;
+                card.dataset.complementaryFlipBound = 'true';
+
+                function toggleCard(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    card.classList.toggle('flipped');
+                    card.setAttribute(
+                        'aria-pressed',
+                        card.classList.contains('flipped') ? 'true' : 'false'
+                    );
+                }
+
+                card.addEventListener('pointerup', toggleCard);
+
+                card.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        toggleCard(event);
+                    }
+                });
+            });
+        }
+
         function toggleSixForceFlipCard(card) {
             card.classList.toggle('flipped');
             card.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
@@ -4286,6 +4539,7 @@
             setTimeout(() => {
                 initPestelFlipCards();
                 initDynamicFlipCards();
+                initComplementaryFlipCards();
                 initStrategyGroupHighlight();
             }, 0);
 
@@ -4319,6 +4573,7 @@
                 setTimeout(() => {
                     initPestelFlipCards();
                     initDynamicFlipCards();
+                    initComplementaryFlipCards();
                     initStrategyGroupHighlight();
                 }, 0);
                 displayBox.style.opacity = '1';
@@ -4377,6 +4632,7 @@
                 setTimeout(() => {
                     initPestelFlipCards();
                     initDynamicFlipCards();
+                    initComplementaryFlipCards();
                     initStrategyGroupHighlight();
                 }, 0);
             }
