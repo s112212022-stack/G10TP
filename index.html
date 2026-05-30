@@ -1721,20 +1721,6 @@
 
         <!-- 可滾動內容區 -->
         <div id="content-scroll-area" class="content-scroll-area flex-1 overflow-y-auto custom-scrollbar">
-            <div class="w-full max-w-6xl mx-auto px-4 md:px-6 pt-4">
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-gray-400 bg-gray-900/40 light-mode-switcher-container px-3 py-2 rounded-xl border border-gray-800/70 light-mode-border">
-                    <span id="current-section-title" class="font-bold text-white light-mode-section-title truncate"></span>
-                    <div class="flex items-center self-start sm:self-auto space-x-2">
-                        <button onclick="switchContentSection(-1)" class="px-2 py-1 rounded-lg hover:text-white dark:hover:text-white hover:bg-gray-800/60 light-mode-switcher-btn transition-colors">
-                            <span data-zh="← 上一章" data-en="← Previous">← 上一章</span>
-                        </button>
-                        <span id="current-section-index" class="px-2 self-center font-bold">1 / 6</span>
-                        <button onclick="switchContentSection(1)" class="px-2 py-1 rounded-lg hover:text-white dark:hover:text-white hover:bg-gray-800/60 light-mode-switcher-btn transition-colors">
-                            <span data-zh="下一章 →" data-en="Next →">下一章 →</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
             <div id="content-display-box" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-10"></div>
 
             <footer class="w-full py-3 md:py-5 border-t border-gray-800/50 light-mode-border glass-panel">
@@ -4629,10 +4615,21 @@
             }
         }
 
+        function updateSectionStatus(item) {
+            const sectionTitle = document.getElementById('current-section-title');
+            if (sectionTitle) {
+                sectionTitle.innerText = currentLang === 'zh' ? item.title_zh : item.title_en;
+            }
+
+            const sectionIndex = document.getElementById('current-section-index');
+            if (sectionIndex) {
+                sectionIndex.innerText = `${activeIndex + 1} / ${SECTIONS.length}`;
+            }
+        }
+
         function enterCurrentSection() {
             const item = SECTIONS[activeIndex];
-            document.getElementById('current-section-title').innerText = currentLang === 'zh' ? item.title_zh : item.title_en;
-            document.getElementById('current-section-index').innerText = `${activeIndex + 1} / ${SECTIONS.length}`;
+            updateSectionStatus(item);
             document.getElementById('content-display-box').innerHTML = currentLang === 'zh' ? item.content_zh : item.content_en;
             setTimeout(() => {
                 initPestelFlipCards();
@@ -4661,8 +4658,7 @@
             
             updateCarousel();
             const item = SECTIONS[activeIndex];
-            document.getElementById('current-section-title').innerText = currentLang === 'zh' ? item.title_zh : item.title_en;
-            document.getElementById('current-section-index').innerText = `${activeIndex + 1} / ${SECTIONS.length}`;
+            updateSectionStatus(item);
             
             const displayBox = document.getElementById('content-display-box');
             displayBox.style.opacity = '0';
@@ -4724,7 +4720,7 @@
             const isContentOpen = !document.getElementById('content-container').classList.contains('hidden');
             if (isContentOpen) {
                 const item = SECTIONS[activeIndex];
-                document.getElementById('current-section-title').innerText = currentLang === 'zh' ? item.title_zh : item.title_en;
+                updateSectionStatus(item);
                 document.getElementById('content-display-box').innerHTML = currentLang === 'zh' ? item.content_zh : item.content_en;
                 setTimeout(() => {
                     initPestelFlipCards();
