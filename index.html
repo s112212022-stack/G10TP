@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter & Noto Sans TC -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
@@ -91,6 +93,130 @@
             background: rgba(179, 226, 255, 0.85) !important;
             border-color: rgba(59, 130, 246, 0.3) !important;
             box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15) !important;
+        }
+
+        .jobs-section {
+            --job-panel: rgba(15, 23, 42, 0.52);
+        }
+        .jobs-category-section {
+            position: relative;
+        }
+        .jobs-category-heading {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+            color: #e0f2fe;
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1.35;
+        }
+        .jobs-category-heading::before {
+            content: '';
+            width: 2rem;
+            height: 0.25rem;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #22d3ee, #3b82f6);
+            box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
+            flex-shrink: 0;
+        }
+        .job-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .job-card-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 1.25rem;
+            }
+        }
+        @media (min-width: 1280px) {
+            .job-card-grid {
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
+            .jobs-feature-layout .job-card-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+        .job-square {
+            position: relative;
+            overflow: hidden;
+            min-height: 13rem;
+            border: 1px solid rgba(34, 211, 238, 0.28);
+            background:
+                radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--job-color), transparent 78%), transparent 48%),
+                rgba(15, 23, 42, 0.56);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .job-square::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--job-color), transparent 76%));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .job-square:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: color-mix(in srgb, var(--job-color), white 28%);
+            box-shadow: 0 22px 48px -28px color-mix(in srgb, var(--job-color), transparent 18%);
+        }
+        .job-square:hover::before {
+            opacity: 1;
+        }
+        .job-icon-badge {
+            background:
+                linear-gradient(135deg, color-mix(in srgb, var(--job-color), transparent 35%), color-mix(in srgb, var(--job-color), #0f172a 58%));
+            box-shadow: 0 16px 30px -22px var(--job-color);
+        }
+        .ai-coach-card,
+        .ksa-card {
+            border: 1px solid rgba(34, 211, 238, 0.24);
+            background:
+                radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.12), transparent 38%),
+                rgba(15, 23, 42, 0.54);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .ai-coach-card:hover,
+        .ksa-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(34, 211, 238, 0.48);
+            box-shadow: 0 22px 45px -32px rgba(34, 211, 238, 0.65);
+        }
+        .job-modal-card {
+            animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.7) translateY(40px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .light-mode .job-square,
+        .light-mode .ai-coach-card,
+        .light-mode .ksa-card,
+        .light-mode .job-modal-card {
+            background: rgba(255, 255, 255, 0.78) !important;
+            color: #111827 !important;
+        }
+        .light-mode .job-square {
+            border-color: rgba(14, 165, 233, 0.25) !important;
+        }
+        .light-mode .jobs-category-heading,
+        .light-mode .job-modal-card h2,
+        .light-mode .job-modal-card h3 {
+            color: #111827 !important;
+        }
+        .light-mode .job-modal-card p,
+        .light-mode .job-modal-card li {
+            color: #374151 !important;
+        }
+        @media (max-width: 768px) {
+            .job-card-grid {
+                grid-template-columns: 1fr;
+            }
+            .job-square {
+                min-height: 11rem;
+            }
         }
         
         .icon-wrapper {
@@ -4083,31 +4209,270 @@
                 desc_zh: "加入聯華電子，與我們一起深耕特殊製程，共創半導體未來", desc_en: "Join UMC, master mature node innovations together",
                 icon: `<svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>`,
                 content_zh: `
-                    <div class="space-y-8 animate-fade-in">
+                    <div class="space-y-10 animate-fade-in jobs-section">
                         <div class="border-b border-gray-800 pb-4 light-mode-border">
-                            <h2 class="text-3xl font-extrabold text-white light-mode-section-title">人力職缺與招募</h2>
-                            <p class="text-gray-400 light-mode-desc text-sm mt-1">加入聯華電子，與我們一起深耕特殊製程，共創半導體未來。</p>
+                            <h2 class="text-3xl font-black text-white light-mode-section-title">探索 UMC 職缺</h2>
+                            <p class="text-gray-400 light-mode-desc mt-2">點擊方塊查看職位詳細資訊</p>
                         </div>
-                        <div class="glass-card p-8 rounded-2xl flex flex-col items-center justify-center text-center min-h-[300px] light-mode-card">
-                            <svg class="w-16 h-16 text-gray-600 mb-4 light-mode-desc" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-2">最新職缺建置中</h3>
-                            <p class="text-sm text-gray-400 light-mode-desc">研發工程師、製程整合工程師等熱門職缺即將上線，敬請期待。</p>
+
+                        <div class="jobs-feature-layout flex flex-col lg:flex-row gap-8">
+                            <section class="jobs-category-section lg:w-3/5">
+                                <h3 class="jobs-category-heading">一、行銷業務與商務服務類</h3>
+                                <div id="job-category-1" class="job-card-grid"></div>
+                            </section>
+
+                            <aside class="lg:w-2/5">
+                                <div class="ai-coach-card light-mode-card-nested rounded-3xl p-7 md:p-8 shadow-sm">
+                                    <div class="flex items-center gap-4 mb-6">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shrink-0">
+                                            <i data-lucide="bot" class="w-7 h-7 text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-2xl text-white light-mode-card-title">AI 面試教練</h3>
+                                            <p class="text-cyan-300 text-sm">專屬 UMC 職缺面試練習</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-400 light-mode-desc mb-6 leading-relaxed">
+                                        點擊下方按鈕，針對您感興趣的職位進行模擬面試練習，獲得即時 AI 回饋與建議。
+                                    </p>
+                                    <button onclick="startJobAICoach()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-4 rounded-2xl font-medium hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                                        <i data-lucide="play" class="w-5 h-5"></i>
+                                        開始面試練習
+                                    </button>
+                                </div>
+                            </aside>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+                            <section class="jobs-category-section lg:col-span-3">
+                                <h3 class="jobs-category-heading">二、資訊與人資系統管理類</h3>
+                                <div id="job-category-2" class="job-card-grid"></div>
+                            </section>
+
+                            <aside class="lg:col-span-2">
+                                <div class="ksa-card light-mode-card-nested rounded-3xl p-7 md:p-8 shadow-sm">
+                                    <div class="flex items-center gap-4 mb-6">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center shrink-0">
+                                            <i data-lucide="target" class="w-7 h-7 text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-2xl text-white light-mode-card-title">KSA 職能</h3>
+                                            <p class="text-purple-300 text-sm">知識・技能・能力</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-400 light-mode-desc mb-8 leading-relaxed">
+                                        每個職位對應的核心職能（Knowledge, Skills, Abilities），幫助您了解所需條件。
+                                    </p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
+                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">K</div>
+                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">知識</h4>
+                                            <p class="text-sm text-gray-400 light-mode-desc">半導體產業知識<br>客戶需求分析</p>
+                                        </div>
+                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
+                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">S</div>
+                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">技能</h4>
+                                            <p class="text-sm text-gray-400 light-mode-desc">解決方案提案<br>合約談判</p>
+                                        </div>
+                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
+                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">A</div>
+                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">能力</h4>
+                                            <p class="text-sm text-gray-400 light-mode-desc">客戶關係管理<br>跨部門協調</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+
+                        <section class="jobs-category-section">
+                            <h3 class="jobs-category-heading">三、海外與外派機會</h3>
+                            <div id="job-category-3" class="job-card-grid"></div>
+                        </section>
+
+                        <section class="jobs-category-section">
+                            <h3 class="jobs-category-heading">四、技術研發與製程類</h3>
+                            <div id="job-category-4" class="job-card-grid"></div>
+                        </section>
+
+                        <section class="jobs-category-section">
+                            <h3 class="jobs-category-heading">五、廠區營運與生產支援類</h3>
+                            <div id="job-category-5" class="job-card-grid"></div>
+                        </section>
+
+                        <div id="jobModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[120] p-4">
+                            <div class="job-modal-card bg-gray-950/95 light-mode-card border border-cyan-400/30 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+                                <div class="px-5 md:px-8 py-5 border-b border-gray-800 light-mode-border flex items-center justify-between gap-4 bg-gray-900/70">
+                                    <h2 id="jobModalTitle" class="text-xl md:text-2xl font-bold text-white light-mode-card-title"></h2>
+                                    <div class="flex items-center gap-3 shrink-0">
+                                        <button id="jobVoiceBtn" class="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl transition-all active:scale-95">
+                                            <i data-lucide="volume-2" class="w-5 h-5"></i>
+                                            <span class="font-medium text-sm hidden sm:inline">語音導覽</span>
+                                        </button>
+                                        <button onclick="closeJobModal()" class="text-gray-400 hover:text-white transition-colors" aria-label="關閉職缺詳細視窗">
+                                            <i data-lucide="x" class="w-6 h-6"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="p-5 md:p-8 overflow-y-auto custom-scrollbar" style="max-height: calc(90vh - 150px);" id="jobModalContent"></div>
+                                <div class="border-t border-gray-800 light-mode-border px-5 md:px-8 py-5 flex justify-end">
+                                    <button onclick="closeJobModal()" class="px-7 py-3 bg-gray-800 hover:bg-gray-700 light-mode-card-nested text-white light-mode-card-title font-medium rounded-2xl transition-colors">
+                                        關閉
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>`,
                 content_en: `
-                    <div class="space-y-8 animate-fade-in">
+                    <div class="space-y-10 animate-fade-in jobs-section">
                         <div class="border-b border-gray-800 pb-4 light-mode-border">
-                            <h2 class="text-3xl font-extrabold text-white light-mode-section-title">Careers & Recruitment</h2>
-                            <p class="text-gray-400 light-mode-desc text-sm mt-1">Join UMC, expand your potential, and forge the future of semiconductors.</p>
+                            <h2 class="text-3xl font-black text-white light-mode-section-title">Explore UMC Careers</h2>
+                            <p class="text-gray-400 light-mode-desc mt-2">Click a role card to view salary, focus areas, and details.</p>
                         </div>
-                        <div class="glass-card p-8 rounded-2xl flex flex-col items-center justify-center text-center min-h-[300px] light-mode-card">
-                            <svg class="w-16 h-16 text-gray-600 mb-4 light-mode-desc" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-2">Opportunities Loading</h3>
-                            <p class="text-sm text-gray-400 light-mode-desc">R&D and Integration Engineer roles are opening soon. Stay tuned!</p>
+
+                        <div class="jobs-feature-layout flex flex-col lg:flex-row gap-8">
+                            <section class="jobs-category-section lg:w-3/5">
+                                <h3 class="jobs-category-heading">1. Sales, Marketing & Business Services</h3>
+                                <div id="job-category-1" class="job-card-grid"></div>
+                            </section>
+
+                            <aside class="lg:w-2/5">
+                                <div class="ai-coach-card light-mode-card-nested rounded-3xl p-7 md:p-8 shadow-sm">
+                                    <div class="flex items-center gap-4 mb-6">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shrink-0">
+                                            <i data-lucide="bot" class="w-7 h-7 text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-2xl text-white light-mode-card-title">AI Interview Coach</h3>
+                                            <p class="text-cyan-300 text-sm">Practice for UMC role interviews</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-400 light-mode-desc mb-6 leading-relaxed">
+                                        Start a simulated interview for UMC roles and receive instant AI-style feedback and suggestions.
+                                    </p>
+                                    <button onclick="startJobAICoach()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-4 rounded-2xl font-medium hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                                        <i data-lucide="play" class="w-5 h-5"></i>
+                                        Start Interview Practice
+                                    </button>
+                                </div>
+                            </aside>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+                            <section class="jobs-category-section lg:col-span-3">
+                                <h3 class="jobs-category-heading">2. IT & HR Systems Management</h3>
+                                <div id="job-category-2" class="job-card-grid"></div>
+                            </section>
+
+                            <aside class="lg:col-span-2">
+                                <div class="ksa-card light-mode-card-nested rounded-3xl p-7 md:p-8 shadow-sm">
+                                    <div class="flex items-center gap-4 mb-6">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center shrink-0">
+                                            <i data-lucide="target" class="w-7 h-7 text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-2xl text-white light-mode-card-title">KSA Competencies</h3>
+                                            <p class="text-purple-300 text-sm">Knowledge, Skills, Abilities</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-400 light-mode-desc mb-8 leading-relaxed">
+                                        Core competencies linked to each role help you understand what UMC expects from candidates.
+                                    </p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
+                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">K</div>
+                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">Knowledge</h4>
+                                            <p class="text-sm text-gray-400 light-mode-desc">Semiconductor industry knowledge<br>Customer needs analysis</p>
+                                        </div>
+                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
+                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">S</div>
+                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">Skills</h4>
+                                            <p class="text-sm text-gray-400 light-mode-desc">Solution proposals<br>Contract negotiation</p>
+                                        </div>
+                                        <div class="text-center bg-gray-950/40 light-mode-card-nested rounded-2xl p-4 border border-purple-400/20">
+                                            <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-300 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3">A</div>
+                                            <h4 class="font-semibold text-white light-mode-card-title mb-2">Abilities</h4>
+                                            <p class="text-sm text-gray-400 light-mode-desc">Customer relationship management<br>Cross-functional coordination</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+
+                        <section class="jobs-category-section">
+                            <h3 class="jobs-category-heading">3. Overseas & Expatriate Opportunities</h3>
+                            <div id="job-category-3" class="job-card-grid"></div>
+                        </section>
+
+                        <section class="jobs-category-section">
+                            <h3 class="jobs-category-heading">4. Technology R&D & Process Roles</h3>
+                            <div id="job-category-4" class="job-card-grid"></div>
+                        </section>
+
+                        <section class="jobs-category-section">
+                            <h3 class="jobs-category-heading">5. Fab Operations & Production Support</h3>
+                            <div id="job-category-5" class="job-card-grid"></div>
+                        </section>
+
+                        <div id="jobModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[120] p-4">
+                            <div class="job-modal-card bg-gray-950/95 light-mode-card border border-cyan-400/30 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+                                <div class="px-5 md:px-8 py-5 border-b border-gray-800 light-mode-border flex items-center justify-between gap-4 bg-gray-900/70">
+                                    <h2 id="jobModalTitle" class="text-xl md:text-2xl font-bold text-white light-mode-card-title"></h2>
+                                    <div class="flex items-center gap-3 shrink-0">
+                                        <button id="jobVoiceBtn" class="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl transition-all active:scale-95">
+                                            <i data-lucide="volume-2" class="w-5 h-5"></i>
+                                            <span class="font-medium text-sm hidden sm:inline">Voice Guide</span>
+                                        </button>
+                                        <button onclick="closeJobModal()" class="text-gray-400 hover:text-white transition-colors" aria-label="Close job detail modal">
+                                            <i data-lucide="x" class="w-6 h-6"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="p-5 md:p-8 overflow-y-auto custom-scrollbar" style="max-height: calc(90vh - 150px);" id="jobModalContent"></div>
+                                <div class="border-t border-gray-800 light-mode-border px-5 md:px-8 py-5 flex justify-end">
+                                    <button onclick="closeJobModal()" class="px-7 py-3 bg-gray-800 hover:bg-gray-700 light-mode-card-nested text-white light-mode-card-title font-medium rounded-2xl transition-colors">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>`
             }
         ];
+
+        const jobOpenings = [
+            { id: 1, category: 1, title: "銷售工程師", location: "竹科", icon: "briefcase", color: "#3b82f6",
+              description: "晶圓專工整體解決方案的銷售與客戶管理、處理報價與訂單審查。",
+              salary: "月薪約 $55,000 ~ $75,000", detail: "要求 4 年以上相關經驗，需具備良好英語能力。績效與分紅與當年度業績掛鉤。" },
+            { id: 2, category: 1, title: "商務服務臨時人員", location: "竹科", icon: "users", color: "#94a3b8",
+              description: "建物投資管理、總機接待暨公關服務、商務中心營運。",
+              salary: "月薪約 $38,000 ~ $45,000", detail: "一年期定期契約，享有勞健保與基本福利。" },
+            { id: 3, category: 2, title: "人資系統管理師", location: "竹科 - HRIS", icon: "database", color: "#a855f7",
+              description: "Workday 或 SAP HCM 等人資系統日常維護與權限設定。",
+              salary: "月薪約 $50,000 ~ $70,000", detail: "要求 3 年以上 Workday / SAP HCM 系統維護經驗。" },
+            { id: 4, category: 2, title: "研發替代役_IT工程師", location: "竹科", icon: "cpu", color: "#f59e0b",
+              description: "Fab 自動化程式開發、ERP 與 HR 相關系統開發。",
+              salary: "碩士起薪 $52,000 ~ $57,000", detail: "2026 研替職缺，第一年年薪可達 14~16 個月。" },
+            { id: 5, category: 3, title: "客戶服務工程師", location: "日本三重", icon: "globe", color: "#f43f5e",
+              description: "日本客戶對接、資訊收集。錄取後先赴日報到。",
+              salary: "台灣核心月薪 + 外派津貼", detail: "需 3 年以上經驗，2 個月後至南科廠受訓半年。" },
+            { id: 6, category: 4, title: "矽光子元件測試研發工程師", location: "竹科", icon: "zap", color: "#22d3ee",
+              description: "主被動光學元件模擬與優化、量測與光電協同驗證。",
+              salary: "碩士起薪 $55,000 ~ $60,000", detail: "要求 5 年以上經驗，年薪第一年約 85萬 ~ 100萬。" },
+            { id: 7, category: 4, title: "研發替代役_技術開發工程師", location: "竹/南科", icon: "flask-conical", color: "#f59e0b",
+              description: "產品與技術開發、分析製程異常、改善元件特性。",
+              salary: "大學 $45,000+ / 碩士 $53,000+", detail: "2026 研替，接受應屆畢業生。" },
+            { id: 8, category: 5, title: "設備副工程師", location: "竹科 / 南科", icon: "settings", color: "#10b981",
+              description: "四班二輪制，執行機台保養、零件組裝校正。",
+              salary: "月薪 $38,000 ~ $45,000 + 輪班津貼", detail: "做二休二，夜班津貼與加班費另計。" },
+            { id: 9, category: 5, title: "固定夜班技術員", location: "南科", icon: "moon", color: "#6366f1",
+              description: "無塵室機台操作，固定夜班制（19:20-07:20）。",
+              salary: "平均月薪約 $39,300", detail: "享有新人簽約金、久任獎金及夜班服務獎金。" },
+            { id: 10, category: 5, title: "健康中心護理管理師", location: "南科", icon: "heart-pulse", color: "#14b8a6",
+              description: "員工健康管理、傷病評估與緊急救護。",
+              salary: "月薪約 $40,000 ~ $50,000", detail: "要求 2 年以上護理經驗，常日班。" }
+        ];
+
+        let currentJobDetail = null;
 
         // 區域資料設定
         const regionData = {
@@ -4449,6 +4814,161 @@
             toggleFlipCard(card);
         });
 
+        function initJobsSection() {
+            const section = document.querySelector('.jobs-section');
+            if (!section) return;
+
+            renderJobCards();
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        function renderJobCards() {
+            for (let i = 1; i <= 5; i++) {
+                const container = document.getElementById(`job-category-${i}`);
+                if (container) container.innerHTML = '';
+            }
+
+            jobOpenings.forEach(job => {
+                const container = document.getElementById(`job-category-${job.category}`);
+                if (container) container.appendChild(createJobCard(job));
+            });
+        }
+
+        function createJobCard(job) {
+            const card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'job-square light-mode-card-nested rounded-3xl p-5 cursor-pointer h-full flex flex-col items-center justify-center text-center group';
+            card.style.setProperty('--job-color', job.color);
+            card.setAttribute('aria-label', `查看 ${job.title} 職缺詳細資訊`);
+            card.innerHTML = `
+                <div class="job-icon-badge w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                    <i data-lucide="${job.icon}" class="w-9 h-9 md:w-10 md:h-10 text-white"></i>
+                </div>
+                <h3 class="font-bold text-base md:text-lg leading-tight text-white light-mode-card-title mb-2">${job.title}</h3>
+                <p class="text-xs text-gray-400 light-mode-desc">${job.location}</p>
+            `;
+            card.addEventListener('click', () => showJobDetailModal(job));
+            return card;
+        }
+
+        function showJobDetailModal(job) {
+            const modal = document.getElementById('jobModal');
+            const content = document.getElementById('jobModalContent');
+            const titleEl = document.getElementById('jobModalTitle');
+            if (!modal || !content || !titleEl) return;
+
+            currentJobDetail = job;
+            titleEl.textContent = job.title;
+            content.innerHTML = `
+                <div class="flex flex-col md:flex-row items-start gap-6">
+                    <div class="job-icon-badge w-20 h-20 rounded-3xl flex-shrink-0 flex items-center justify-center" style="--job-color: ${job.color};">
+                        <i data-lucide="${job.icon}" class="w-12 h-12 text-white"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                            <div>
+                                <h3 class="text-2xl md:text-3xl font-bold text-white light-mode-card-title">${job.title}</h3>
+                                <p class="font-medium mt-1" style="color: ${job.color};">${job.location}</p>
+                            </div>
+                            <span class="inline-block px-4 py-1.5 bg-emerald-500/12 border border-emerald-400/30 text-emerald-300 text-sm font-semibold rounded-2xl">${job.salary}</span>
+                        </div>
+                        <div class="my-7 border-l-4 pl-5" style="border-color: ${job.color};">
+                            <p class="text-gray-300 light-mode-desc leading-relaxed">${job.description}</p>
+                        </div>
+                        <div class="bg-gray-900/70 light-mode-card-nested rounded-2xl p-5 text-sm border border-gray-800 light-mode-border">
+                            <p class="font-semibold text-white light-mode-card-title mb-2">詳細說明</p>
+                            <p class="text-gray-300 light-mode-desc leading-relaxed">${job.detail}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        function closeJobModal() {
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            currentJobDetail = null;
+            document.getElementById('jobModal')?.classList.add('hidden');
+        }
+
+        function startJobAICoach() {
+            const modal = document.getElementById('jobModal');
+            const content = document.getElementById('jobModalContent');
+            const titleEl = document.getElementById('jobModalTitle');
+            if (!modal || !content || !titleEl) return;
+
+            currentJobDetail = null;
+            titleEl.textContent = 'AI 面試教練';
+            content.innerHTML = `
+                <div class="text-center py-8">
+                    <i data-lucide="bot" class="w-16 h-16 mx-auto text-cyan-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white light-mode-card-title mb-4">準備開始 UMC 面試練習</h3>
+                    <p class="text-gray-400 light-mode-desc mb-8 max-w-md mx-auto leading-relaxed">
+                        選擇目標職缺後，您可以用職缺內容作為面試練習素材，聚焦工作重點、薪資與職能條件進行準備。
+                    </p>
+                    <button onclick="alert('AI 面試練習功能可接續串接題庫或生成式 AI，目前為展示版。')" class="bg-blue-600 text-white px-10 py-4 rounded-2xl font-medium hover:bg-blue-700 transition">
+                        開始練習
+                    </button>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        function jobSalaryToSpoken(salary) {
+            return salary
+                .replace(/\$/g, '新台幣')
+                .replace(/55,000/g, '五萬五千')
+                .replace(/75,000/g, '七萬五千')
+                .replace(/38,000/g, '三萬八千')
+                .replace(/45,000/g, '四萬五千')
+                .replace(/50,000/g, '五萬元')
+                .replace(/70,000/g, '七萬元')
+                .replace(/52,000/g, '五萬二千')
+                .replace(/57,000/g, '五萬七千')
+                .replace(/60,000/g, '六萬元')
+                .replace(/39,300/g, '三萬九千三百')
+                .replace(/40,000/g, '四萬元')
+                .replace(/85萬/g, '八十五萬')
+                .replace(/100萬/g, '一百萬');
+        }
+
+        function speakJobDetail(job) {
+            if (!job || !('speechSynthesis' in window)) return;
+
+            window.speechSynthesis.cancel();
+            const spokenSalary = jobSalaryToSpoken(job.salary);
+            const text = `${job.title}。工作地點：${job.location}。薪資範圍：${spokenSalary}。工作重點：${job.description}。詳細說明：${job.detail}。`;
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-TW';
+            utterance.rate = 0.95;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        document.addEventListener('click', function(event) {
+            if (!(event.target instanceof Element)) return;
+
+            const voiceButton = event.target.closest('#jobVoiceBtn');
+            if (voiceButton) {
+                speakJobDetail(currentJobDetail);
+                return;
+            }
+
+            const modal = document.getElementById('jobModal');
+            if (modal && event.target === modal) {
+                closeJobModal();
+            }
+        });
+
         function initPestelFlipCards() {
             const cards = document.querySelectorAll('.pestel-flip-card');
 
@@ -4636,6 +5156,7 @@
                 initDynamicFlipCards();
                 initComplementaryFlipCards();
                 initStrategyGroupHighlight();
+                initJobsSection();
             }, 0);
 
             const landing = document.getElementById('landing-page');
@@ -4669,6 +5190,7 @@
                     initDynamicFlipCards();
                     initComplementaryFlipCards();
                     initStrategyGroupHighlight();
+                    initJobsSection();
                 }, 0);
                 displayBox.style.opacity = '1';
                 scrollContentToTop();
@@ -4727,6 +5249,7 @@
                     initDynamicFlipCards();
                     initComplementaryFlipCards();
                     initStrategyGroupHighlight();
+                    initJobsSection();
                 }, 0);
             }
         }
