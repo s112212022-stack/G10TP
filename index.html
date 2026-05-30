@@ -192,6 +192,85 @@
             animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
+        .vrin-table {
+            width: 100%;
+            min-width: 900px;
+            table-layout: fixed;
+            border-collapse: collapse;
+            overflow: hidden;
+            border: 1px solid rgba(96, 165, 250, 0.45);
+            background: rgba(2, 6, 23, 0.22);
+        }
+        .vrin-table th,
+        .vrin-table td {
+            border: 1px solid rgba(96, 165, 250, 0.45);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .vrin-table th {
+            height: 4.5rem;
+            color: #93c5fd;
+            font-weight: 800;
+            font-size: 1rem;
+            background: rgba(15, 23, 42, 0.68);
+            letter-spacing: 0;
+        }
+        .vrin-table td {
+            color: #e5e7eb;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            background: rgba(15, 23, 42, 0.22);
+        }
+        .vrin-table tbody tr:hover td {
+            background: rgba(30, 41, 59, 0.38);
+        }
+        .vrin-table .resource-name {
+            display: block;
+            color: #ffffff;
+            font-weight: 800;
+        }
+        .vrin-table .resource-type {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: #cbd5e1;
+            font-weight: 700;
+        }
+        .vrin-table .score-highest {
+            color: #f59e0b;
+            font-weight: 800;
+        }
+        .vrin-table .score-super {
+            color: #ef4444;
+            font-weight: 800;
+        }
+        .vrin-table .advantage-sustainable {
+            color: #34d399;
+            font-weight: 800;
+        }
+        .vrin-table .advantage-temporary {
+            color: #a78bfa;
+            font-weight: 800;
+        }
+        .vrin-table .advantage-parity {
+            color: #cbd5e1;
+            font-weight: 800;
+        }
+        .light-mode .vrin-table th {
+            color: #1d4ed8 !important;
+            background: rgba(219, 234, 254, 0.62) !important;
+        }
+        .light-mode .vrin-table td {
+            color: #1f2937 !important;
+            background: rgba(255, 255, 255, 0.58) !important;
+        }
+        .light-mode .vrin-table .resource-name {
+            color: #111827 !important;
+        }
+        .light-mode .vrin-table .resource-type {
+            color: #475569 !important;
+        }
+
         .strategy-analysis {
             position: relative;
             --group-a: #8b5cf6;
@@ -2304,32 +2383,71 @@
 
                         <div id="res-vrin" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">三、VR-IN 資源特質評價</h3>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-sm text-gray-300 light-mode-desc border-collapse">
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-6 flex items-center">三、VR-IN 資源特質評價</h3>
+                            <div class="overflow-x-auto rounded-xl border border-blue-500/30 bg-gray-950/30 light-mode-card-nested">
+                                <table class="vrin-table text-center">
+                                    <colgroup>
+                                        <col class="w-[26%]">
+                                        <col class="w-[12%]">
+                                        <col class="w-[12%]">
+                                        <col class="w-[13%]">
+                                        <col class="w-[13%]">
+                                        <col class="w-[24%]">
+                                    </colgroup>
                                     <thead>
-                                        <tr class="border-b border-gray-800 light-mode-border bg-gray-900/50 light-mode-card-nested">
-                                            <th class="p-4 font-bold text-white light-mode-card-title w-1/4">資源能力</th>
-                                            <th class="p-4 font-bold text-emerald-400 text-center">價值</th>
-                                            <th class="p-4 font-bold text-emerald-400 text-center">稀有</th>
-                                            <th class="p-4 font-bold text-emerald-400 text-center">難模仿</th>
-                                            <th class="p-4 font-bold text-blue-400 text-right">優勢結論</th>
+                                        <tr>
+                                            <th>資源能力</th>
+                                            <th>價值</th>
+                                            <th>稀少</th>
+                                            <th>難模仿</th>
+                                            <th>難替代</th>
+                                            <th>優勢結論</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="divide-y divide-gray-800/50 light-mode-border">
-                                        <tr class="hover:bg-gray-900/20">
-                                            <td class="p-4 font-semibold">22/28nm 產能規模</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-center text-red-500 font-bold">✘</td>
-                                            <td class="p-4 text-right text-indigo-400 font-semibold">暫時性優勢</td>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <span class="resource-type">實體</span>
+                                                <span class="resource-name">新加坡 Fab 12i P3廠</span>
+                                            </td>
+                                            <td>高</td>
+                                            <td>中高</td>
+                                            <td>中</td>
+                                            <td>高</td>
+                                            <td class="advantage-temporary">暫時性優勢</td>
                                         </tr>
-                                        <tr class="hover:bg-gray-900/20">
-                                            <td class="p-4 font-semibold">特殊製程 (HV/RFSOI)</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-right text-emerald-400 font-black">持續性優勢</td>
+                                        <tr>
+                                            <td>
+                                                <span class="resource-type">智慧</span>
+                                                <span class="resource-name">特殊製程技術</span>
+                                            </td>
+                                            <td class="score-highest">極高</td>
+                                            <td>高</td>
+                                            <td class="score-highest">極高</td>
+                                            <td>高</td>
+                                            <td class="advantage-sustainable">可持續優勢</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="resource-type">關係</span>
+                                                <span class="resource-name">與Intel的戰略合作</span>
+                                            </td>
+                                            <td>高</td>
+                                            <td class="score-super">超級高</td>
+                                            <td class="score-highest">極高</td>
+                                            <td>中高</td>
+                                            <td class="advantage-sustainable">可持續優勢</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="resource-type">財務</span>
+                                                <span class="resource-name">現金流與高毛利產品組合</span>
+                                            </td>
+                                            <td>高</td>
+                                            <td>中</td>
+                                            <td>中低</td>
+                                            <td>低</td>
+                                            <td class="advantage-parity">競爭平價</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -2409,32 +2527,71 @@
 
                         <div id="res-vrin" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">3. VR-IN Attributes</h3>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-sm text-gray-300 light-mode-desc border-collapse">
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-6 flex items-center">3. VR-IN Attributes</h3>
+                            <div class="overflow-x-auto rounded-xl border border-blue-500/30 bg-gray-950/30 light-mode-card-nested">
+                                <table class="vrin-table text-center">
+                                    <colgroup>
+                                        <col class="w-[26%]">
+                                        <col class="w-[12%]">
+                                        <col class="w-[12%]">
+                                        <col class="w-[13%]">
+                                        <col class="w-[13%]">
+                                        <col class="w-[24%]">
+                                    </colgroup>
                                     <thead>
-                                        <tr class="border-b border-gray-800 light-mode-border bg-gray-900/50 light-mode-card-nested">
-                                            <th class="p-4 font-bold text-white light-mode-card-title w-1/4">Resource/Capability</th>
-                                            <th class="p-4 font-bold text-emerald-400 text-center">V</th>
-                                            <th class="p-4 font-bold text-emerald-400 text-center">R</th>
-                                            <th class="p-4 font-bold text-emerald-400 text-center">I</th>
-                                            <th class="p-4 font-bold text-blue-400 text-right">Conclusion</th>
+                                        <tr>
+                                            <th>Resource / Capability</th>
+                                            <th>Value</th>
+                                            <th>Rarity</th>
+                                            <th>Imitability</th>
+                                            <th>Substitutability</th>
+                                            <th>Advantage Conclusion</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="divide-y divide-gray-800/50 light-mode-border">
-                                        <tr class="hover:bg-gray-900/20">
-                                            <td class="p-4 font-semibold">22/28nm Capacity Scale</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-center text-red-500 font-bold">✘</td>
-                                            <td class="p-4 text-right text-indigo-400 font-semibold">Temporary Advantage</td>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <span class="resource-type">Physical</span>
+                                                <span class="resource-name">Singapore Fab 12i P3</span>
+                                            </td>
+                                            <td>High</td>
+                                            <td>Medium-High</td>
+                                            <td>Medium</td>
+                                            <td>High</td>
+                                            <td class="advantage-temporary">Temporary Advantage</td>
                                         </tr>
-                                        <tr class="hover:bg-gray-900/20">
-                                            <td class="p-4 font-semibold">Specialty Nodes (HV/RFSOI)</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-center text-emerald-400 font-bold">✔</td>
-                                            <td class="p-4 text-right text-emerald-400 font-black">Sustainable Advantage</td>
+                                        <tr>
+                                            <td>
+                                                <span class="resource-type">Intellectual</span>
+                                                <span class="resource-name">Specialty Process Technology</span>
+                                            </td>
+                                            <td class="score-highest">Very High</td>
+                                            <td>High</td>
+                                            <td class="score-highest">Very High</td>
+                                            <td>High</td>
+                                            <td class="advantage-sustainable">Sustainable Advantage</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="resource-type">Relational</span>
+                                                <span class="resource-name">Strategic Collaboration with Intel</span>
+                                            </td>
+                                            <td>High</td>
+                                            <td class="score-super">Extremely High</td>
+                                            <td class="score-highest">Very High</td>
+                                            <td>Medium-High</td>
+                                            <td class="advantage-sustainable">Sustainable Advantage</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="resource-type">Financial</span>
+                                                <span class="resource-name">Cash Flow and High-Margin Product Mix</span>
+                                            </td>
+                                            <td>High</td>
+                                            <td>Medium</td>
+                                            <td>Medium-Low</td>
+                                            <td>Low</td>
+                                            <td class="advantage-parity">Competitive Parity</td>
                                         </tr>
                                     </tbody>
                                 </table>
