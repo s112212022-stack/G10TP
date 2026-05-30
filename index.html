@@ -142,7 +142,8 @@
             position: relative;
             perspective: 1200px;
             cursor: pointer;
-            min-height: 120px;
+            min-height: 128px;
+            touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
         }
         .pestel-flip-inner {
@@ -150,12 +151,14 @@
             width: 100%;
             min-height: inherit;
             transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
             transform-origin: center center;
             transition: transform 0.7s ease-in-out;
             will-change: transform;
         }
         .pestel-flip-card.flipped .pestel-flip-inner {
             transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
         }
         .pestel-card-face {
             position: absolute;
@@ -165,13 +168,16 @@
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
             border-radius: inherit;
         }
         .pestel-card-front {
-            transform: rotateY(0deg);
+            transform: rotateY(0deg) translateZ(0.1px);
+            -webkit-transform: rotateY(0deg) translateZ(0.1px);
         }
         .pestel-card-back {
-            transform: rotateY(180deg);
+            transform: rotateY(180deg) translateZ(0.1px);
+            -webkit-transform: rotateY(180deg) translateZ(0.1px);
         }
         .six-force-flip-card {
             perspective: 1000px;
@@ -202,6 +208,9 @@
             overflow-y: auto;
         }
         @media (max-width: 768px) {
+            .pestel-flip-card {
+                min-height: 150px;
+            }
             .six-force-flip-card {
                 min-height: 190px;
             }
@@ -1827,7 +1836,7 @@
                             <div class="flex flex-col lg:grid lg:grid-cols-3 gap-6 items-center relative z-10">
                                 <!-- 左側欄 -->
                                 <div class="flex flex-col gap-6 w-full h-full justify-center">
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉政治字卡">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉政治字卡">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">P (Political / 政治)</strong>
@@ -1838,7 +1847,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉法律字卡">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉法律字卡">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">L (Legal / 法律)</strong>
@@ -1853,7 +1862,7 @@
 
                                 <!-- 中間欄 (含核心中心點) -->
                                 <div class="flex flex-col gap-6 w-full h-full items-center justify-between order-first lg:order-none">
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉經濟字卡">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉經濟字卡">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">E (Economic / 經濟)</strong>
@@ -1870,7 +1879,7 @@
                                         <span class="text-xl font-black text-white light-mode-title tracking-widest">PESTEL</span>
                                     </div>
 
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉環境字卡">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉環境字卡">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">E (Environment / 環境)</strong>
@@ -1885,7 +1894,7 @@
 
                                 <!-- 右側欄 -->
                                 <div class="flex flex-col gap-6 w-full h-full justify-center">
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉社會字卡">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉社會字卡">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">S (Society / 社會)</strong>
@@ -1896,7 +1905,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉科技字卡">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="翻轉科技字卡">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">T (Technology / 科技)</strong>
@@ -2263,7 +2272,7 @@
                             <div class="flex flex-col lg:grid lg:grid-cols-3 gap-6 items-center relative z-10">
                                 <!-- Left Column -->
                                 <div class="flex flex-col gap-6 w-full h-full justify-center">
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="Flip political flashcard">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="Flip political flashcard">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">P (Political)</strong>
@@ -2274,7 +2283,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="Flip legal flashcard">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="Flip legal flashcard">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">L (Legal)</strong>
@@ -2289,7 +2298,7 @@
 
                                 <!-- Center Column -->
                                 <div class="flex flex-col gap-6 w-full h-full items-center justify-between order-first lg:order-none">
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="Flip economic flashcard">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="Flip economic flashcard">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">E (Economic)</strong>
@@ -2306,7 +2315,7 @@
                                         <span class="text-xl font-black text-white light-mode-title tracking-widest">PESTEL</span>
                                     </div>
 
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="Flip environment flashcard">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="Flip environment flashcard">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">E (Environment)</strong>
@@ -2321,7 +2330,7 @@
 
                                 <!-- Right Column -->
                                 <div class="flex flex-col gap-6 w-full h-full justify-center">
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="Flip society flashcard">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="Flip society flashcard">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">S (Society)</strong>
@@ -2332,7 +2341,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="pestel-flip-card w-full min-h-[128px]" tabindex="0" role="button" aria-pressed="false" aria-label="Flip technology flashcard">
+                                    <div class="pestel-flip-card relative w-full min-h-[128px] cursor-pointer" tabindex="0" role="button" aria-pressed="false" aria-label="Flip technology flashcard">
                                         <div class="pestel-flip-inner">
                                             <div class="pestel-card-face pestel-card-front bg-gray-950/40 light-mode-card-nested p-4 rounded-xl border border-purple-500/30 shadow-sm w-full hover:border-purple-400 transition-colors flex flex-col justify-center">
                                                 <strong class="text-purple-400 block mb-2 text-base">T (Technology)</strong>
@@ -3215,16 +3224,19 @@
                 if (card.dataset.pestelFlipBound === 'true') return;
                 card.dataset.pestelFlipBound = 'true';
 
-                card.addEventListener('click', () => {
+                function toggleCard(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
                     card.classList.toggle('flipped');
                     card.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
-                });
+                }
+
+                card.addEventListener('pointerup', toggleCard);
 
                 card.addEventListener('keydown', (event) => {
                     if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        card.classList.toggle('flipped');
-                        card.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
+                        toggleCard(event);
                     }
                 });
             });
