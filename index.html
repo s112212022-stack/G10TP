@@ -1699,6 +1699,133 @@
         .light-mode .dark-mode-org-img {
             filter: none;
         }
+
+        .interview-category-card,
+        .interview-question-card {
+            width: 100%;
+            padding: 1.15rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(34, 211, 238, 0.32);
+            background: rgba(15, 23, 42, 0.58);
+            text-align: left;
+            transition:
+                transform 0.22s ease,
+                border-color 0.22s ease,
+                box-shadow 0.22s ease,
+                background 0.22s ease;
+        }
+
+        .interview-category-card:hover,
+        .interview-question-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(34, 211, 238, 0.68);
+            box-shadow: 0 18px 40px -28px rgba(34, 211, 238, 0.75);
+            background: rgba(15, 23, 42, 0.72);
+        }
+
+        .interview-category-card h4,
+        .interview-question-card h4 {
+            color: #f8fafc;
+            font-weight: 800;
+            line-height: 1.35;
+        }
+
+        .interview-category-card p,
+        .interview-question-card p {
+            margin-top: 0.45rem;
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.65;
+        }
+
+        .interview-count-badge {
+            display: inline-flex;
+            margin-top: 0.9rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            color: #6ee7b7;
+            background: rgba(6, 78, 59, 0.22);
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .interview-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.7rem 1rem;
+            border-radius: 0.9rem;
+            background: linear-gradient(90deg, #2563eb, #0891b2);
+            color: white;
+            font-weight: 800;
+            transition: filter 0.2s ease, transform 0.2s ease;
+        }
+
+        .interview-action-btn:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+
+        .interview-secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem 0.95rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            color: #cbd5e1;
+            background: rgba(15, 23, 42, 0.55);
+            font-weight: 700;
+        }
+
+        .interview-answer-tip {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            background: rgba(6, 78, 59, 0.18);
+            color: #d1fae5;
+            line-height: 1.75;
+        }
+
+        .light-mode .interview-modal-panel,
+        .light-mode .interview-category-card,
+        .light-mode .interview-question-card {
+            background: rgba(255, 255, 255, 0.92) !important;
+        }
+
+        .light-mode .interview-category-card h4,
+        .light-mode .interview-question-card h4 {
+            color: #111827 !important;
+        }
+
+        .light-mode .interview-category-card p,
+        .light-mode .interview-question-card p {
+            color: #4b5563 !important;
+        }
+
+        .light-mode .interview-secondary-btn {
+            color: #374151 !important;
+            background: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        @media (max-width: 768px) {
+            #interviewPracticeModal {
+                padding: 1rem;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .interview-modal-panel {
+                width: calc(100vw - 2rem);
+                max-height: 86dvh;
+            }
+
+            #interviewModalContent {
+                max-height: calc(86dvh - 110px);
+            }
+        }
     </style>
 </head>
 <body id="app-body" class="wafer-bg h-[100dvh] w-screen flex flex-col justify-between overflow-hidden">
@@ -2019,6 +2146,39 @@
                 </button>
             </div>
         </div>
+    </div>
+
+    <!-- AI 面試題庫 Modal -->
+    <div
+      id="interviewPracticeModal"
+      class="hidden fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm items-center justify-center p-4"
+    >
+      <div class="interview-modal-panel w-full max-w-3xl max-h-[88dvh] overflow-hidden rounded-3xl bg-gray-950 border border-cyan-500/40 shadow-2xl">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-800 light-mode-border">
+          <div>
+            <h3 id="interviewModalTitle" class="text-xl md:text-2xl font-black text-white light-mode-title">
+              AI 面試題庫選擇
+            </h3>
+            <p id="interviewModalSubtitle" class="mt-1 text-sm text-gray-400 light-mode-desc">
+              請選擇想練習的面試問題類型
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onclick="closeInterviewPracticeModal()"
+            class="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/70 transition"
+            aria-label="Close interview modal"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div
+          id="interviewModalContent"
+          class="p-6 overflow-y-auto custom-scrollbar max-h-[calc(88dvh-110px)]"
+        ></div>
+      </div>
     </div>
 
     <!-- JavaScript 核心邏輯 -->
@@ -4421,7 +4581,7 @@
                                     <p class="text-gray-400 light-mode-desc mb-6 leading-relaxed">
                                         點擊下方按鈕，針對您感興趣的職位進行模擬面試練習，獲得即時 AI 回饋與建議。
                                     </p>
-                                    <button onclick="startJobAICoach()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-4 rounded-2xl font-medium hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                                    <button onclick="openInterviewPracticeModal()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-4 rounded-2xl font-medium hover:brightness-110 transition-all flex items-center justify-center gap-2">
                                         <i data-lucide="play" class="w-5 h-5"></i>
                                         開始面試練習
                                     </button>
@@ -4508,7 +4668,7 @@
                                     <p class="text-gray-400 light-mode-desc mb-6 leading-relaxed">
                                         Start a simulated interview for UMC roles and receive instant AI-style feedback and suggestions.
                                     </p>
-                                    <button onclick="startJobAICoach()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-4 rounded-2xl font-medium hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                                    <button onclick="openInterviewPracticeModal()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-4 rounded-2xl font-medium hover:brightness-110 transition-all flex items-center justify-center gap-2">
                                         <i data-lucide="play" class="w-5 h-5"></i>
                                         Start Interview Practice
                                     </button>
@@ -5219,7 +5379,283 @@
             if (modal && !modal.classList.contains('hidden') && event.target === modal) {
                 closeJobModal();
             }
+
+            const intModal = document.getElementById('interviewPracticeModal');
+            if (intModal && !intModal.classList.contains('hidden') && event.target === intModal) {
+                closeInterviewPracticeModal();
+            }
         });
+
+        // AI 面試題庫資料與函式
+        const interviewQuestionBank = {
+            personality: {
+                title_zh: '個人背景與人格特質',
+                title_en: 'Personal Background & Personality',
+                description_zh: '練習自我介紹、家庭背景、優缺點、生涯規劃等基本面試題。',
+                description_en: 'Practice self-introduction, background, strengths and weaknesses, and career planning.',
+                questions_zh: [
+                    '請進行簡單的自我介紹，包含在兩分鐘內介紹自己。',
+                    '請簡述您的家庭背景，以及父母在哪裡工作？',
+                    '在校成績如何？在學期間有沒有擔任幹部或參加社團的經驗？',
+                    '放假的時候有什麼休閒活動？',
+                    '請說明自己的優點和缺點。',
+                    '未來的 5 年內生涯規劃是什麼？'
+                ],
+                questions_en: [
+                    'Please briefly introduce yourself within two minutes.',
+                    'Please describe your family background and your parents’ occupations.',
+                    'How was your academic performance? Did you serve as a class officer or join any clubs?',
+                    'What do you usually do during your free time?',
+                    'Please describe your strengths and weaknesses.',
+                    'What is your career plan for the next five years?'
+                ]
+            },
+            professional: {
+                title_zh: '專業能力與學術經歷',
+                title_en: 'Professional Skills & Academic Experience',
+                description_zh: '練習研究論文、半導體基礎知識、實習經驗與職缺專業能力。',
+                description_en: 'Practice thesis discussion, semiconductor fundamentals, internship experience, and job-related skills.',
+                questions_zh: [
+                    '研究所論文或專題的內容在做什麼？請詳細說明。',
+                    '在研究過程中遇到了什麼困難與挫折？你是如何運用專業知識來解決的？',
+                    '你的研究成果可以如何應用於半導體產業？',
+                    '實習期間做了哪些事？',
+                    '請畫出任意 MosFET 並說明其工作原理。',
+                    '請說明你對 CMOS 的認識與工作原理。',
+                    '請在白板畫出 NMOS 電流與電壓的關係圖，並解釋若電壓加大，圖形會如何變化。',
+                    '請說明什麼是短通道效應。',
+                    '若你應徵 IE 工程師，請問你會不會使用資料庫來彙整資料？',
+                    '若你應徵設備維護工程師，請說明你對電機或設備維護相關知識的理解。'
+                ],
+                questions_en: [
+                    'Please explain the main content of your thesis or project in detail.',
+                    'What difficulties did you encounter during your research, and how did you solve them?',
+                    'How can your research results be applied to the semiconductor industry?',
+                    'What did you do during your internship?',
+                    'Please draw any MosFET and explain how it works.',
+                    'Please explain your understanding of CMOS and how it works.',
+                    'Please draw the relationship between NMOS current and voltage and explain what happens when voltage increases.',
+                    'Please explain what the short-channel effect is.',
+                    'If you are applying for an IE engineer position, can you use databases to organize data?',
+                    'If you are applying for an equipment maintenance engineer position, explain your knowledge of electrical or equipment maintenance.'
+                ]
+            },
+            pressure: {
+                title_zh: '情境應對與抗壓性',
+                title_en: 'Situational Response & Stress Tolerance',
+                description_zh: '練習挫折經驗、抗壓性、團隊合作與工作適應能力。',
+                description_en: 'Practice setbacks, stress tolerance, teamwork, and workplace adaptability.',
+                questions_zh: [
+                    '有沒有遇過什麼感到很挫折或低潮的事？你是如何解決問題的？',
+                    '請舉例說服面試官你具備足夠的抗壓性。',
+                    '你平常是如何排解壓力的？',
+                    '請分享你的團隊合作經驗。',
+                    '你覺得自己需要多久能適應這份工作？',
+                    '你認為自己何時能夠對公司有貢獻？'
+                ],
+                questions_en: [
+                    'Have you ever experienced a major setback? How did you solve the problem?',
+                    'Please give an example showing that you have strong stress tolerance.',
+                    'How do you usually relieve stress?',
+                    'Please share your teamwork experience.',
+                    'How long do you think it will take you to adapt to this job?',
+                    'When do you think you will be able to contribute to the company?'
+                ]
+            },
+            motivation: {
+                title_zh: '求職動機與工作配合度',
+                title_en: 'Motivation & Job Fit',
+                description_zh: '練習應徵動機、輪班接受度、薪資期待與錄取意願。',
+                description_en: 'Practice motivation, shift work acceptance, salary expectations, and willingness to join.',
+                questions_zh: [
+                    '為什麼選擇聯電？來聯電應徵的動機是什麼？',
+                    '為什麼想來台南？',
+                    '前任工作的離職原因為何？',
+                    '你對這個工作內容的認知與期待是什麼？',
+                    '能不能接受輪班，包含小夜、大夜以及假日值班？',
+                    '有沒有去其他公司面試？有沒有去台積電面試？',
+                    '你期望的薪資是多少？你認為自己為何能拿這麼高的薪水？',
+                    '如果錄取你，確定會來上班嗎？'
+                ],
+                questions_en: [
+                    'Why did you choose UMC? What motivated you to apply here?',
+                    'Why do you want to work in Tainan?',
+                    'Why did you leave your previous job?',
+                    'What is your understanding and expectation of this job?',
+                    'Can you accept shift work, including evening shifts, night shifts, and holiday duty?',
+                    'Have you interviewed with other companies? Have you interviewed with TSMC?',
+                    'What is your expected salary, and why do you think you deserve that level of pay?',
+                    'If you receive an offer, are you sure you will join the company?'
+                ]
+            }
+        };
+
+        function getInterviewLang() {
+            return currentLang === 'en' ? 'en' : 'zh';
+        }
+
+        function getInterviewText(item, field) {
+            const lang = getInterviewLang();
+            return item[`${field}_${lang}`] || item[`${field}_zh`] || '';
+        }
+
+        function getInterviewLabels() {
+            return getInterviewLang() === 'en'
+                ? {
+                    modalTitle: 'AI Interview Practice Bank',
+                    modalSubtitle: 'Choose a question category to start practicing',
+                    questionListSubtitle: 'Select a question to start practicing.',
+                    practiceHint: 'Answer this question verbally or in your mind first, then click "View Suggested Answer".',
+                    viewTip: 'View Suggested Answer',
+                    back: 'Back',
+                    close: 'Close',
+                    questions: 'questions',
+                    answerTip: 'Use the STAR structure: explain the Situation, Task, Action, and Result. For technical questions, start with the core concept, then connect it to your project, internship, or coursework experience and explain how it relates to the semiconductor industry.'
+                  }
+                : {
+                    modalTitle: 'AI 面試題庫選擇',
+                    modalSubtitle: '請選擇想練習的面試問題類型',
+                    questionListSubtitle: '以下是此分類常見面試題，請選擇一題開始練習。',
+                    practiceHint: '請先在心中或口頭回答這題，再點擊「查看回答建議」。',
+                    viewTip: '查看回答建議',
+                    back: '返回',
+                    close: '關閉',
+                    questions: '題',
+                    answerTip: '回答時建議使用 STAR 架構：先說明情境（Situation），再描述任務（Task）、你的行動（Action），最後補充結果（Result）。若是專業題，請先講核心概念，再用自身專題、實習或課程經驗連結到半導體產業。'
+                  };
+        }
+
+        function openInterviewPracticeModal() {
+            const modal = document.getElementById('interviewPracticeModal');
+            if (!modal) return;
+
+            renderInterviewCategorySelection();
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.classList.add('modal-open');
+
+            const scrollArea = document.querySelector('.content-scroll-area');
+            if (scrollArea) scrollArea.classList.add('modal-scroll-locked');
+        }
+
+        function closeInterviewPracticeModal() {
+            const modal = document.getElementById('interviewPracticeModal');
+            if (!modal) return;
+
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.classList.remove('modal-open');
+
+            const scrollArea = document.querySelector('.content-scroll-area');
+            if (scrollArea) scrollArea.classList.remove('modal-scroll-locked');
+        }
+
+        function setInterviewModalHeader(title, subtitle) {
+            const titleEl = document.getElementById('interviewModalTitle');
+            const subtitleEl = document.getElementById('interviewModalSubtitle');
+
+            if (titleEl) titleEl.textContent = title;
+            if (subtitleEl) subtitleEl.textContent = subtitle;
+        }
+
+        function renderInterviewCategorySelection() {
+            const content = document.getElementById('interviewModalContent');
+            if (!content) return;
+
+            const labels = getInterviewLabels();
+            setInterviewModalHeader(labels.modalTitle, labels.modalSubtitle);
+
+            const entries = Object.entries(interviewQuestionBank);
+
+            content.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${entries.map(([key, item]) => {
+                        const title = getInterviewText(item, 'title');
+                        const description = getInterviewText(item, 'description');
+                        const questions = item[`questions_${getInterviewLang()}`] || item.questions_zh || [];
+
+                        return `
+                            <button type="button" class="interview-category-card" onclick="renderInterviewQuestionList('${key}')">
+                                <h4>${title}</h4>
+                                <p>${description}</p>
+                                <span class="interview-count-badge">${questions.length} ${labels.questions}</span>
+                            </button>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        function renderInterviewQuestionList(categoryKey) {
+            const content = document.getElementById('interviewModalContent');
+            const category = interviewQuestionBank[categoryKey];
+            if (!content || !category) return;
+
+            const labels = getInterviewLabels();
+            const title = getInterviewText(category, 'title');
+            const questions = category[`questions_${getInterviewLang()}`] || category.questions_zh || [];
+
+            setInterviewModalHeader(title, labels.questionListSubtitle);
+
+            content.innerHTML = `
+                <div class="space-y-3">
+                    ${questions.map((question, index) => `
+                        <button type="button" class="interview-question-card" onclick="renderInterviewQuestionPractice('${categoryKey}', ${index})">
+                            <h4>${index + 1}. ${question}</h4>
+                        </button>
+                    `).join('')}
+                </div>
+
+                <div class="mt-6 flex flex-wrap gap-3 justify-end">
+                    <button type="button" class="interview-secondary-btn" onclick="renderInterviewCategorySelection()">${labels.back}</button>
+                    <button type="button" class="interview-secondary-btn" onclick="closeInterviewPracticeModal()">${labels.close}</button>
+                </div>
+            `;
+        }
+
+        function renderInterviewQuestionPractice(categoryKey, questionIndex) {
+            const content = document.getElementById('interviewModalContent');
+            const category = interviewQuestionBank[categoryKey];
+            if (!content || !category) return;
+
+            const labels = getInterviewLabels();
+            const title = getInterviewText(category, 'title');
+            const questions = category[`questions_${getInterviewLang()}`] || category.questions_zh || [];
+            const question = questions[questionIndex];
+
+            if (!question) return;
+
+            setInterviewModalHeader(title, labels.practiceHint);
+
+            content.innerHTML = `
+                <div class="interview-question-card">
+                    <h4>${questionIndex + 1}. ${question}</h4>
+                    <p>${labels.practiceHint}</p>
+                </div>
+
+                <div id="interviewAnswerTipBox"></div>
+
+                <div class="mt-6 flex flex-wrap gap-3 justify-end">
+                    <button type="button" class="interview-action-btn" onclick="showInterviewAnswerTip()">${labels.viewTip}</button>
+                    <button type="button" class="interview-secondary-btn" onclick="renderInterviewQuestionList('${categoryKey}')">${labels.back}</button>
+                    <button type="button" class="interview-secondary-btn" onclick="closeInterviewPracticeModal()">${labels.close}</button>
+                </div>
+            `;
+        }
+
+        function showInterviewAnswerTip() {
+            const box = document.getElementById('interviewAnswerTipBox');
+            if (!box) return;
+
+            const labels = getInterviewLabels();
+
+            box.innerHTML = `
+                <div class="interview-answer-tip">
+                    ${labels.answerTip}
+                </div>
+            `;
+        }
 
         function initPestelFlipCards() {
             const cards = document.querySelectorAll('.pestel-flip-card');
