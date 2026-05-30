@@ -318,6 +318,178 @@
             color: #475569 !important;
         }
 
+        .core-capability-diagram {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 420px) minmax(0, 1fr);
+            grid-template-rows: auto auto;
+            grid-template-areas:
+                "left donut right"
+                ". bottom .";
+            gap: 2rem;
+            align-items: center;
+            padding: 1.5rem 1rem 0.5rem;
+        }
+        .core-donut-wrap {
+            grid-area: donut;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 380px;
+        }
+        .core-donut-svg {
+            width: min(100%, 380px);
+            height: auto;
+            overflow: visible;
+            filter: drop-shadow(0 0 24px rgba(34, 211, 238, 0.2));
+        }
+        .core-segment {
+            fill: none;
+            stroke-width: 58;
+            stroke-linecap: round;
+            stroke-dasharray: 166 437;
+            transform: rotate(-90deg);
+            transform-origin: 180px 180px;
+            transition: opacity 0.25s ease, filter 0.25s ease, stroke-width 0.25s ease;
+        }
+        .core-segment-diff {
+            stroke: rgba(34, 211, 238, 0.84);
+            filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.55));
+        }
+        .core-segment-manufacturing {
+            stroke: rgba(245, 158, 11, 0.86);
+            stroke-dashoffset: -201;
+            filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.5));
+        }
+        .core-segment-global {
+            stroke: rgba(52, 211, 153, 0.84);
+            stroke-dashoffset: -402;
+            filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.5));
+        }
+        .core-center-circle {
+            fill: rgba(2, 6, 23, 0.9);
+            stroke: rgba(148, 163, 184, 0.24);
+            stroke-width: 1.5;
+            filter: drop-shadow(0 0 18px rgba(99, 102, 241, 0.34));
+        }
+        .core-segment-label {
+            fill: #f8fafc;
+            font-size: 15px;
+            font-weight: 800;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            letter-spacing: 0;
+        }
+        .core-center-text {
+            fill: #ffffff;
+            font-size: 20px;
+            font-weight: 900;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            letter-spacing: 0;
+        }
+        .core-note {
+            position: relative;
+            z-index: 2;
+            padding: 1.1rem 1.2rem;
+            border-radius: 1rem;
+            background: rgba(2, 6, 23, 0.45);
+            color: #d1d5db;
+            font-size: 0.9rem;
+            line-height: 1.75;
+            box-shadow: 0 18px 42px -30px var(--core-color);
+            backdrop-filter: blur(10px);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .core-note-title {
+            display: block;
+            margin-bottom: 0.45rem;
+            color: var(--core-color);
+            font-size: 1rem;
+            font-weight: 800;
+        }
+        .core-note-left {
+            grid-area: left;
+            --core-color: #22d3ee;
+            border: 1px solid rgba(34, 211, 238, 0.38);
+        }
+        .core-note-right {
+            grid-area: right;
+            --core-color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.38);
+        }
+        .core-note-bottom {
+            grid-area: bottom;
+            --core-color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.38);
+            max-width: 36rem;
+            justify-self: center;
+        }
+        .core-note:hover {
+            transform: translateY(-3px);
+            border-color: color-mix(in srgb, var(--core-color), white 30%);
+            box-shadow: 0 22px 50px -28px var(--core-color);
+        }
+        .core-connector-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: visible;
+        }
+        .core-connector {
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-dasharray: 5 7;
+            opacity: 0.75;
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+        .core-connector-diff { color: #22d3ee; stroke: currentColor; }
+        .core-connector-manufacturing { color: #f59e0b; stroke: currentColor; }
+        .core-connector-global { color: #34d399; stroke: currentColor; }
+        .light-mode .core-note {
+            background: rgba(255, 255, 255, 0.72) !important;
+            color: #374151 !important;
+        }
+        .light-mode .core-center-circle {
+            fill: rgba(255, 255, 255, 0.92);
+        }
+        .light-mode .core-center-text {
+            fill: #111827;
+        }
+        @media (max-width: 900px) {
+            .core-capability-diagram {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                grid-template-areas:
+                    "donut"
+                    "left"
+                    "right"
+                    "bottom";
+                gap: 1rem;
+                padding: 0.5rem 0 0;
+            }
+            .core-donut-wrap {
+                min-height: 320px;
+            }
+            .core-donut-svg {
+                width: min(100%, 320px);
+            }
+            .core-note,
+            .core-note-bottom {
+                max-width: none;
+                justify-self: stretch;
+            }
+            .core-connector-layer {
+                display: none;
+            }
+        }
+
         .strategy-analysis {
             position: relative;
             --group-a: #8b5cf6;
@@ -2503,15 +2675,42 @@
 
                         <div id="res-core" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">四、核心能耐</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-xl border border-emerald-500/30">
-                                    <div class="text-white light-mode-card-title font-bold mb-2">💎 成熟製造力</div>
-                                    <p class="text-xs text-gray-400 light-mode-desc">良率控制力無可匹敵，單位成本極小化，形成毛利護城河。</p>
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-8 flex items-center">四、核心能耐</h3>
+                            <div class="core-capability-diagram">
+                                <svg class="core-connector-layer" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+                                    <path class="core-connector core-connector-diff" d="M 465 225 C 390 190, 330 175, 230 200"></path>
+                                    <path class="core-connector core-connector-manufacturing" d="M 535 225 C 610 190, 675 175, 770 200"></path>
+                                    <path class="core-connector core-connector-global" d="M 500 350 C 500 395, 500 420, 500 452"></path>
+                                </svg>
+
+                                <div class="core-note core-note-left light-mode-card-nested">
+                                    <span class="core-note-title">差異化</span>
+                                    持續特殊製程開發，朝先進封裝、擴大矽光子布局。
                                 </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-xl border border-emerald-500/30">
-                                    <div class="text-white light-mode-card-title font-bold mb-2">🧠 智財庫 (IP)</div>
-                                    <p class="text-xs text-gray-400 light-mode-desc">數十年的研發累積了豐富的 RFSOI、BCD、eNVM 專利與設計平台。</p>
+
+                                <div class="core-note core-note-right light-mode-card-nested">
+                                    <span class="core-note-title">成熟製造</span>
+                                    顯示驅動IC、電源管理、微控制器（MCU）、車用晶片、通訊晶片、AIoT／邊緣AI晶片。
+                                </div>
+
+                                <div class="core-donut-wrap">
+                                    <svg class="core-donut-svg" viewBox="0 0 360 360" role="img" aria-label="核心能耐環狀圖">
+                                        <circle cx="180" cy="180" r="124" fill="none" stroke="rgba(148,163,184,0.12)" stroke-width="64"></circle>
+                                        <circle class="core-segment core-segment-diff" cx="180" cy="180" r="96"></circle>
+                                        <circle class="core-segment core-segment-manufacturing" cx="180" cy="180" r="96"></circle>
+                                        <circle class="core-segment core-segment-global" cx="180" cy="180" r="96"></circle>
+                                        <circle class="core-center-circle" cx="180" cy="180" r="69"></circle>
+                                        <text class="core-segment-label" x="112" y="115">差異化</text>
+                                        <text class="core-segment-label" x="248" y="116">成熟製造</text>
+                                        <text class="core-segment-label" x="180" y="282">多廠區營業</text>
+                                        <text class="core-center-text" x="180" y="172">核心</text>
+                                        <text class="core-center-text" x="180" y="198">能耐</text>
+                                    </svg>
+                                </div>
+
+                                <div class="core-note core-note-bottom light-mode-card-nested">
+                                    <span class="core-note-title">多廠區營業</span>
+                                    產能分散與地緣政治避險，降低單一地區風險、避免供應鏈中斷，並利用當地人才與技術生態系。
                                 </div>
                             </div>
                         </div>
@@ -2647,15 +2846,42 @@
 
                         <div id="res-core" class="scroll-mt-24 p-6 rounded-2xl bg-gray-900/30 border border-emerald-500/20 relative overflow-hidden shadow-lg light-mode-card">
                             <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-4 flex items-center">4. Core Competencies</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-xl border border-emerald-500/30">
-                                    <div class="text-white light-mode-card-title font-bold mb-2">💎 Mature Manufacturing</div>
-                                    <p class="text-xs text-gray-400 light-mode-desc">Unrivaled yield control minimizes unit costs, forming a solid gross margin moat.</p>
+                            <h3 class="text-xl font-bold text-white light-mode-card-title mb-8 flex items-center">4. Core Competencies</h3>
+                            <div class="core-capability-diagram">
+                                <svg class="core-connector-layer" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+                                    <path class="core-connector core-connector-diff" d="M 465 225 C 390 190, 330 175, 230 200"></path>
+                                    <path class="core-connector core-connector-manufacturing" d="M 535 225 C 610 190, 675 175, 770 200"></path>
+                                    <path class="core-connector core-connector-global" d="M 500 350 C 500 395, 500 420, 500 452"></path>
+                                </svg>
+
+                                <div class="core-note core-note-left light-mode-card-nested">
+                                    <span class="core-note-title">Differentiation</span>
+                                    Continuous specialty process development, moving toward advanced packaging and broader silicon photonics deployment.
                                 </div>
-                                <div class="bg-gray-950/40 light-mode-card-nested p-5 rounded-xl border border-emerald-500/30">
-                                    <div class="text-white light-mode-card-title font-bold mb-2">🧠 IP Libraries</div>
-                                    <p class="text-xs text-gray-400 light-mode-desc">Decades of R&D amassed rich patents and design platforms for RFSOI, BCD, eNVM.</p>
+
+                                <div class="core-note core-note-right light-mode-card-nested">
+                                    <span class="core-note-title">Mature Manufacturing</span>
+                                    Display driver ICs, power management, microcontrollers (MCU), automotive chips, communication chips, and AIoT / edge AI chips.
+                                </div>
+
+                                <div class="core-donut-wrap">
+                                    <svg class="core-donut-svg" viewBox="0 0 360 360" role="img" aria-label="Core competency donut diagram">
+                                        <circle cx="180" cy="180" r="124" fill="none" stroke="rgba(148,163,184,0.12)" stroke-width="64"></circle>
+                                        <circle class="core-segment core-segment-diff" cx="180" cy="180" r="96"></circle>
+                                        <circle class="core-segment core-segment-manufacturing" cx="180" cy="180" r="96"></circle>
+                                        <circle class="core-segment core-segment-global" cx="180" cy="180" r="96"></circle>
+                                        <circle class="core-center-circle" cx="180" cy="180" r="69"></circle>
+                                        <text class="core-segment-label" x="112" y="115">Differentiate</text>
+                                        <text class="core-segment-label" x="248" y="116">Manufacture</text>
+                                        <text class="core-segment-label" x="180" y="282">Multi-Site</text>
+                                        <text class="core-center-text" x="180" y="172">Core</text>
+                                        <text class="core-center-text" x="180" y="198">Competency</text>
+                                    </svg>
+                                </div>
+
+                                <div class="core-note core-note-bottom light-mode-card-nested">
+                                    <span class="core-note-title">Multi-Site Operations</span>
+                                    Distributed capacity and geopolitical risk hedging reduce single-region exposure, avoid supply-chain disruption, and leverage local talent and technology ecosystems.
                                 </div>
                             </div>
                         </div>
